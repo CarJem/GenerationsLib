@@ -70,6 +70,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\EndlessStackPanel.cs" />
+    <Compile Include="Helpers.cs" />
     <Compile Include="Media\Imaging\Bgra32Pixel.cs" />
     <Compile Include="Media\Imaging\ChainedBitmap.cs" />
     <Compile Include="Media\Imaging\ColorKeyBitmap.cs" />
