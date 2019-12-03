@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CollectionHelpers.cs" />
     <Compile Include="FileHelpers.cs" />
     <Compile Include="KnownFolders.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
