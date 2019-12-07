@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
 // <copyright file="Util.cs">
-// TODO: Update copyright text.
+// TO-DO: Update copyright text.
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -13,7 +13,7 @@ namespace GenerationsLib.WPF
     using System.Windows.Media.Imaging;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// TO-DO: Update summary.
     /// </summary>
     internal static class DialogUtil
     {

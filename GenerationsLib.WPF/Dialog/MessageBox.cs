@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
 // <copyright file="MessageBox.cs">
-// TODO: Update copyright text.
+// TO-DO: Update copyright text.
 // </copyright>
 // -----------------------------------------------------------------------
 

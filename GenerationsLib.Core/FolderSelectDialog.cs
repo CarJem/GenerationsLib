@@ -134,20 +134,20 @@ namespace GenerationsLib.Core
             {
                 if (disposing)
                 {
-                    // TODO: dispose managed state (managed objects).
+                    // TO-DO: dispose managed state (managed objects).
                     if (ofd != null)
                     {
                         ofd.Dispose();
                     }
                 }
 
-                // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
-                // TODO: set large fields to null.
+                // TO-DO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+                // TO-DO: set large fields to null.
                 _disposedValue = true;
             }
         }
 
-        // TODO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
+        // TO-DO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
         // ~FolderSelectDialog() {
         //   // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
         //   Dispose(false);
@@ -158,7 +158,7 @@ namespace GenerationsLib.Core
         {
             // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
             Dispose(true);
-            // TODO: uncomment the following line if the finalizer is overridden above.
+            // TO-DO: uncomment the following line if the finalizer is overridden above.
             // GC.SuppressFinalize(this);
         }
         #endregion
