@@ -16,6 +16,8 @@ namespace GenerationsLib.WPF.Controls
         public event EventHandler<RecentItem> RecentItemSelected;
         private MenuItem NoRecentItems = new MenuItem();
         private IList<MenuItem> RecentItems = new List<MenuItem>();
+        public string EmptyRecentListString { get; set; } = "No Recent Items";
+        public bool HasItemLimit { get; set; } = true;
 
         public RecentsListMenuItem()
         {
@@ -37,7 +39,7 @@ namespace GenerationsLib.WPF.Controls
         private void SetRecentItemsSource(List<RecentItem> value)
         {
             _recentItemsSource = value;
-            RefreshRecentFiles(_recentItemsSource);
+            RefreshRecentFiles(value);
         }
 
 
@@ -71,7 +73,7 @@ namespace GenerationsLib.WPF.Controls
                     RecentsList.Remove(item);
                 }
 
-                if (RecentsList.Count >= 10)
+                if (RecentsList.Count >= 10 && HasItemLimit)
                 {
                     for (int i = 9; i < RecentsList.Count; i++)
                     {
@@ -112,7 +114,7 @@ namespace GenerationsLib.WPF.Controls
                 {
                     int item_key;
                     if (index == 9) item_key = index;
-                    else if (index >= 10) item_key = -1;
+                    else if (index >= 10 && HasItemLimit) item_key = -1;
                     else item_key = index;
                     RecentItems.Add(CreateDataDirectoryMenuLink(entry, index));
                     index++;
@@ -138,7 +140,7 @@ namespace GenerationsLib.WPF.Controls
         private void AddEmptyRecentsListItem()
         {
             NoRecentItems = new MenuItem();
-            NoRecentItems.Header = "No Recent Items";
+            NoRecentItems.Header = EmptyRecentListString;
             NoRecentItems.IsEnabled = false;
             this.Items.Add(NoRecentItems);
         }
@@ -159,6 +161,7 @@ namespace GenerationsLib.WPF.Controls
             newItem.Header = item.Header;
             newItem.Tag = item;
             newItem.Click += RecentItem_Click;
+            newItem.Visibility = Visibility.Visible;
             return newItem;
         }
 
@@ -184,7 +187,7 @@ namespace GenerationsLib.WPF.Controls
                 else
                 {
                     ItemsWithoutDuplicates.Add(RecentItemsSource[i]);
-                    if (File.Exists(RecentItemsSource[i].FilePath)) continue;
+                    if (File.Exists(RecentItemsSource[i].FilePath) || !RecentItemsSource[i].hasFilePath) continue;
                     else ItemsForRemoval.Add(RecentItemsSource[i]);
                 }
 
@@ -206,13 +209,22 @@ namespace GenerationsLib.WPF.Controls
         public class RecentItem
         {
             public string Header { get; set; }
-            public string Content { get; set; }
+            public object Content { get; set; }
             public string FilePath { get; set; }
-            public RecentItem(string _header, string _content, string _filePath)
+            public bool hasFilePath { get; }
+            public RecentItem(string _header, object _content)
+            {
+                Header = _header;
+                Content = _content;
+                hasFilePath = false;
+            }
+
+            public RecentItem(string _header, object _content, string _filePath)
             {
                 Header = _header;
                 Content = _content;
                 FilePath = _filePath;
+                hasFilePath = true;
             }
         }
     }
