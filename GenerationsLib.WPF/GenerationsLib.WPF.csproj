@@ -80,6 +80,7 @@
   <ItemGroup>
     <Compile Include="Controls\EndlessStackPanel.cs" />
     <Compile Include="Controls\RecentsListMenuItem.cs" />
+    <Compile Include="DesignExtensions.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="Media\Imaging\Bgra32Pixel.cs" />
     <Compile Include="Media\Imaging\ChainedBitmap.cs" />
