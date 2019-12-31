@@ -120,13 +120,16 @@ namespace GenerationsLib.UpdateAssistant
         private void PraseMetadata()
         {
             richTextBox1.ResetText();
+            richTextBox3.ResetText();
             if (listBox3.SelectedItem != null)
             {
                 try
                 {
                     UpdateAssistant.Structure.Metadata meta = (listBox3.SelectedItem as UpdateAssistant.Structure.Metadata);
+                    string changelog = meta.Details;
                     string data = Newtonsoft.Json.JsonConvert.SerializeObject(meta, Newtonsoft.Json.Formatting.Indented);
                     richTextBox1.Text = data;
+                    richTextBox3.Text = changelog;
                 }
                 catch (Exception ex)
                 {

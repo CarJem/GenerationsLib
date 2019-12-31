@@ -130,5 +130,10 @@ namespace GenerationsLib.UpdateAssistant
             DeploymentDialog editor = new DeploymentDialog();
             editor.ShowConfigDialog(listBox1.SelectedItem as UpdateAssistant);
         }
+
+        private void refreshButton_Click(object sender, EventArgs e)
+        {
+            RefreshTool();
+        }
     }
 }

@@ -33,6 +33,7 @@
             this.editButton = new System.Windows.Forms.Button();
             this.removeButton = new System.Windows.Forms.Button();
             this.runButton = new System.Windows.Forms.Button();
+            this.refreshButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBox1
@@ -84,11 +85,22 @@
             this.runButton.UseVisualStyleBackColor = true;
             this.runButton.Click += new System.EventHandler(this.runButton_Click);
             // 
+            // refreshButton
+            // 
+            this.refreshButton.Location = new System.Drawing.Point(174, 386);
+            this.refreshButton.Name = "refreshButton";
+            this.refreshButton.Size = new System.Drawing.Size(79, 23);
+            this.refreshButton.TabIndex = 5;
+            this.refreshButton.Text = "Refresh";
+            this.refreshButton.UseVisualStyleBackColor = true;
+            this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(346, 450);
+            this.Controls.Add(this.refreshButton);
             this.Controls.Add(this.runButton);
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.editButton);
@@ -107,6 +119,7 @@
         private System.Windows.Forms.Button editButton;
         private System.Windows.Forms.Button removeButton;
         private System.Windows.Forms.Button runButton;
+        private System.Windows.Forms.Button refreshButton;
     }
 }
 
