@@ -8,6 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GenerationsLib.Core;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using GongSolutions.Shell;
+using System.IO;
+using CefSharp;
+using CefSharp.WinForms;
+using CefSharp.Web;
 
 namespace GenerationsLib.UpdateAssistant
 {
@@ -16,6 +23,9 @@ namespace GenerationsLib.UpdateAssistant
         public DeploymentDialog()
         {
             InitializeComponent();
+            InitilizeTreeViewIcons();
+            InitFileExplorer();
+            InitWebBrowser();
             DialogDefaults();
         }
         private void DialogDefaults()
@@ -25,12 +35,13 @@ namespace GenerationsLib.UpdateAssistant
             this.StartPosition = FormStartPosition.CenterParent;
         }
 
+        private Process ExplorerHost { get; set; }
+
         public static UpdateAssistant EditedItem { get; set; }
         public void ShowConfigDialog(UpdateAssistant item)
         {
             EditedItem = item;
             RefreshTool();
-            var result = this.ShowDialog();
         }
 
         private void SetupControls()
@@ -604,7 +615,7 @@ namespace GenerationsLib.UpdateAssistant
             int index = publishHostsListBox.SelectedIndex;
             EditedItem.Details.SitesToPublishTo.Move(index, index + 1);
             UpdatePublishHostsBindings(true);
-            publishHostsListBox.SelectedIndex = ListHelpers.MoveSelectedIndex(publishHostsListBox.Items.Count, index, index - 1);
+            publishHostsListBox.SelectedIndex = ListHelpers.MoveSelectedIndex(publishHostsListBox.Items.Count, index, index + 1);
         }
 
         private void PublishHost_textbox1_TextChanged(object sender, EventArgs e)
@@ -639,5 +650,221 @@ namespace GenerationsLib.UpdateAssistant
             EditedItem.Details.Name = name;
             RefreshTool();
         }
+
+        private void toggleInfoPaneButton_Click(object sender, EventArgs e)
+        {
+            if (!splitContainer2.Panel2Collapsed) splitContainer2.Panel2Collapsed = true;
+            else splitContainer2.Panel2Collapsed = false;
+        }
+
+        #region File Explorer
+
+        private ShellComboBox File_ShellComboBox { get; set; }
+        private ShellView File_ShellView { get; set; }
+        private ShellTreeView File_ShellTreeView { get; set; }
+
+        private void InitFileExplorer()
+        {
+            //Create Explorer Controls
+            File_ShellComboBox = new ShellComboBox();
+            File_ShellView = new ShellView();
+            File_ShellTreeView = new ShellTreeView();
+
+            //Set Shell View of Other Controls
+            File_ShellComboBox.ShellView = File_ShellView;
+            File_ShellTreeView.ShellView = File_ShellView;
+
+            //Combo Box Settings
+            File_ShellComboBox.ShowFileSystemPath = true;
+
+            //Shell View Settings
+            File_ShellView.View = ShellViewStyle.Details;
+
+            //Tree View Settings
+            File_ShellTreeView.HotTracking = true;
+
+            //Set all to Dock in Place
+            File_ShellView.Dock = DockStyle.Fill;
+            File_ShellComboBox.Dock = DockStyle.Fill;
+            File_ShellTreeView.Dock = DockStyle.Fill;
+
+            //Add the Controls
+            fileComboBoxPanel.Controls.Add(File_ShellComboBox);
+            fileTreeViewPanel.Controls.Add(File_ShellTreeView);
+            fileViewPanel.Controls.Add(File_ShellView);
+        }
+
+        private void InitilizeTreeViewIcons()
+        {
+            ImageList MyImages = new ImageList();
+            MyImages.ImageSize = new Size(16, 16);
+
+            MyImages.Images.Add(DefaultIcons.FolderLarge);
+
+            quickAccessTreeView.ImageList = MyImages;
+        }
+
+        private void RefreshQuickAccessEntries()
+        {
+            quickAccessTreeView.Nodes.Clear();
+            foreach (var entry in EditedItem.Details.DownloadHosts)
+            {
+                try
+                {
+                    string path = entry.String2.Replace("\"", "");
+                    if (Directory.Exists(path + "\\"))
+                    {
+                        TreeNode node = new TreeNode();
+                        node.Text = entry.String1;
+                        node.Tag = path;
+                        node.ImageIndex = 0;
+                        quickAccessTreeView.Nodes.Add(node);
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("Invalid Entry");
+                }
+
+            }
+        }
+
+        private void quickAccessTreeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Node != null && e.Node.Tag != null)
+            {
+                File_ShellView.Navigate(e.Node.Tag.ToString());
+            }
+        }
+
+        #endregion
+
+        #region Web Browser
+
+        private ChromiumWebBrowser ChromiumWebBrowser { get; set; }
+
+        private void InitWebBrowser()
+        {
+            // Create a browser component
+            ChromiumWebBrowser = new ChromiumWebBrowser("http://google.com");
+            ChromiumWebBrowser.BrowserSettings.ApplicationCache = CefSharp.CefState.Enabled;
+            // Add it to the form and fill it to the form window.
+            chromeHostPanel.Controls.Add(ChromiumWebBrowser);
+            ChromiumWebBrowser.Dock = DockStyle.Fill;
+        }
+
+        private void RefreshBookmarkEntries()
+        {
+            bookmarkTreeView.Nodes.Clear();
+            RefreshDownloadHostsEntries();
+            RefreshPublishingEntries();
+            RefreshSocialEntries();
+
+
+            void RefreshDownloadHostsEntries()
+            {
+                TreeNode downloadHosts = new TreeNode("Download Hosts");
+                foreach (var entry in EditedItem.Details.DownloadHosts)
+                {
+                    try
+                    {
+                        string path = entry.String2.Replace("\"", "");
+                        if (WebHelpers.isURLValid(path))
+                        {
+                            TreeNode node = new TreeNode();
+                            node.Text = entry.String1;
+                            node.Tag = path;
+                            downloadHosts.Nodes.Add(node);
+                        }
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Invalid Entry");
+                    }
+
+                }
+                bookmarkTreeView.Nodes.Add(downloadHosts);
+            }
+
+            void RefreshPublishingEntries()
+            {
+                TreeNode downloadHosts = new TreeNode("Publishing Hosts");
+                foreach (var entry in EditedItem.Details.SitesToPublishTo)
+                {
+                    try
+                    {
+                        string path = entry.String2.Replace("\"", "");
+                        if (WebHelpers.isURLValid(path))
+                        {
+                            TreeNode node = new TreeNode();
+                            node.Text = entry.String1;
+                            node.Tag = path;
+                            downloadHosts.Nodes.Add(node);
+                        }
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Invalid Entry");
+                    }
+
+                }
+                bookmarkTreeView.Nodes.Add(downloadHosts);
+            }
+
+            void RefreshSocialEntries()
+            {
+                TreeNode downloadHosts = new TreeNode("Social Sites");
+                foreach (var entry in EditedItem.Details.PlacesToPost)
+                {
+                    try
+                    {
+                        string path = entry.URL.Replace("\"", "");
+                        if (WebHelpers.isURLValid(path))
+                        {
+                            TreeNode node = new TreeNode();
+                            node.Text = entry.Name;
+                            node.Tag = path;
+                            downloadHosts.Nodes.Add(node);
+                        }
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Invalid Entry");
+                    }
+
+                }
+                bookmarkTreeView.Nodes.Add(downloadHosts);
+            }
+        }
+
+        private void bookmarkTreeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Node.Tag != null)
+            {
+                ChromiumWebBrowser.Load(e.Node.Tag.ToString());
+            }
+        }
+
+        #endregion
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedTab == tabPage1)
+            {
+                RefreshQuickAccessEntries();
+            }
+            else if (tabControl1.SelectedTab == tabPage8)
+            {
+                RefreshBookmarkEntries();
+            }
+        }
+
+
+        private void DeploymentDialog_SizeChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

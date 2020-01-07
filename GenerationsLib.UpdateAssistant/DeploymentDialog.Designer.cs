@@ -85,10 +85,24 @@
             this.removeSocialPostButton = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.SocialPost_listBox = new System.Windows.Forms.ListBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.fileComboBoxPanel = new System.Windows.Forms.Panel();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.fileTreeTabControl = new System.Windows.Forms.TabControl();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.fileTreeViewPanel = new System.Windows.Forms.Panel();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.quickAccessTreeView = new System.Windows.Forms.TreeView();
+            this.fileViewPanel = new System.Windows.Forms.Panel();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.button7 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.toggleInfoPaneButton = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -98,8 +112,9 @@
             this.SocialPostBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.downloadHostsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.publishHostsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.bookmarkTreeView = new System.Windows.Forms.TreeView();
+            this.chromeHostPanel = new System.Windows.Forms.Panel();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -115,11 +130,21 @@
             this.tabPage6.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox10.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.Panel2.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
+            this.fileTreeTabControl.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.tabPage7.SuspendLayout();
+            this.tabPage8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -132,6 +157,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.SocialPostBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.downloadHostsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.publishHostsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
+            this.splitContainer4.Panel1.SuspendLayout();
+            this.splitContainer4.Panel2.SuspendLayout();
+            this.splitContainer4.SuspendLayout();
             this.SuspendLayout();
             // 
             // publishHostsListBox
@@ -142,7 +171,7 @@
             this.publishHostsListBox.IntegralHeight = false;
             this.publishHostsListBox.Location = new System.Drawing.Point(6, 19);
             this.publishHostsListBox.Name = "publishHostsListBox";
-            this.publishHostsListBox.Size = new System.Drawing.Size(453, 376);
+            this.publishHostsListBox.Size = new System.Drawing.Size(453, 354);
             this.publishHostsListBox.TabIndex = 0;
             this.publishHostsListBox.SelectedIndexChanged += new System.EventHandler(this.PublishHostListBox_SelectedIndexChanged);
             // 
@@ -150,7 +179,7 @@
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(242, 401);
+            this.button1.Location = new System.Drawing.Point(242, 379);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(217, 23);
             this.button1.TabIndex = 1;
@@ -166,7 +195,7 @@
             this.downloadHostListBox.IntegralHeight = false;
             this.downloadHostListBox.Location = new System.Drawing.Point(6, 19);
             this.downloadHostListBox.Name = "downloadHostListBox";
-            this.downloadHostListBox.Size = new System.Drawing.Size(453, 376);
+            this.downloadHostListBox.Size = new System.Drawing.Size(453, 354);
             this.downloadHostListBox.TabIndex = 2;
             this.downloadHostListBox.SelectedIndexChanged += new System.EventHandler(this.DownloadHostListBox_SelectedIndexChanged);
             // 
@@ -174,7 +203,7 @@
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(242, 401);
+            this.button2.Location = new System.Drawing.Point(242, 379);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(217, 23);
             this.button2.TabIndex = 4;
@@ -189,7 +218,7 @@
             this.richTextBox1.Location = new System.Drawing.Point(3, 16);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(406, 171);
+            this.richTextBox1.Size = new System.Drawing.Size(368, 164);
             this.richTextBox1.TabIndex = 5;
             this.richTextBox1.Text = "";
             // 
@@ -197,7 +226,7 @@
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(6, 497);
+            this.button3.Location = new System.Drawing.Point(6, 475);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(321, 30);
             this.button3.TabIndex = 7;
@@ -212,7 +241,7 @@
             this.richTextBox2.Location = new System.Drawing.Point(3, 16);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.ReadOnly = true;
-            this.richTextBox2.Size = new System.Drawing.Size(406, 173);
+            this.richTextBox2.Size = new System.Drawing.Size(368, 165);
             this.richTextBox2.TabIndex = 6;
             this.richTextBox2.Text = "";
             this.richTextBox2.TextChanged += new System.EventHandler(this.richTextBox2_TextChanged);
@@ -223,12 +252,15 @@
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage8);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(485, 590);
+            this.tabControl1.Size = new System.Drawing.Size(485, 568);
             this.tabControl1.TabIndex = 8;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage2
             // 
@@ -236,7 +268,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(477, 564);
+            this.tabPage2.Size = new System.Drawing.Size(477, 542);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Versions";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -252,7 +284,7 @@
             this.groupBox8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox8.Location = new System.Drawing.Point(3, 3);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(471, 558);
+            this.groupBox8.Size = new System.Drawing.Size(471, 536);
             this.groupBox8.TabIndex = 9;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Version Metadata";
@@ -270,7 +302,7 @@
             this.groupBox9.Controls.Add(this.VerMeta_DownloadURLTextBox);
             this.groupBox9.Location = new System.Drawing.Point(132, 19);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(333, 533);
+            this.groupBox9.Size = new System.Drawing.Size(333, 511);
             this.groupBox9.TabIndex = 10;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Item Details";
@@ -310,7 +342,7 @@
             this.VerMeta_DescriptionTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.VerMeta_DescriptionTextBox.Location = new System.Drawing.Point(6, 112);
             this.VerMeta_DescriptionTextBox.Name = "VerMeta_DescriptionTextBox";
-            this.VerMeta_DescriptionTextBox.Size = new System.Drawing.Size(321, 415);
+            this.VerMeta_DescriptionTextBox.Size = new System.Drawing.Size(321, 393);
             this.VerMeta_DescriptionTextBox.TabIndex = 9;
             this.VerMeta_DescriptionTextBox.Text = "";
             // 
@@ -335,7 +367,7 @@
             // moveDownVerMetaButton
             // 
             this.moveDownVerMetaButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.moveDownVerMetaButton.Location = new System.Drawing.Point(99, 527);
+            this.moveDownVerMetaButton.Location = new System.Drawing.Point(101, 505);
             this.moveDownVerMetaButton.Name = "moveDownVerMetaButton";
             this.moveDownVerMetaButton.Size = new System.Drawing.Size(25, 25);
             this.moveDownVerMetaButton.TabIndex = 6;
@@ -346,7 +378,7 @@
             // moveUpVerMetaButton
             // 
             this.moveUpVerMetaButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.moveUpVerMetaButton.Location = new System.Drawing.Point(68, 527);
+            this.moveUpVerMetaButton.Location = new System.Drawing.Point(70, 505);
             this.moveUpVerMetaButton.Name = "moveUpVerMetaButton";
             this.moveUpVerMetaButton.Size = new System.Drawing.Size(25, 25);
             this.moveUpVerMetaButton.TabIndex = 5;
@@ -357,7 +389,7 @@
             // removeVerMetaButton
             // 
             this.removeVerMetaButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.removeVerMetaButton.Location = new System.Drawing.Point(37, 527);
+            this.removeVerMetaButton.Location = new System.Drawing.Point(39, 505);
             this.removeVerMetaButton.Name = "removeVerMetaButton";
             this.removeVerMetaButton.Size = new System.Drawing.Size(25, 25);
             this.removeVerMetaButton.TabIndex = 4;
@@ -368,7 +400,7 @@
             // addButton
             // 
             this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.addButton.Location = new System.Drawing.Point(6, 527);
+            this.addButton.Location = new System.Drawing.Point(8, 505);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(25, 25);
             this.addButton.TabIndex = 3;
@@ -381,9 +413,9 @@
             this.versionListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.versionListBox.FormattingEnabled = true;
-            this.versionListBox.Location = new System.Drawing.Point(6, 25);
+            this.versionListBox.Location = new System.Drawing.Point(8, 19);
             this.versionListBox.Name = "versionListBox";
-            this.versionListBox.Size = new System.Drawing.Size(118, 485);
+            this.versionListBox.Size = new System.Drawing.Size(118, 472);
             this.versionListBox.TabIndex = 1;
             this.versionListBox.SelectedIndexChanged += new System.EventHandler(this.versionListBox_SelectedIndexChanged);
             // 
@@ -393,7 +425,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(477, 564);
+            this.tabPage4.Size = new System.Drawing.Size(477, 542);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Download Hosts";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -410,7 +442,7 @@
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(471, 558);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(471, 536);
             this.tableLayoutPanel4.TabIndex = 9;
             // 
             // groupBox12
@@ -424,7 +456,7 @@
             this.groupBox12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox12.Location = new System.Drawing.Point(3, 3);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(465, 432);
+            this.groupBox12.Size = new System.Drawing.Size(465, 410);
             this.groupBox12.TabIndex = 8;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "Items:";
@@ -432,7 +464,7 @@
             // moveDownloadHostsDownButton
             // 
             this.moveDownloadHostsDownButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.moveDownloadHostsDownButton.Location = new System.Drawing.Point(99, 401);
+            this.moveDownloadHostsDownButton.Location = new System.Drawing.Point(99, 379);
             this.moveDownloadHostsDownButton.Name = "moveDownloadHostsDownButton";
             this.moveDownloadHostsDownButton.Size = new System.Drawing.Size(25, 25);
             this.moveDownloadHostsDownButton.TabIndex = 10;
@@ -443,7 +475,7 @@
             // moveDownloadHostsUpButton
             // 
             this.moveDownloadHostsUpButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.moveDownloadHostsUpButton.Location = new System.Drawing.Point(68, 401);
+            this.moveDownloadHostsUpButton.Location = new System.Drawing.Point(68, 379);
             this.moveDownloadHostsUpButton.Name = "moveDownloadHostsUpButton";
             this.moveDownloadHostsUpButton.Size = new System.Drawing.Size(25, 25);
             this.moveDownloadHostsUpButton.TabIndex = 9;
@@ -454,7 +486,7 @@
             // removeDownloadHostsButton
             // 
             this.removeDownloadHostsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.removeDownloadHostsButton.Location = new System.Drawing.Point(37, 401);
+            this.removeDownloadHostsButton.Location = new System.Drawing.Point(37, 379);
             this.removeDownloadHostsButton.Name = "removeDownloadHostsButton";
             this.removeDownloadHostsButton.Size = new System.Drawing.Size(25, 25);
             this.removeDownloadHostsButton.TabIndex = 8;
@@ -465,7 +497,7 @@
             // addDownloadHostsButton
             // 
             this.addDownloadHostsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.addDownloadHostsButton.Location = new System.Drawing.Point(6, 401);
+            this.addDownloadHostsButton.Location = new System.Drawing.Point(6, 379);
             this.addDownloadHostsButton.Name = "addDownloadHostsButton";
             this.addDownloadHostsButton.Size = new System.Drawing.Size(25, 25);
             this.addDownloadHostsButton.TabIndex = 7;
@@ -478,7 +510,7 @@
             this.groupBox13.Controls.Add(this.downloadHostsTextBox2);
             this.groupBox13.Controls.Add(this.downloadHostsTextBox1);
             this.groupBox13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox13.Location = new System.Drawing.Point(3, 441);
+            this.groupBox13.Location = new System.Drawing.Point(3, 419);
             this.groupBox13.Name = "groupBox13";
             this.groupBox13.Size = new System.Drawing.Size(465, 114);
             this.groupBox13.TabIndex = 9;
@@ -511,7 +543,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(477, 564);
+            this.tabPage5.Size = new System.Drawing.Size(477, 542);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Sites to Publish To";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -528,7 +560,7 @@
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(471, 558);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(471, 536);
             this.tableLayoutPanel3.TabIndex = 8;
             // 
             // groupBox11
@@ -542,7 +574,7 @@
             this.groupBox11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox11.Location = new System.Drawing.Point(3, 3);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(465, 432);
+            this.groupBox11.Size = new System.Drawing.Size(465, 410);
             this.groupBox11.TabIndex = 8;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Items:";
@@ -550,7 +582,7 @@
             // publishHosts_moveDownButton
             // 
             this.publishHosts_moveDownButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.publishHosts_moveDownButton.Location = new System.Drawing.Point(99, 401);
+            this.publishHosts_moveDownButton.Location = new System.Drawing.Point(99, 379);
             this.publishHosts_moveDownButton.Name = "publishHosts_moveDownButton";
             this.publishHosts_moveDownButton.Size = new System.Drawing.Size(25, 25);
             this.publishHosts_moveDownButton.TabIndex = 10;
@@ -561,7 +593,7 @@
             // publishHosts_moveUpButton
             // 
             this.publishHosts_moveUpButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.publishHosts_moveUpButton.Location = new System.Drawing.Point(68, 401);
+            this.publishHosts_moveUpButton.Location = new System.Drawing.Point(68, 379);
             this.publishHosts_moveUpButton.Name = "publishHosts_moveUpButton";
             this.publishHosts_moveUpButton.Size = new System.Drawing.Size(25, 25);
             this.publishHosts_moveUpButton.TabIndex = 9;
@@ -572,7 +604,7 @@
             // publishHosts_removeButton
             // 
             this.publishHosts_removeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.publishHosts_removeButton.Location = new System.Drawing.Point(37, 401);
+            this.publishHosts_removeButton.Location = new System.Drawing.Point(37, 379);
             this.publishHosts_removeButton.Name = "publishHosts_removeButton";
             this.publishHosts_removeButton.Size = new System.Drawing.Size(25, 25);
             this.publishHosts_removeButton.TabIndex = 8;
@@ -583,7 +615,7 @@
             // publishHosts_button6
             // 
             this.publishHosts_button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.publishHosts_button6.Location = new System.Drawing.Point(6, 401);
+            this.publishHosts_button6.Location = new System.Drawing.Point(6, 379);
             this.publishHosts_button6.Name = "publishHosts_button6";
             this.publishHosts_button6.Size = new System.Drawing.Size(25, 25);
             this.publishHosts_button6.TabIndex = 7;
@@ -596,7 +628,7 @@
             this.groupBox2.Controls.Add(this.publishHosts_textBox2);
             this.groupBox2.Controls.Add(this.publishHosts_textBox1);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(3, 441);
+            this.groupBox2.Location = new System.Drawing.Point(3, 419);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(465, 114);
             this.groupBox2.TabIndex = 9;
@@ -629,7 +661,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(477, 564);
+            this.tabPage6.Size = new System.Drawing.Size(477, 542);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Sites to Post to";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -645,7 +677,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(471, 558);
+            this.groupBox1.Size = new System.Drawing.Size(471, 536);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sites to Post Data";
@@ -664,7 +696,7 @@
             this.groupBox10.Controls.Add(this.SocialPost_downloadURLTextBox);
             this.groupBox10.Location = new System.Drawing.Point(132, 19);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(333, 533);
+            this.groupBox10.Size = new System.Drawing.Size(333, 511);
             this.groupBox10.TabIndex = 10;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Item Details";
@@ -704,7 +736,7 @@
             this.SocialPost_descriptionTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.SocialPost_descriptionTextBox.Location = new System.Drawing.Point(6, 112);
             this.SocialPost_descriptionTextBox.Name = "SocialPost_descriptionTextBox";
-            this.SocialPost_descriptionTextBox.Size = new System.Drawing.Size(321, 379);
+            this.SocialPost_descriptionTextBox.Size = new System.Drawing.Size(321, 357);
             this.SocialPost_descriptionTextBox.TabIndex = 9;
             this.SocialPost_descriptionTextBox.Text = "";
             // 
@@ -729,7 +761,7 @@
             // moveSocialPostDownButton
             // 
             this.moveSocialPostDownButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.moveSocialPostDownButton.Location = new System.Drawing.Point(99, 527);
+            this.moveSocialPostDownButton.Location = new System.Drawing.Point(99, 505);
             this.moveSocialPostDownButton.Name = "moveSocialPostDownButton";
             this.moveSocialPostDownButton.Size = new System.Drawing.Size(25, 25);
             this.moveSocialPostDownButton.TabIndex = 6;
@@ -740,7 +772,7 @@
             // moveSocialPostUpButton
             // 
             this.moveSocialPostUpButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.moveSocialPostUpButton.Location = new System.Drawing.Point(68, 527);
+            this.moveSocialPostUpButton.Location = new System.Drawing.Point(68, 505);
             this.moveSocialPostUpButton.Name = "moveSocialPostUpButton";
             this.moveSocialPostUpButton.Size = new System.Drawing.Size(25, 25);
             this.moveSocialPostUpButton.TabIndex = 5;
@@ -751,7 +783,7 @@
             // removeSocialPostButton
             // 
             this.removeSocialPostButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.removeSocialPostButton.Location = new System.Drawing.Point(37, 527);
+            this.removeSocialPostButton.Location = new System.Drawing.Point(37, 505);
             this.removeSocialPostButton.Name = "removeSocialPostButton";
             this.removeSocialPostButton.Size = new System.Drawing.Size(25, 25);
             this.removeSocialPostButton.TabIndex = 4;
@@ -762,7 +794,7 @@
             // button5
             // 
             this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button5.Location = new System.Drawing.Point(6, 527);
+            this.button5.Location = new System.Drawing.Point(6, 505);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(25, 25);
             this.button5.TabIndex = 3;
@@ -777,9 +809,129 @@
             this.SocialPost_listBox.FormattingEnabled = true;
             this.SocialPost_listBox.Location = new System.Drawing.Point(6, 25);
             this.SocialPost_listBox.Name = "SocialPost_listBox";
-            this.SocialPost_listBox.Size = new System.Drawing.Size(118, 485);
+            this.SocialPost_listBox.Size = new System.Drawing.Size(118, 446);
             this.SocialPost_listBox.TabIndex = 1;
             this.SocialPost_listBox.SelectedIndexChanged += new System.EventHandler(this.socialListBox_SelectedIndexChanged);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.tableLayoutPanel5);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(477, 542);
+            this.tabPage1.TabIndex = 6;
+            this.tabPage1.Text = "File Explorer";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 1;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Controls.Add(this.fileComboBoxPanel, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.splitContainer3, 0, 1);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 2;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(471, 536);
+            this.tableLayoutPanel5.TabIndex = 0;
+            // 
+            // fileComboBoxPanel
+            // 
+            this.fileComboBoxPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fileComboBoxPanel.Location = new System.Drawing.Point(3, 3);
+            this.fileComboBoxPanel.Name = "fileComboBoxPanel";
+            this.fileComboBoxPanel.Size = new System.Drawing.Size(465, 24);
+            this.fileComboBoxPanel.TabIndex = 0;
+            // 
+            // splitContainer3
+            // 
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.Location = new System.Drawing.Point(3, 33);
+            this.splitContainer3.Name = "splitContainer3";
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.fileTreeTabControl);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.fileViewPanel);
+            this.splitContainer3.Size = new System.Drawing.Size(465, 500);
+            this.splitContainer3.SplitterDistance = 155;
+            this.splitContainer3.TabIndex = 0;
+            // 
+            // fileTreeTabControl
+            // 
+            this.fileTreeTabControl.Controls.Add(this.tabPage3);
+            this.fileTreeTabControl.Controls.Add(this.tabPage7);
+            this.fileTreeTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fileTreeTabControl.Location = new System.Drawing.Point(0, 0);
+            this.fileTreeTabControl.Name = "fileTreeTabControl";
+            this.fileTreeTabControl.SelectedIndex = 0;
+            this.fileTreeTabControl.Size = new System.Drawing.Size(155, 500);
+            this.fileTreeTabControl.TabIndex = 0;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.fileTreeViewPanel);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(147, 474);
+            this.tabPage3.TabIndex = 0;
+            this.tabPage3.Text = "Primary";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // fileTreeViewPanel
+            // 
+            this.fileTreeViewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fileTreeViewPanel.Location = new System.Drawing.Point(3, 3);
+            this.fileTreeViewPanel.Name = "fileTreeViewPanel";
+            this.fileTreeViewPanel.Size = new System.Drawing.Size(141, 468);
+            this.fileTreeViewPanel.TabIndex = 1;
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.quickAccessTreeView);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(147, 474);
+            this.tabPage7.TabIndex = 1;
+            this.tabPage7.Text = "Quick Access";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // quickAccessTreeView
+            // 
+            this.quickAccessTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.quickAccessTreeView.Location = new System.Drawing.Point(3, 3);
+            this.quickAccessTreeView.Name = "quickAccessTreeView";
+            this.quickAccessTreeView.Size = new System.Drawing.Size(141, 468);
+            this.quickAccessTreeView.TabIndex = 0;
+            this.quickAccessTreeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.quickAccessTreeView_NodeMouseDoubleClick);
+            // 
+            // fileViewPanel
+            // 
+            this.fileViewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fileViewPanel.Location = new System.Drawing.Point(0, 0);
+            this.fileViewPanel.Name = "fileViewPanel";
+            this.fileViewPanel.Size = new System.Drawing.Size(306, 500);
+            this.fileViewPanel.TabIndex = 1;
+            // 
+            // tabPage8
+            // 
+            this.tabPage8.Controls.Add(this.splitContainer4);
+            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage8.Size = new System.Drawing.Size(477, 542);
+            this.tabPage8.TabIndex = 7;
+            this.tabPage8.Text = "Web";
+            this.tabPage8.UseVisualStyleBackColor = true;
             // 
             // richTextBox3
             // 
@@ -788,7 +940,7 @@
             this.richTextBox3.Location = new System.Drawing.Point(3, 16);
             this.richTextBox3.Name = "richTextBox3";
             this.richTextBox3.ReadOnly = true;
-            this.richTextBox3.Size = new System.Drawing.Size(406, 171);
+            this.richTextBox3.Size = new System.Drawing.Size(368, 164);
             this.richTextBox3.TabIndex = 6;
             this.richTextBox3.Text = "";
             // 
@@ -800,37 +952,79 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.panel1);
+            this.splitContainer1.Panel1.Controls.Add(this.tableLayoutPanel2);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1218, 590);
-            this.splitContainer1.SplitterDistance = 307;
+            this.splitContainer1.Size = new System.Drawing.Size(1167, 568);
+            this.splitContainer1.SplitterDistance = 294;
             this.splitContainer1.TabIndex = 9;
             // 
-            // panel1
+            // tableLayoutPanel2
             // 
-            this.panel1.Controls.Add(this.button7);
-            this.panel1.Controls.Add(this.button6);
-            this.panel1.Controls.Add(this.button4);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(307, 590);
-            this.panel1.TabIndex = 7;
+            this.tableLayoutPanel2.AutoSize = true;
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.button7, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.button4, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.button6, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.toggleInfoPaneButton, 0, 2);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 447);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 5;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(294, 121);
+            this.tableLayoutPanel2.TabIndex = 11;
+            // 
+            // button7
+            // 
+            this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.button7.Location = new System.Drawing.Point(3, 33);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(288, 24);
+            this.button7.TabIndex = 3;
+            this.button7.Text = "Rename";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.renameButton_Click);
             // 
             // button4
             // 
-            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(3, 497);
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.button4.Location = new System.Drawing.Point(3, 3);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(301, 23);
+            this.button4.Size = new System.Drawing.Size(288, 24);
             this.button4.TabIndex = 0;
             this.button4.Text = "Reload";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.reloadButton_Click);
+            // 
+            // button6
+            // 
+            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.button6.Location = new System.Drawing.Point(3, 93);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(288, 24);
+            this.button6.TabIndex = 2;
+            this.button6.Text = "Save";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.saveButton_Click);
+            // 
+            // toggleInfoPaneButton
+            // 
+            this.toggleInfoPaneButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.toggleInfoPaneButton.Location = new System.Drawing.Point(3, 63);
+            this.toggleInfoPaneButton.Name = "toggleInfoPaneButton";
+            this.toggleInfoPaneButton.Size = new System.Drawing.Size(288, 24);
+            this.toggleInfoPaneButton.TabIndex = 10;
+            this.toggleInfoPaneButton.Text = "Toggle Info Pane";
+            this.toggleInfoPaneButton.UseVisualStyleBackColor = true;
+            this.toggleInfoPaneButton.Click += new System.EventHandler(this.toggleInfoPaneButton_Click);
             // 
             // splitContainer2
             // 
@@ -846,7 +1040,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tableLayoutPanel1);
-            this.splitContainer2.Size = new System.Drawing.Size(907, 590);
+            this.splitContainer2.Size = new System.Drawing.Size(869, 568);
             this.splitContainer2.SplitterDistance = 485;
             this.splitContainer2.TabIndex = 2;
             // 
@@ -865,7 +1059,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(418, 590);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(380, 568);
             this.tableLayoutPanel1.TabIndex = 7;
             // 
             // groupBox7
@@ -874,7 +1068,7 @@
             this.groupBox7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox7.Location = new System.Drawing.Point(3, 3);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(412, 190);
+            this.groupBox7.Size = new System.Drawing.Size(374, 183);
             this.groupBox7.TabIndex = 0;
             this.groupBox7.TabStop = false;
             this.groupBox7.Tag = "Version Changelog";
@@ -884,9 +1078,9 @@
             // 
             this.groupBox6.Controls.Add(this.richTextBox1);
             this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox6.Location = new System.Drawing.Point(3, 199);
+            this.groupBox6.Location = new System.Drawing.Point(3, 192);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(412, 190);
+            this.groupBox6.Size = new System.Drawing.Size(374, 183);
             this.groupBox6.TabIndex = 8;
             this.groupBox6.TabStop = false;
             this.groupBox6.Tag = "JSON Data";
@@ -896,45 +1090,57 @@
             // 
             this.groupBox5.Controls.Add(this.richTextBox2);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox5.Location = new System.Drawing.Point(3, 395);
+            this.groupBox5.Location = new System.Drawing.Point(3, 381);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(412, 192);
+            this.groupBox5.Size = new System.Drawing.Size(374, 184);
             this.groupBox5.TabIndex = 7;
             this.groupBox5.TabStop = false;
             this.groupBox5.Tag = "Social Text Notes";
             this.groupBox5.Text = "Social Text Notes";
             // 
-            // button6
+            // splitContainer4
             // 
-            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button6.Location = new System.Drawing.Point(3, 555);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(301, 23);
-            this.button6.TabIndex = 2;
-            this.button6.Text = "Save";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.saveButton_Click);
+            this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer4.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer4.Name = "splitContainer4";
             // 
-            // button7
+            // splitContainer4.Panel1
             // 
-            this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button7.Location = new System.Drawing.Point(3, 526);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(301, 23);
-            this.button7.TabIndex = 3;
-            this.button7.Text = "Rename";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.renameButton_Click);
+            this.splitContainer4.Panel1.Controls.Add(this.bookmarkTreeView);
+            // 
+            // splitContainer4.Panel2
+            // 
+            this.splitContainer4.Panel2.Controls.Add(this.chromeHostPanel);
+            this.splitContainer4.Size = new System.Drawing.Size(471, 536);
+            this.splitContainer4.SplitterDistance = 176;
+            this.splitContainer4.TabIndex = 0;
+            // 
+            // bookmarkTreeView
+            // 
+            this.bookmarkTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bookmarkTreeView.Location = new System.Drawing.Point(0, 0);
+            this.bookmarkTreeView.Name = "bookmarkTreeView";
+            this.bookmarkTreeView.Size = new System.Drawing.Size(176, 536);
+            this.bookmarkTreeView.TabIndex = 1;
+            this.bookmarkTreeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.bookmarkTreeView_NodeMouseDoubleClick);
+            // 
+            // chromeHostPanel
+            // 
+            this.chromeHostPanel.BackColor = System.Drawing.Color.Transparent;
+            this.chromeHostPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chromeHostPanel.Location = new System.Drawing.Point(0, 0);
+            this.chromeHostPanel.Name = "chromeHostPanel";
+            this.chromeHostPanel.Size = new System.Drawing.Size(291, 536);
+            this.chromeHostPanel.TabIndex = 0;
             // 
             // DeploymentDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1218, 590);
+            this.ClientSize = new System.Drawing.Size(1167, 568);
             this.Controls.Add(this.splitContainer1);
             this.Name = "DeploymentDialog";
+            this.SizeChanged += new System.EventHandler(this.DeploymentDialog_SizeChanged);
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
@@ -954,11 +1160,22 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
+            this.fileTreeTabControl.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage8.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -971,6 +1188,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.SocialPostBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.downloadHostsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.publishHostsBindingSource)).EndInit();
+            this.splitContainer4.Panel1.ResumeLayout(false);
+            this.splitContainer4.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
+            this.splitContainer4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -988,7 +1209,6 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.RichTextBox richTextBox3;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
@@ -1046,7 +1266,23 @@
         private System.Windows.Forms.TextBox downloadHostsTextBox1;
         private System.Windows.Forms.BindingSource downloadHostsBindingSource;
         private System.Windows.Forms.BindingSource publishHostsBindingSource;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Button toggleInfoPaneButton;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.SplitContainer splitContainer3;
+        private System.Windows.Forms.Panel fileComboBoxPanel;
+        private System.Windows.Forms.Panel fileTreeViewPanel;
+        private System.Windows.Forms.Panel fileViewPanel;
+        private System.Windows.Forms.TabControl fileTreeTabControl;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.TreeView quickAccessTreeView;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.Panel chromeHostPanel;
+        private System.Windows.Forms.SplitContainer splitContainer4;
+        private System.Windows.Forms.TreeView bookmarkTreeView;
     }
 }

@@ -18,14 +18,27 @@ namespace GenerationsLib.UpdateAssistant
     public partial class MainForm : Form
     {
         private string EXEPath { get => System.Reflection.Assembly.GetEntryAssembly().Location; }
-        private string AssistantsFolder { get { return Path.Combine(Path.GetDirectoryName(EXEPath), "assistants"); } }
+        private string AssistantsFolder { get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GenerationsLib Update Assistant", "assistants"); } }
+        private string CacheFolder { get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GenerationsLib Update Assistant", "cache"); } }
         public static List<UpdateAssistant> Assistants { get; set; }
         public MainForm()
         {
             InitializeComponent();
+            InitilizeChrome();
             RefreshTool();
             DialogDefaults();
         }
+
+        private void InitilizeChrome()
+        {
+            CefSharp.WinForms.CefSettings settings = new CefSharp.WinForms.CefSettings();
+            settings.CachePath = CacheFolder;
+            // Initialize cef with the provided settings
+            CefSharp.Cef.Initialize(settings);
+        }
+
+
+
         private void DialogDefaults()
         {
             this.MaximumSize = this.Size;
@@ -116,6 +129,7 @@ namespace GenerationsLib.UpdateAssistant
         {
             DeploymentDialog editor = new DeploymentDialog();
             editor.ShowConfigDialog(listBox1.SelectedItem as UpdateAssistant);
+            editor.ShowDialog();
             RefreshTool();
         }
 
