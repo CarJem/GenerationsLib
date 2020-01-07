@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GenerationsLib.Core;
 
 namespace GenerationsLib.UpdateAssistant
 {
@@ -15,7 +16,6 @@ namespace GenerationsLib.UpdateAssistant
         public DeploymentDialog()
         {
             InitializeComponent();
-            UpdateButtons();
             DialogDefaults();
         }
         private void DialogDefaults()
@@ -25,41 +25,30 @@ namespace GenerationsLib.UpdateAssistant
             this.StartPosition = FormStartPosition.CenterParent;
         }
 
-        private UpdateAssistant EditedItem;
+        public static UpdateAssistant EditedItem { get; set; }
         public void ShowConfigDialog(UpdateAssistant item)
         {
             EditedItem = item;
-            SetupControls();
+            RefreshTool();
             var result = this.ShowDialog();
         }
 
         private void SetupControls()
         {
-            foreach (var entry in EditedItem.Details.SitesToPublishTo)
-            {
-                listBox1.Items.Add(entry);
-            }
-            foreach (var entry in EditedItem.Details.DownloadHosts)
-            {
-                listBox2.Items.Add(entry);
-            }
-            foreach (var entry in EditedItem.Details.VersionMetadata)
-            {
-                listBox3.Items.Add(entry);
-            }
-            foreach (var entry in EditedItem.Details.PlacesToPost)
-            {
-                listBox4.Items.Add(entry);
-            }
+            richTextBox1.Clear();
+            richTextBox2.Clear();
+            richTextBox3.Clear();
+
+            this.Text = EditedItem.ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedItem != null)
+            if (publishHostsListBox.SelectedItem != null)
             {
                 try
                 {
-                    string url = (listBox1.SelectedItem as UpdateAssistant.Structure.ExtendedString).String2;
+                    string url = (publishHostsListBox.SelectedItem as UpdateAssistant.Structure.ExtendedString).String2;
                     System.Diagnostics.Process.Start(url);
                 }
                 catch (Exception ex)
@@ -69,14 +58,9 @@ namespace GenerationsLib.UpdateAssistant
             }
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            UpdateButtons();
-        }
-
         private void UpdateButtons()
         {
-            if (listBox1.SelectedItem != null)
+            if (publishHostsListBox.SelectedItem != null)
             {
                 button1.Enabled = true;
             }
@@ -85,7 +69,7 @@ namespace GenerationsLib.UpdateAssistant
                 button1.Enabled = false;
             }
 
-            if (listBox2.SelectedItem != null)
+            if (downloadHostListBox.SelectedItem != null)
             {
                 button2.Enabled = true;
             }
@@ -95,7 +79,7 @@ namespace GenerationsLib.UpdateAssistant
             }
 
 
-            if (listBox4.SelectedItem != null)
+            if (SocialPost_listBox.SelectedItem != null)
             {
                 button3.Enabled = true;
             }
@@ -107,27 +91,27 @@ namespace GenerationsLib.UpdateAssistant
             PrasePostData();
         }
 
-        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            UpdateButtons();
-        }
-
-        private void listBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            UpdateButtons();
-        }
-
         private void PraseMetadata()
         {
             richTextBox1.ResetText();
             richTextBox3.ResetText();
-            if (listBox3.SelectedItem != null)
+
+            groupBox6.Text = groupBox6.Tag.ToString();
+            groupBox7.Text = groupBox7.Tag.ToString();
+
+            if (versionListBox.SelectedItem != null)
             {
                 try
                 {
-                    UpdateAssistant.Structure.Metadata meta = (listBox3.SelectedItem as UpdateAssistant.Structure.Metadata);
+                    UpdateAssistant.Structure.Metadata meta = (versionListBox.SelectedItem as UpdateAssistant.Structure.Metadata);
                     string changelog = meta.Details;
                     string data = Newtonsoft.Json.JsonConvert.SerializeObject(meta, Newtonsoft.Json.Formatting.Indented);
+
+                    groupBox6.Text = groupBox6.Tag.ToString() + " - " + meta.Version;
+                    groupBox7.Text = groupBox7.Tag.ToString() + " - " + meta.Version;
+
+                    richTextBox1.Text = data;
+                    richTextBox3.Text = changelog;
                     richTextBox1.Text = data;
                     richTextBox3.Text = changelog;
                 }
@@ -141,13 +125,15 @@ namespace GenerationsLib.UpdateAssistant
         private void PrasePostData()
         {
             richTextBox2.ResetText();
-            if (listBox4.SelectedItem != null)
+            groupBox5.Text = groupBox5.Tag.ToString();
+            if (SocialPost_listBox.SelectedItem != null)
             {
                 try
                 {
-                    UpdateAssistant.Structure.SiteForPostData meta = (listBox4.SelectedItem as UpdateAssistant.Structure.SiteForPostData);
+                    UpdateAssistant.Structure.SiteForPostData meta = (SocialPost_listBox.SelectedItem as UpdateAssistant.Structure.SiteForPostData);
                     string data = meta.Notes;
                     richTextBox2.Text = data;
+                    groupBox5.Text = groupBox5.Tag.ToString() + " - " + meta.Name;
                 }
                 catch (Exception ex)
                 {
@@ -158,11 +144,11 @@ namespace GenerationsLib.UpdateAssistant
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (listBox2.SelectedItem != null)
+            if (downloadHostListBox.SelectedItem != null)
             {
                 try
                 {
-                    string url = (listBox2.SelectedItem as UpdateAssistant.Structure.ExtendedString).String2;
+                    string url = (downloadHostListBox.SelectedItem as UpdateAssistant.Structure.ExtendedString).String2;
                     System.Diagnostics.Process.Start(url);
                 }
                 catch (Exception ex)
@@ -174,11 +160,11 @@ namespace GenerationsLib.UpdateAssistant
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (listBox4.SelectedItem != null)
+            if (SocialPost_listBox.SelectedItem != null)
             {
                 try
                 {
-                    string url = (listBox4.SelectedItem as UpdateAssistant.Structure.SiteForPostData).URL;
+                    string url = (SocialPost_listBox.SelectedItem as UpdateAssistant.Structure.SiteForPostData).URL;
                     System.Diagnostics.Process.Start(url);
                 }
                 catch (Exception ex)
@@ -188,9 +174,470 @@ namespace GenerationsLib.UpdateAssistant
             }
         }
 
-        private void listBox4_SelectedIndexChanged(object sender, EventArgs e)
+        private void reloadButton_Click(object sender, EventArgs e)
+        {
+            string path = EditedItem.Path;
+            EditedItem = null;
+            EditedItem = new UpdateAssistant(path);
+            RefreshTool();
+        }
+
+        private void richTextBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RefreshTool()
+        {
+            SetupControls();
+            UpdateButtons();
+            UpdateVersionMetadata();
+            UpdateSocialPosts();
+            UpdateDownloadPosts();
+            UpdatePublishHosts();
+        }
+
+        #region Version Metadata Editor
+
+        private void UpdateVersionMetadata()
+        {
+            UpdateVerMetaSelectedButtons();
+            UpdateVerMetaBindings();
+        }
+
+        private void UpdateVerMetaBindings(bool forced = false)
+        {
+            if (versionListBox.DataSource == null || forced)
+            {
+                if (versionListBox.DataSource != null) versionListBox.DataSource = null;
+                versionListBox.DataSource = versionBindingSource;
+            }
+
+            if (EditedItem != null)
+            {
+                versionBindingSource.DataSource = EditedItem.Details.VersionMetadata;
+            }
+
+        }
+
+        private void UpdateVerMetaSelectedBindings()
+        {
+            VerMeta_DownloadURLTextBox.DataBindings.Clear();
+            VerMeta_ItemNameTextbox.DataBindings.Clear();
+            VerMeta_DescriptionTextBox.DataBindings.Clear();
+
+            if (versionListBox.SelectedItem != null && versionListBox.SelectedItem is UpdateAssistant.Structure.Metadata)
+            {
+                VerMeta_ItemNameTextbox.DataBindings.Add(new Binding("Text", (versionListBox.SelectedItem as UpdateAssistant.Structure.Metadata), "Version"));
+                VerMeta_DescriptionTextBox.DataBindings.Add(new Binding("Text", (versionListBox.SelectedItem as UpdateAssistant.Structure.Metadata), "Details"));
+                VerMeta_DownloadURLTextBox.DataBindings.Add(new Binding("Text", (versionListBox.SelectedItem as UpdateAssistant.Structure.Metadata), "DownloadURL"));
+            }
+
+        }
+
+        private void UpdateVerMetaSelectedButtons()
+        {
+            if (versionListBox.SelectedItem != null)
+            {
+                removeVerMetaButton.Enabled = true;
+                moveUpVerMetaButton.Enabled = true;
+                moveDownVerMetaButton.Enabled = true;
+
+                VerMeta_DownloadURLTextBox.Enabled = true;
+                VerMeta_ItemNameTextbox.Enabled = true;
+                VerMeta_DescriptionTextBox.Enabled = true;
+            }
+            else
+            {
+                removeVerMetaButton.Enabled = false;
+                moveUpVerMetaButton.Enabled = false;
+                moveDownVerMetaButton.Enabled = false;
+
+                VerMeta_DownloadURLTextBox.Enabled = false;
+                VerMeta_ItemNameTextbox.Enabled = false;
+                VerMeta_DescriptionTextBox.Enabled = false;
+            }
+        }
+
+        private void versionListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateVerMetaSelectedBindings();
+            UpdateVerMetaSelectedButtons();
+            UpdateButtons();
+        }
+
+        private void addVerMetaButton_Click(object sender, EventArgs e)
+        {
+            var newItem = new UpdateAssistant.Structure.Metadata();
+            newItem.Version = "NULL";
+            versionBindingSource.Add(newItem);
+            UpdateVerMetaBindings();
+        }
+
+        private void removeVerMetaButton_Click(object sender, EventArgs e)
+        {
+            versionBindingSource.Remove(versionListBox.SelectedItem as UpdateAssistant.Structure.Metadata);
+            UpdateVerMetaBindings();
+        }
+
+        private void moveUpVerMetaButton_Click(object sender, EventArgs e)
+        {
+            int index = versionListBox.SelectedIndex;
+            EditedItem.Details.VersionMetadata.Move(index, index - 1);
+            UpdateVerMetaBindings(true);
+            versionListBox.SelectedIndex = ListHelpers.MoveSelectedIndex(versionListBox.Items.Count, index, index - 1);
+        }
+
+        private void moveDownVerMetaButton_Click(object sender, EventArgs e)
+        {
+            int index = versionListBox.SelectedIndex;
+            EditedItem.Details.VersionMetadata.Move(index, index + 1);
+            UpdateVerMetaBindings(true);
+            versionListBox.SelectedIndex = ListHelpers.MoveSelectedIndex(versionListBox.Items.Count, index, index + 1);
+        }
+
+        #endregion
+
+        #region Social Posts Editor
+
+        private void UpdateSocialPosts()
+        {
+            UpdateSocialPostBindings();
+            UpdateSelectedSocialPostButtons();
+        }
+
+        private void UpdateSocialPostBindings(bool forced = false)
+        {
+            if (SocialPost_listBox.DataSource == null || forced)
+            {
+                if (SocialPost_listBox.DataSource != null) SocialPost_listBox.DataSource = null;
+                SocialPost_listBox.DataSource = SocialPostBindingSource;
+            }
+
+            if (EditedItem != null)
+            {
+                SocialPostBindingSource.DataSource = EditedItem.Details.PlacesToPost;
+            }
+
+        }
+
+        private void UpdateSelectedSocialPostBindings()
+        {
+            SocialPost_downloadURLTextBox.DataBindings.Clear();
+            SocialPost_itemNameTextbox.DataBindings.Clear();
+            SocialPost_descriptionTextBox.DataBindings.Clear();
+
+            if (SocialPost_listBox.SelectedItem != null && SocialPost_listBox.SelectedItem is UpdateAssistant.Structure.SiteForPostData)
+            {
+                SocialPost_itemNameTextbox.DataBindings.Add(new Binding("Text", (SocialPost_listBox.SelectedItem as UpdateAssistant.Structure.SiteForPostData), "Name"));
+                SocialPost_descriptionTextBox.DataBindings.Add(new Binding("Text", (SocialPost_listBox.SelectedItem as UpdateAssistant.Structure.SiteForPostData), "Notes"));
+                SocialPost_downloadURLTextBox.DataBindings.Add(new Binding("Text", (SocialPost_listBox.SelectedItem as UpdateAssistant.Structure.SiteForPostData), "URL"));
+            }
+
+        }
+
+        private void UpdateSelectedSocialPostButtons()
+        {
+            if (SocialPost_listBox.SelectedItem != null)
+            {
+                removeSocialPostButton.Enabled = true;
+                moveSocialPostUpButton.Enabled = true;
+                moveSocialPostDownButton.Enabled = true;
+
+                SocialPost_downloadURLTextBox.Enabled = true;
+                SocialPost_itemNameTextbox.Enabled = true;
+                SocialPost_descriptionTextBox.Enabled = true;
+            }
+            else
+            {
+                removeSocialPostButton.Enabled = false;
+                moveSocialPostUpButton.Enabled = false;
+                moveSocialPostDownButton.Enabled = false;
+
+                SocialPost_downloadURLTextBox.Enabled = false;
+                SocialPost_itemNameTextbox.Enabled = false;
+                SocialPost_descriptionTextBox.Enabled = false;
+            }
+        }
+
+        private void socialListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateButtons();
+            UpdateSelectedSocialPostBindings();
+            UpdateSelectedSocialPostButtons();
+        }
+
+        private void addSocialPostButton_Click(object sender, EventArgs e)
+        {
+            var newItem = new UpdateAssistant.Structure.SiteForPostData();
+            newItem.Name = "NULL";
+            SocialPostBindingSource.Add(newItem);
+            UpdateSocialPostBindings();
+        }
+
+        private void removeSocialPostButton_Click(object sender, EventArgs e)
+        {
+            SocialPostBindingSource.Remove(SocialPost_listBox.SelectedItem as UpdateAssistant.Structure.SiteForPostData);
+            UpdateSocialPostBindings();
+        }
+
+        private void moveSocialPostUpButton_Click(object sender, EventArgs e)
+        {
+            int index = SocialPost_listBox.SelectedIndex;
+            EditedItem.Details.PlacesToPost.Move(index, index - 1);
+            UpdateSocialPostBindings(true);
+            SocialPost_listBox.SelectedIndex = ListHelpers.MoveSelectedIndex(SocialPost_listBox.Items.Count, index, index - 1);
+        }
+
+        private void moveSocialPostDownButton_Click(object sender, EventArgs e)
+        {
+            int index = SocialPost_listBox.SelectedIndex;
+            EditedItem.Details.PlacesToPost.Move(index, index + 1);
+            UpdateSocialPostBindings(true);
+            SocialPost_listBox.SelectedIndex = ListHelpers.MoveSelectedIndex(SocialPost_listBox.Items.Count, index, index + 1);
+        }
+
+        private void SocialPost_ItemNameTextbox_TextChanged(object sender, EventArgs e)
+        {
+            SocialPost_listBox.Refresh();
+        }
+
+        #endregion
+
+        #region Download Hosts Editor
+
+        private void UpdateDownloadPosts()
+        {
+            UpdateDownloadHostsBindings();
+            UpdateSelectedDownloadHostsButtons();
+        }
+        private void UpdateDownloadHostsBindings(bool forced = false)
+        {
+            if (downloadHostListBox.DataSource == null || forced)
+            {
+                if (downloadHostListBox.DataSource != null) downloadHostListBox.DataSource = null;
+                downloadHostListBox.DataSource = downloadHostsBindingSource;
+            }
+
+            if (EditedItem != null)
+            {
+                downloadHostsBindingSource.DataSource = EditedItem.Details.DownloadHosts;
+            }
+
+        }
+
+        private void UpdateSelectedDownloadHostsBindings()
+        {
+            downloadHostsTextBox1.DataBindings.Clear();
+            downloadHostsTextBox2.DataBindings.Clear();
+
+            if (downloadHostListBox.SelectedItem != null && downloadHostListBox.SelectedItem is UpdateAssistant.Structure.ExtendedString)
+            {
+                downloadHostsTextBox1.DataBindings.Add(new Binding("Text", (downloadHostListBox.SelectedItem as UpdateAssistant.Structure.ExtendedString), "String1"));
+                downloadHostsTextBox2.DataBindings.Add(new Binding("Text", (downloadHostListBox.SelectedItem as UpdateAssistant.Structure.ExtendedString), "String2"));
+            }
+        }
+
+        private void UpdateSelectedDownloadHostsButtons()
+        {
+            if (downloadHostListBox.SelectedItem != null)
+            {
+                removeDownloadHostsButton.Enabled = true;
+                moveDownloadHostsUpButton.Enabled = true;
+                moveDownloadHostsDownButton.Enabled = true;
+
+                downloadHostsTextBox1.Enabled = true;
+                downloadHostsTextBox2.Enabled = true;
+            }
+            else
+            {
+                removeDownloadHostsButton.Enabled = false;
+                moveDownloadHostsUpButton.Enabled = false;
+                moveDownloadHostsDownButton.Enabled = false;
+
+                downloadHostsTextBox1.Enabled = false;
+                downloadHostsTextBox2.Enabled = false;
+            }
+        }
+
+        private void DownloadHostListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateButtons();
+            UpdateSelectedDownloadHostsBindings();
+            UpdateSelectedDownloadHostsButtons();
+        }
+
+        private void addDownloadHostButton_Click(object sender, EventArgs e)
+        {
+            downloadHostsBindingSource.Add(new UpdateAssistant.Structure.ExtendedString("New Site", "NULL"));
+            UpdateDownloadHostsBindings();
+        }
+
+        private void removeDownloadHostButton_Click(object sender, EventArgs e)
+        {
+            downloadHostsBindingSource.Remove(downloadHostListBox.SelectedItem as UpdateAssistant.Structure.ExtendedString);
+            UpdateDownloadHostsBindings();
+        }
+
+        private void moveDownloadHostUpButton_Click(object sender, EventArgs e)
+        {
+            int index = downloadHostListBox.SelectedIndex;
+            EditedItem.Details.DownloadHosts.Move(index, index - 1);
+            UpdateDownloadHostsBindings(true);
+            downloadHostListBox.SelectedIndex = ListHelpers.MoveSelectedIndex(downloadHostListBox.Items.Count, index, index - 1);
+        }
+
+        private void moveDownloadHostDownButton_Click(object sender, EventArgs e)
+        {
+            int index = downloadHostListBox.SelectedIndex;
+            EditedItem.Details.DownloadHosts.Move(index, index + 1);
+            UpdateDownloadHostsBindings(true);
+            downloadHostListBox.SelectedIndex = ListHelpers.MoveSelectedIndex(downloadHostListBox.Items.Count, index, index + 1);
+        }
+
+        private void DownloadHost_textbox1_TextChanged(object sender, EventArgs e)
+        {
+            if (downloadHostListBox.SelectedItem != null && downloadHostListBox.SelectedIndex != -1 && EditedItem.Details.DownloadHosts.Count > downloadHostListBox.SelectedIndex)
+            {
+                EditedItem.Details.DownloadHosts[downloadHostListBox.SelectedIndex].String1 = downloadHostsTextBox1.Text;
+                downloadHostListBox.Refresh();
+            }
+        }
+
+        private void DownloadHost_textbox2_TextChanged(object sender, EventArgs e)
+        {
+            if (downloadHostListBox.SelectedItem != null && downloadHostListBox.SelectedIndex != -1 && EditedItem.Details.DownloadHosts.Count > downloadHostListBox.SelectedIndex)
+            {
+                EditedItem.Details.DownloadHosts[downloadHostListBox.SelectedIndex].String2 = downloadHostsTextBox2.Text;
+                downloadHostListBox.Refresh();
+            }
+        }
+
+        #endregion
+
+        #region Publish Hosts Editor 
+
+        private void UpdatePublishHosts()
+        {
+            UpdatePublishHostsBindings();
+            UpdateSelectedPublishHostsButtons();
+        }
+
+        private void UpdatePublishHostsBindings(bool forced = false)
+        {
+            if (publishHostsListBox.DataSource == null || forced)
+            {
+                if (publishHostsListBox.DataSource != null) publishHostsListBox.DataSource = null;
+                publishHostsListBox.DataSource = publishHostsBindingSource;
+            }
+
+            if (EditedItem != null)
+            {
+                publishHostsBindingSource.DataSource = EditedItem.Details.SitesToPublishTo;
+            }
+
+        }
+
+        private void UpdateSelectedPublishHostsBindings()
+        {
+            publishHosts_textBox1.DataBindings.Clear();
+            publishHosts_textBox2.DataBindings.Clear();
+
+            if (publishHostsListBox.SelectedItem != null && publishHostsListBox.SelectedItem is UpdateAssistant.Structure.ExtendedString)
+            {
+                publishHosts_textBox1.DataBindings.Add(new Binding("Text", (publishHostsListBox.SelectedItem as UpdateAssistant.Structure.ExtendedString), "String1"));
+                publishHosts_textBox2.DataBindings.Add(new Binding("Text", (publishHostsListBox.SelectedItem as UpdateAssistant.Structure.ExtendedString), "String2"));
+            }
+        }
+
+        private void UpdateSelectedPublishHostsButtons()
+        {
+            if (publishHostsListBox.SelectedItem != null)
+            {
+                publishHosts_removeButton.Enabled = true;
+                publishHosts_moveUpButton.Enabled = true;
+                publishHosts_moveDownButton.Enabled = true;
+
+                publishHosts_textBox1.Enabled = true;
+                publishHosts_textBox2.Enabled = true;
+            }
+            else
+            {
+                publishHosts_removeButton.Enabled = false;
+                publishHosts_moveUpButton.Enabled = false;
+                publishHosts_moveDownButton.Enabled = false;
+
+                publishHosts_textBox1.Enabled = false;
+                publishHosts_textBox2.Enabled = false;
+            }
+        }
+
+        private void PublishHostListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateButtons();
+            UpdateSelectedPublishHostsBindings();
+            UpdateSelectedPublishHostsButtons();
+        }
+
+        private void addPublishHostButton_Click(object sender, EventArgs e)
+        {
+            publishHostsBindingSource.Add(new UpdateAssistant.Structure.ExtendedString("New Site", "NULL"));
+            UpdatePublishHostsBindings();
+        }
+
+        private void removePublishHostButton_Click(object sender, EventArgs e)
+        {
+            publishHostsBindingSource.Remove(publishHostsListBox.SelectedItem as UpdateAssistant.Structure.ExtendedString);
+            UpdatePublishHostsBindings();
+        }
+
+        private void movePublishHostUpButton_Click(object sender, EventArgs e)
+        {
+            int index = publishHostsListBox.SelectedIndex;
+            EditedItem.Details.SitesToPublishTo.Move(index, index - 1);
+            UpdatePublishHostsBindings(true);
+            publishHostsListBox.SelectedIndex = ListHelpers.MoveSelectedIndex(publishHostsListBox.Items.Count, index, index - 1);
+        }
+
+        private void movePublishHostDownButton_Click(object sender, EventArgs e)
+        {
+            int index = publishHostsListBox.SelectedIndex;
+            EditedItem.Details.SitesToPublishTo.Move(index, index + 1);
+            UpdatePublishHostsBindings(true);
+            publishHostsListBox.SelectedIndex = ListHelpers.MoveSelectedIndex(publishHostsListBox.Items.Count, index, index - 1);
+        }
+
+        private void PublishHost_textbox1_TextChanged(object sender, EventArgs e)
+        {
+            if (publishHostsListBox.SelectedItem != null && publishHostsListBox.SelectedIndex != -1 && EditedItem.Details.SitesToPublishTo.Count > publishHostsListBox.SelectedIndex)
+            {
+                EditedItem.Details.SitesToPublishTo[publishHostsListBox.SelectedIndex].String1 = publishHosts_textBox1.Text;
+                publishHostsListBox.Refresh();
+            }
+        }
+
+        private void PublishHost_textbox2_TextChanged(object sender, EventArgs e)
+        {
+            if (publishHostsListBox.SelectedItem != null && publishHostsListBox.SelectedIndex != -1 && EditedItem.Details.SitesToPublishTo.Count > publishHostsListBox.SelectedIndex)
+            {
+                EditedItem.Details.SitesToPublishTo[publishHostsListBox.SelectedIndex].String2 = publishHosts_textBox2.Text;
+                publishHostsListBox.Refresh();
+            }
+        }
+
+        #endregion
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            EditedItem.Save();
+            RefreshTool();
+        }
+
+        private void renameButton_Click(object sender, EventArgs e)
+        {
+            string name = Essy.Tools.InputBox.InputBox.ShowInputBox("Item Name:", EditedItem.Details.Name, false);
+            EditedItem.Details.Name = name;
+            RefreshTool();
         }
     }
 }

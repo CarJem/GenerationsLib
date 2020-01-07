@@ -94,25 +94,12 @@ namespace GenerationsLib.UpdateAssistant
             if (listBox1.SelectedItem != null)
             {
                 removeButton.Enabled = true;
-                editButton.Enabled = true;
-                runButton.Enabled = true;
+                selectButton.Enabled = true;
             }
             else
             {
                 removeButton.Enabled = false;
-                editButton.Enabled = false;
-                runButton.Enabled = false;
-            }
-        }
-
-        private void editButton_Click(object sender, EventArgs e)
-        {
-            if (listBox1.SelectedItem != null)
-            {
-                ConfigurationManager editor = new ConfigurationManager();
-                Assistants[Assistants.IndexOf(listBox1.SelectedItem as UpdateAssistant)] = editor.ShowConfigDialog(listBox1.SelectedItem as UpdateAssistant);
-                Assistants[Assistants.IndexOf(listBox1.SelectedItem as UpdateAssistant)].Save();
-                RefreshTool();
+                selectButton.Enabled = false;
             }
         }
 
@@ -129,6 +116,7 @@ namespace GenerationsLib.UpdateAssistant
         {
             DeploymentDialog editor = new DeploymentDialog();
             editor.ShowConfigDialog(listBox1.SelectedItem as UpdateAssistant);
+            RefreshTool();
         }
 
         private void refreshButton_Click(object sender, EventArgs e)
