@@ -1,4 +1,4 @@
-// GongSolutions.Shell - A Windows Shell library for .Net.
+// GenerationsLib.Gong.Shell - A Windows Shell library for .Net.
 // Copyright (C) 2007-2009 Steven J. Kirk
 //
 // This program is free software; you can redistribute it and/or
@@ -19,9 +19,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using GongSolutions.Shell.Interop;
+using GenerationsLib.Gong.Shell.Interop;
 
-namespace GongSolutions.Shell
+namespace GenerationsLib.Gong.Shell
 {
     /// <summary>
     /// Holds a <see cref="ShellView"/>'s navigation history.
@@ -150,7 +150,10 @@ namespace GongSolutions.Shell
 
         internal bool CanNavigateForward
         {
-            get { return m_Current < m_History.Count - 1; }
+            get 
+            {
+                return m_Current < m_History.Count - 1;
+            }
         }
 
         internal ShellItem Current

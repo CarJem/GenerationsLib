@@ -1,4 +1,4 @@
-namespace GongSolutions.Shell {
+namespace GenerationsLib.Gong.Shell {
     partial class FileDialogToolbar {
         /// <summary> 
         /// Required designer variable.
@@ -36,7 +36,7 @@ namespace GongSolutions.Shell {
             this.upButton = new System.Windows.Forms.ToolStripButton();
             this.newFolderButton = new System.Windows.Forms.ToolStripButton();
             this.viewMenuButton = new System.Windows.Forms.ToolStripDropDownButton();
-            this.shellComboBox = new GongSolutions.Shell.ShellComboBox();
+            this.shellComboBox = new GenerationsLib.Gong.Shell.ShellComboBox();
             lookInLabel = new System.Windows.Forms.Label();
             viewThumbnailsMenu = new System.Windows.Forms.ToolStripMenuItem();
             viewTilesMenu = new System.Windows.Forms.ToolStripMenuItem();

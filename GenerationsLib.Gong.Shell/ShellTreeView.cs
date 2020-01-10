@@ -1,4 +1,4 @@
-// GongSolutions.Shell - A Windows Shell library for .Net.
+// GenerationsLib.Gong.Shell - A Windows Shell library for .Net.
 // Copyright (C) 2007-2009 Steven J. Kirk
 //
 // This program is free software; you can redistribute it and/or
@@ -26,11 +26,11 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Microsoft.Win32;
-using GongSolutions.Shell.Interop;
-using Interop = GongSolutions.Shell.Interop;
+using GenerationsLib.Gong.Shell.Interop;
+using Interop = GenerationsLib.Gong.Shell.Interop;
 using ComTypes = System.Runtime.InteropServices.ComTypes;
 
-namespace GongSolutions.Shell
+namespace GenerationsLib.Gong.Shell
 {
     /// <summary>
     /// Provides a tree view of a computer's folders.

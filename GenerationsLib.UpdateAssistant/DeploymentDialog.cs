@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using GenerationsLib.Core;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using GongSolutions.Shell;
+using GenerationsLib.Gong.Shell;
 using System.IO;
 using CefSharp;
 using CefSharp.WinForms;
@@ -679,6 +679,8 @@ namespace GenerationsLib.UpdateAssistant
 
             //Shell View Settings
             File_ShellView.View = ShellViewStyle.Details;
+            File_ShellView.Navigated += File_ShellView_Navigated;
+            File_ShellView.Navigating += File_ShellView_Navigating;
 
             //Tree View Settings
             File_ShellTreeView.HotTracking = true;
@@ -692,6 +694,29 @@ namespace GenerationsLib.UpdateAssistant
             fileComboBoxPanel.Controls.Add(File_ShellComboBox);
             fileTreeViewPanel.Controls.Add(File_ShellTreeView);
             fileViewPanel.Controls.Add(File_ShellView);
+        }
+
+        private void File_ShellView_Navigating(object sender, NavigatingEventArgs e)
+        {
+            UpdateFileBackForwardButtons();
+        }
+
+        private void File_ShellView_Navigated(object sender, EventArgs e)
+        {
+            UpdateFileBackForwardButtons();
+        }
+
+        private void UpdateFileBackForwardButtons()
+        {
+            if (File_ShellView != null)
+            {
+                if (File_ShellView.CanNavigateForward) fileForwardButton.Enabled = true;
+                else fileForwardButton.Enabled = false;
+
+                if (File_ShellView.CanNavigateBack) fileBackButton.Enabled = true;
+                else fileBackButton.Enabled = false;
+            }
+
         }
 
         private void InitilizeTreeViewIcons()
@@ -736,12 +761,78 @@ namespace GenerationsLib.UpdateAssistant
                 File_ShellView.Navigate(e.Node.Tag.ToString());
             }
         }
+        private void showfileQuickAccessButton_Click(object sender, EventArgs e)
+        {
+            fileExplorerContainer.Panel1Collapsed = !fileExplorerContainer.Panel1Collapsed;
+        }
+
+        private void fileForwardButton_Click(object sender, EventArgs e)
+        {
+            File_ShellView.NavigateForward();
+        }
+
+        private void fileBackButton_Click(object sender, EventArgs e)
+        {
+            File_ShellView.NavigateBack();
+        }
 
         #endregion
 
         #region Web Browser
 
         private ChromiumWebBrowser ChromiumWebBrowser { get; set; }
+
+        #region Chromium Context Menu
+
+        internal class MenuHandler : IContextMenuHandler
+        {
+            private const int Copy = 26503;
+            private string LastUnfilteredLinkUrl { get; set; }
+
+            void IContextMenuHandler.OnBeforeContextMenu(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, IMenuModel model)
+            {
+                //Add new custom menu items
+                model.AddItem((CefMenuCommand)Copy, "Copy Link Address");
+                SetupCopyLinkAddress(browserControl, browser, frame, parameters, model);
+            }
+
+            void SetupCopyLinkAddress(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, IMenuModel model)
+            {
+                string linkURL = parameters.UnfilteredLinkUrl;
+
+                if (linkURL != null && linkURL != "")
+                {
+                    model.SetEnabled((CefMenuCommand)Copy, true);
+                    LastUnfilteredLinkUrl = parameters.UnfilteredLinkUrl;
+                }
+                else
+                {
+                    model.SetEnabled((CefMenuCommand)Copy, false);
+                    LastUnfilteredLinkUrl = null;
+                }
+            }
+
+            bool IContextMenuHandler.OnContextMenuCommand(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, CefMenuCommand commandId, CefEventFlags eventFlags)
+            {
+                if ((int)commandId == Copy)
+                {
+                    if (LastUnfilteredLinkUrl != null) Clipboard.SetText(LastUnfilteredLinkUrl);
+                }
+                return false;
+            }
+
+            void IContextMenuHandler.OnContextMenuDismissed(IWebBrowser browserControl, IBrowser browser, IFrame frame)
+            {
+
+            }
+
+            bool IContextMenuHandler.RunContextMenu(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, IMenuModel model, IRunContextMenuCallback callback)
+            {
+                return false;
+            }
+        }
+
+        #endregion
 
         private void InitWebBrowser()
         {
@@ -751,6 +842,48 @@ namespace GenerationsLib.UpdateAssistant
             // Add it to the form and fill it to the form window.
             chromeHostPanel.Controls.Add(ChromiumWebBrowser);
             ChromiumWebBrowser.Dock = DockStyle.Fill;
+            ChromiumWebBrowser.AddressChanged += ChromiumWebBrowser_AddressChanged;
+            ChromiumWebBrowser.LoadingStateChanged += ChromiumWebBrowser_LoadingStateChanged;
+            ChromiumWebBrowser.MenuHandler = new MenuHandler();
+        }
+
+        private void ChromiumWebBrowser_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)
+        {
+            UpdateBackwardsAndForwardsButtons();
+        }
+
+        private void ChromiumWebBrowser_AddressChanged(object sender, AddressChangedEventArgs e)
+        {
+            chromeAddressBar.Invoke((MethodInvoker)(() =>
+            {
+                chromeAddressBar.Text = ChromiumWebBrowser.Address;
+            }));
+            UpdateBackwardsAndForwardsButtons();
+        }
+
+        private void UpdateBackwardsAndForwardsButtons()
+        {
+            backwardsButton.Invoke((MethodInvoker)(() =>
+            {
+                if (ChromiumWebBrowser.CanGoBack) backwardsButton.Enabled = true;
+                else backwardsButton.Enabled = false;
+            }));
+
+            forwardsButton.Invoke((MethodInvoker)(() =>
+            {
+                if (ChromiumWebBrowser.CanGoForward) forwardsButton.Enabled = true;
+                else forwardsButton.Enabled = false;
+            }));
+        }
+
+        private void backwardsButton_Click(object sender, EventArgs e)
+        {
+            ChromiumWebBrowser.Back();
+        }
+
+        private void forwardsButton_Click(object sender, EventArgs e)
+        {
+            ChromiumWebBrowser.Forward();
         }
 
         private void RefreshBookmarkEntries()
@@ -845,6 +978,19 @@ namespace GenerationsLib.UpdateAssistant
             }
         }
 
+        private void showQuickLinksButton_Click(object sender, EventArgs e)
+        {
+            splitContainer4.Panel1Collapsed = !splitContainer4.Panel1Collapsed;
+        }
+
+        private void chromeAddressBar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                ChromiumWebBrowser.Load(chromeAddressBar.Text);
+            }
+        }
+
         #endregion
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -865,6 +1011,19 @@ namespace GenerationsLib.UpdateAssistant
 
         }
 
+        private void chromeHostPanel_Paint(object sender, PaintEventArgs e)
+        {
 
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

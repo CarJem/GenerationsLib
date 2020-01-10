@@ -1,4 +1,4 @@
-namespace GongSolutions.Shell {
+namespace GenerationsLib.Gong.Shell {
     partial class PlacesToolbar {
         /// <summary> 
         /// Required designer variable.

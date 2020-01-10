@@ -1,4 +1,4 @@
-// GongSolutions.Shell - A Windows Shell library for .Net.
+// GenerationsLib.Gong.Shell - A Windows Shell library for .Net.
 // Copyright (C) 2007-2009 Steven J. Kirk
 //
 // This program is free software; you can redistribute it and/or
@@ -28,10 +28,10 @@ using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Windows.Forms;
-using GongSolutions.Shell.Interop;
+using GenerationsLib.Gong.Shell.Interop;
 using ComTypes = System.Runtime.InteropServices.ComTypes;
 
-namespace GongSolutions.Shell
+namespace GenerationsLib.Gong.Shell
 {
     /// <summary>
     /// Specifies how list items are displayed in a <see cref="ShellView"/> 

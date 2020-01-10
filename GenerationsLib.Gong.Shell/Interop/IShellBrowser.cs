@@ -1,4 +1,4 @@
-// GongSolutions.Shell - A Windows Shell library for .Net.
+// GenerationsLib.Gong.Shell - A Windows Shell library for .Net.
 // Copyright (C) 2007-2009 Steven J. Kirk
 //
 // This program is free software; you can redistribute it and/or
@@ -21,7 +21,7 @@ using System.Runtime.InteropServices;
 
 #pragma warning disable 1591
 
-namespace GongSolutions.Shell.Interop
+namespace GenerationsLib.Gong.Shell.Interop
 {
     public enum FCW
     {

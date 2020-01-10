@@ -1,4 +1,4 @@
-// GongSolutions.Shell - A Windows Shell library for .Net.
+// GenerationsLib.Gong.Shell - A Windows Shell library for .Net.
 // Copyright (C) 2007-2009 Steven J. Kirk
 //
 // This program is free software; you can redistribute it and/or
@@ -23,9 +23,9 @@ using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
-using GongSolutions.Shell.Interop;
+using GenerationsLib.Gong.Shell.Interop;
 
-namespace GongSolutions.Shell
+namespace GenerationsLib.Gong.Shell
 {
     public class KnownFolderManager : IEnumerable<KnownFolder>
     {

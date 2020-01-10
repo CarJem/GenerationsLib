@@ -156,6 +156,7 @@
     <ProjectReference Include="..\GenerationsLib.Gong.Shell\GenerationsLib.Gong.Shell.csproj">
       <Project>{711ccf1f-6b8f-4e97-8d84-0ee679c83b41}</Project>
       <Name>GenerationsLib.Gong.Shell</Name>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

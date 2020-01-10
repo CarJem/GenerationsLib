@@ -1,4 +1,4 @@
-namespace GongSolutions.Shell {
+namespace GenerationsLib.Gong.Shell {
     partial class ShellItemBrowseForm {
         /// <summary>
         /// Required designer variable.
@@ -29,8 +29,8 @@ namespace GongSolutions.Shell {
             this.knownFoldersPage = new System.Windows.Forms.TabPage();
             this.knownFolderList = new System.Windows.Forms.ListView();
             this.allFilesPage = new System.Windows.Forms.TabPage();
-            this.allFilesView = new GongSolutions.Shell.ShellView();
-            this.allFilesToolbar = new GongSolutions.Shell.FileDialogToolbar();
+            this.allFilesView = new GenerationsLib.Gong.Shell.ShellView();
+            this.allFilesToolbar = new GenerationsLib.Gong.Shell.FileDialogToolbar();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
