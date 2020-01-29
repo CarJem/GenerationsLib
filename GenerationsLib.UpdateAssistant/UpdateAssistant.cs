@@ -14,10 +14,12 @@ namespace GenerationsLib.UpdateAssistant
         public class Structure
         {
             public string Name { get; set; } = "NULL";
+            public string ID { get; set; } = "NULL";
             public List<ExtendedString> DownloadHosts { get; set; } = new List<ExtendedString>();
             public List<ExtendedString> SitesToPublishTo { get; set; } = new List<ExtendedString>();
             public List<SiteForPostData> PlacesToPost { get; set; } = new List<SiteForPostData>();
             public List<Metadata> VersionMetadata { get; set; } = new List<Metadata>();
+            public string PublishScriptCode { get; set; } = "";
 
             public class ExtendedString
             {

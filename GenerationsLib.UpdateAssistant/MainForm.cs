@@ -17,10 +17,6 @@ namespace GenerationsLib.UpdateAssistant
 {
     public partial class MainForm : Form
     {
-        private string EXEPath { get => System.Reflection.Assembly.GetEntryAssembly().Location; }
-        private string AssistantsFolder { get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GenerationsLib Update Assistant", "assistants"); } }
-        private string CacheFolder { get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GenerationsLib Update Assistant", "cache"); } }
-        public static List<UpdateAssistant> Assistants { get; set; }
         public MainForm()
         {
             InitializeComponent();
@@ -32,7 +28,7 @@ namespace GenerationsLib.UpdateAssistant
         private void InitilizeChrome()
         {
             CefSharp.WinForms.CefSettings settings = new CefSharp.WinForms.CefSettings();
-            settings.CachePath = CacheFolder;
+            settings.CachePath = DataModel.CacheFolder;
             // Initialize cef with the provided settings
             CefSharp.Cef.Initialize(settings);
         }
@@ -49,29 +45,9 @@ namespace GenerationsLib.UpdateAssistant
         private void RefreshTool()
         {
             listBox1.DataSource = null;
-            GetUpdateAssistants();
-            listBox1.DataSource = Assistants;
+            DataModel.GetUpdateAssistants();
+            listBox1.DataSource = DataModel.Assistants;
             listBox1.Refresh();
-        }
-
-        private void GetUpdateAssistants()
-        {
-            //Clear or Create List
-            if (Assistants != null) Assistants.Clear();
-            else Assistants = new List<UpdateAssistant>();
-
-
-            //Create if Missing Directory and Get All Files
-            if (!Directory.Exists(AssistantsFolder)) Directory.CreateDirectory(AssistantsFolder);
-            DirectoryInfo d = new DirectoryInfo(AssistantsFolder);
-
-            //Process all JSON Files with Valid Data
-            string searchPattern = "*.json";
-            foreach (FileInfo file in d.GetFiles(searchPattern))
-            {
-                UpdateAssistant assistant = new UpdateAssistant(file.FullName);
-                if (assistant != null) Assistants.Add(assistant);
-            }
         }
 
         bool IsValidFilename(string testName)
@@ -88,7 +64,7 @@ namespace GenerationsLib.UpdateAssistant
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            if (!Directory.Exists(AssistantsFolder)) Directory.CreateDirectory(AssistantsFolder);
+            if (!Directory.Exists(DataModel.AssistantsFolder)) Directory.CreateDirectory(DataModel.AssistantsFolder);
             UpdateAssistant new_assistant = new UpdateAssistant();
             string filename = "";
             while (!IsValidFilename(filename) || File.Exists(filename + ".json"))
@@ -97,7 +73,7 @@ namespace GenerationsLib.UpdateAssistant
             }
             string name = Essy.Tools.InputBox.InputBox.ShowInputBox("Provide a Name for this Item");
             new_assistant.Details.Name = name;
-            string filePath = Path.Combine(AssistantsFolder, filename + ".json");
+            string filePath = Path.Combine(DataModel.AssistantsFolder, filename + ".json");
             new_assistant.Save(filePath);
             RefreshTool();
         }
@@ -120,7 +96,7 @@ namespace GenerationsLib.UpdateAssistant
         {
             if (listBox1.SelectedItem != null)
             {
-                File.Delete(Assistants[Assistants.IndexOf(listBox1.SelectedItem as UpdateAssistant)].Path);
+                File.Delete(DataModel.Assistants[DataModel.Assistants.IndexOf(listBox1.SelectedItem as UpdateAssistant)].Path);
                 RefreshTool();
             }
         }

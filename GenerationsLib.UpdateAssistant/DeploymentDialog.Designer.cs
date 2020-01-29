@@ -96,6 +96,9 @@
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.quickAccessTreeView = new System.Windows.Forms.TreeView();
             this.fileViewPanel = new System.Windows.Forms.Panel();
+            this.fileBackButton = new System.Windows.Forms.Button();
+            this.fileForwardButton = new System.Windows.Forms.Button();
+            this.showfileQuickAccessButton = new System.Windows.Forms.Button();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.bookmarkTreeView = new System.Windows.Forms.TreeView();
@@ -105,10 +108,13 @@
             this.showQuickLinksButton = new System.Windows.Forms.Button();
             this.forwardsButton = new System.Windows.Forms.Button();
             this.backwardsButton = new System.Windows.Forms.Button();
+            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.publishScriptCodeTextbox = new System.Windows.Forms.RichTextBox();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.richTextBox4 = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.setIDButton = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -122,9 +128,6 @@
             this.SocialPostBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.downloadHostsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.publishHostsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.fileBackButton = new System.Windows.Forms.Button();
-            this.fileForwardButton = new System.Windows.Forms.Button();
-            this.showfileQuickAccessButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -156,6 +159,7 @@
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
+            this.tabPage9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -266,6 +270,7 @@
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage8);
+            this.tabControl1.Controls.Add(this.tabPage9);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -904,7 +909,7 @@
             this.fileTreeTabControl.Location = new System.Drawing.Point(0, 0);
             this.fileTreeTabControl.Name = "fileTreeTabControl";
             this.fileTreeTabControl.SelectedIndex = 0;
-            this.fileTreeTabControl.Size = new System.Drawing.Size(282, 500);
+            this.fileTreeTabControl.Size = new System.Drawing.Size(282, 100);
             this.fileTreeTabControl.TabIndex = 0;
             // 
             // tabPage3
@@ -913,7 +918,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(274, 474);
+            this.tabPage3.Size = new System.Drawing.Size(274, 74);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "Primary";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -923,7 +928,7 @@
             this.fileTreeViewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fileTreeViewPanel.Location = new System.Drawing.Point(3, 3);
             this.fileTreeViewPanel.Name = "fileTreeViewPanel";
-            this.fileTreeViewPanel.Size = new System.Drawing.Size(268, 468);
+            this.fileTreeViewPanel.Size = new System.Drawing.Size(268, 68);
             this.fileTreeViewPanel.TabIndex = 1;
             // 
             // tabPage7
@@ -932,7 +937,7 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(202, 250);
+            this.tabPage7.Size = new System.Drawing.Size(274, 74);
             this.tabPage7.TabIndex = 1;
             this.tabPage7.Text = "Quick Access";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -942,7 +947,7 @@
             this.quickAccessTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.quickAccessTreeView.Location = new System.Drawing.Point(3, 3);
             this.quickAccessTreeView.Name = "quickAccessTreeView";
-            this.quickAccessTreeView.Size = new System.Drawing.Size(196, 244);
+            this.quickAccessTreeView.Size = new System.Drawing.Size(268, 68);
             this.quickAccessTreeView.TabIndex = 0;
             this.quickAccessTreeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.quickAccessTreeView_NodeMouseDoubleClick);
             // 
@@ -953,6 +958,39 @@
             this.fileViewPanel.Name = "fileViewPanel";
             this.fileViewPanel.Size = new System.Drawing.Size(849, 500);
             this.fileViewPanel.TabIndex = 1;
+            // 
+            // fileBackButton
+            // 
+            this.fileBackButton.Location = new System.Drawing.Point(0, 5);
+            this.fileBackButton.Margin = new System.Windows.Forms.Padding(0, 5, 0, 4);
+            this.fileBackButton.Name = "fileBackButton";
+            this.fileBackButton.Size = new System.Drawing.Size(30, 23);
+            this.fileBackButton.TabIndex = 1;
+            this.fileBackButton.Text = "⟵";
+            this.fileBackButton.UseVisualStyleBackColor = true;
+            this.fileBackButton.Click += new System.EventHandler(this.fileBackButton_Click);
+            // 
+            // fileForwardButton
+            // 
+            this.fileForwardButton.Location = new System.Drawing.Point(30, 5);
+            this.fileForwardButton.Margin = new System.Windows.Forms.Padding(0, 5, 0, 4);
+            this.fileForwardButton.Name = "fileForwardButton";
+            this.fileForwardButton.Size = new System.Drawing.Size(30, 23);
+            this.fileForwardButton.TabIndex = 2;
+            this.fileForwardButton.Text = "⟶";
+            this.fileForwardButton.UseVisualStyleBackColor = true;
+            this.fileForwardButton.Click += new System.EventHandler(this.fileForwardButton_Click);
+            // 
+            // showfileQuickAccessButton
+            // 
+            this.showfileQuickAccessButton.Location = new System.Drawing.Point(830, 5);
+            this.showfileQuickAccessButton.Margin = new System.Windows.Forms.Padding(0, 5, 0, 4);
+            this.showfileQuickAccessButton.Name = "showfileQuickAccessButton";
+            this.showfileQuickAccessButton.Size = new System.Drawing.Size(25, 23);
+            this.showfileQuickAccessButton.TabIndex = 3;
+            this.showfileQuickAccessButton.Text = "★";
+            this.showfileQuickAccessButton.UseVisualStyleBackColor = true;
+            this.showfileQuickAccessButton.Click += new System.EventHandler(this.showfileQuickAccessButton_Click);
             // 
             // tabPage8
             // 
@@ -1070,6 +1108,26 @@
             this.backwardsButton.UseVisualStyleBackColor = true;
             this.backwardsButton.Click += new System.EventHandler(this.backwardsButton_Click);
             // 
+            // tabPage9
+            // 
+            this.tabPage9.Controls.Add(this.publishScriptCodeTextbox);
+            this.tabPage9.Location = new System.Drawing.Point(4, 22);
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage9.Size = new System.Drawing.Size(861, 542);
+            this.tabPage9.TabIndex = 8;
+            this.tabPage9.Text = "Publish Script Code";
+            this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // publishScriptCodeTextbox
+            // 
+            this.publishScriptCodeTextbox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.publishScriptCodeTextbox.Location = new System.Drawing.Point(3, 3);
+            this.publishScriptCodeTextbox.Name = "publishScriptCodeTextbox";
+            this.publishScriptCodeTextbox.Size = new System.Drawing.Size(855, 536);
+            this.publishScriptCodeTextbox.TabIndex = 0;
+            this.publishScriptCodeTextbox.Text = "";
+            // 
             // richTextBox3
             // 
             this.richTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -1104,7 +1162,7 @@
             this.richTextBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox4.Location = new System.Drawing.Point(0, 0);
             this.richTextBox4.Name = "richTextBox4";
-            this.richTextBox4.Size = new System.Drawing.Size(294, 447);
+            this.richTextBox4.Size = new System.Drawing.Size(294, 417);
             this.richTextBox4.TabIndex = 12;
             this.richTextBox4.Text = "";
             // 
@@ -1113,21 +1171,34 @@
             this.tableLayoutPanel2.AutoSize = true;
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.setIDButton, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.button7, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.button4, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.button6, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.toggleInfoPaneButton, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.button6, 0, 4);
+            this.tableLayoutPanel2.Controls.Add(this.toggleInfoPaneButton, 0, 3);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 447);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 417);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 5;
+            this.tableLayoutPanel2.RowCount = 6;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(294, 121);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(294, 151);
             this.tableLayoutPanel2.TabIndex = 11;
+            // 
+            // setIDButton
+            // 
+            this.setIDButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.setIDButton.Location = new System.Drawing.Point(3, 63);
+            this.setIDButton.Name = "setIDButton";
+            this.setIDButton.Size = new System.Drawing.Size(288, 24);
+            this.setIDButton.TabIndex = 11;
+            this.setIDButton.Text = "Change ID...";
+            this.setIDButton.UseVisualStyleBackColor = true;
+            this.setIDButton.Click += new System.EventHandler(this.setIDButton_Click);
             // 
             // button7
             // 
@@ -1136,7 +1207,7 @@
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(288, 24);
             this.button7.TabIndex = 3;
-            this.button7.Text = "Rename";
+            this.button7.Text = "Rename...";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.renameButton_Click);
             // 
@@ -1154,7 +1225,7 @@
             // button6
             // 
             this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.button6.Location = new System.Drawing.Point(3, 93);
+            this.button6.Location = new System.Drawing.Point(3, 123);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(288, 24);
             this.button6.TabIndex = 2;
@@ -1165,7 +1236,7 @@
             // toggleInfoPaneButton
             // 
             this.toggleInfoPaneButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.toggleInfoPaneButton.Location = new System.Drawing.Point(3, 63);
+            this.toggleInfoPaneButton.Location = new System.Drawing.Point(3, 93);
             this.toggleInfoPaneButton.Name = "toggleInfoPaneButton";
             this.toggleInfoPaneButton.Size = new System.Drawing.Size(288, 24);
             this.toggleInfoPaneButton.TabIndex = 10;
@@ -1246,39 +1317,6 @@
             this.groupBox5.Tag = "Social Text Notes";
             this.groupBox5.Text = "Social Text Notes";
             // 
-            // fileBackButton
-            // 
-            this.fileBackButton.Location = new System.Drawing.Point(0, 5);
-            this.fileBackButton.Margin = new System.Windows.Forms.Padding(0, 5, 0, 4);
-            this.fileBackButton.Name = "fileBackButton";
-            this.fileBackButton.Size = new System.Drawing.Size(30, 23);
-            this.fileBackButton.TabIndex = 1;
-            this.fileBackButton.Text = "⟵";
-            this.fileBackButton.UseVisualStyleBackColor = true;
-            this.fileBackButton.Click += new System.EventHandler(this.fileBackButton_Click);
-            // 
-            // fileForwardButton
-            // 
-            this.fileForwardButton.Location = new System.Drawing.Point(30, 5);
-            this.fileForwardButton.Margin = new System.Windows.Forms.Padding(0, 5, 0, 4);
-            this.fileForwardButton.Name = "fileForwardButton";
-            this.fileForwardButton.Size = new System.Drawing.Size(30, 23);
-            this.fileForwardButton.TabIndex = 2;
-            this.fileForwardButton.Text = "⟶";
-            this.fileForwardButton.UseVisualStyleBackColor = true;
-            this.fileForwardButton.Click += new System.EventHandler(this.fileForwardButton_Click);
-            // 
-            // showfileQuickAccessButton
-            // 
-            this.showfileQuickAccessButton.Location = new System.Drawing.Point(830, 5);
-            this.showfileQuickAccessButton.Margin = new System.Windows.Forms.Padding(0, 5, 0, 4);
-            this.showfileQuickAccessButton.Name = "showfileQuickAccessButton";
-            this.showfileQuickAccessButton.Size = new System.Drawing.Size(25, 23);
-            this.showfileQuickAccessButton.TabIndex = 3;
-            this.showfileQuickAccessButton.Text = "★";
-            this.showfileQuickAccessButton.UseVisualStyleBackColor = true;
-            this.showfileQuickAccessButton.Click += new System.EventHandler(this.showfileQuickAccessButton_Click);
-            // 
             // DeploymentDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1323,6 +1361,7 @@
             this.splitContainer4.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
+            this.tabPage9.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -1443,5 +1482,8 @@
         private System.Windows.Forms.Button fileBackButton;
         private System.Windows.Forms.Button fileForwardButton;
         private System.Windows.Forms.Button showfileQuickAccessButton;
+        private System.Windows.Forms.TabPage tabPage9;
+        private System.Windows.Forms.RichTextBox publishScriptCodeTextbox;
+        private System.Windows.Forms.Button setIDButton;
     }
 }

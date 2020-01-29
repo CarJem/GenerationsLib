@@ -206,6 +206,7 @@ namespace GenerationsLib.UpdateAssistant
             UpdateSocialPosts();
             UpdateDownloadPosts();
             UpdatePublishHosts();
+            UpdatePublishScriptCodeBindings();
         }
 
         #region Version Metadata Editor
@@ -651,6 +652,13 @@ namespace GenerationsLib.UpdateAssistant
             RefreshTool();
         }
 
+        private void setIDButton_Click(object sender, EventArgs e)
+        {
+            string name = Essy.Tools.InputBox.InputBox.ShowInputBox("Item ID:", EditedItem.Details.ID, false);
+            EditedItem.Details.ID = name;
+            RefreshTool();
+        }
+
         private void toggleInfoPaneButton_Click(object sender, EventArgs e)
         {
             if (!splitContainer2.Panel2Collapsed) splitContainer2.Panel2Collapsed = true;
@@ -989,6 +997,16 @@ namespace GenerationsLib.UpdateAssistant
             {
                 ChromiumWebBrowser.Load(chromeAddressBar.Text);
             }
+        }
+
+        #endregion
+
+        #region Publish Script Code Editor
+
+        private void UpdatePublishScriptCodeBindings()
+        {
+            publishScriptCodeTextbox.DataBindings.Clear();
+            publishScriptCodeTextbox.DataBindings.Add(new Binding("Text", (EditedItem.Details), "PublishScriptCode"));
         }
 
         #endregion
