@@ -172,6 +172,93 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="ToolbarSplitButton" TargetType="{x:Type xceed:SplitButton}">
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+        <Setter Property="DropDownContentBackground">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                    <GradientStop Color="#FFE5E5E5" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Padding" Value="3"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type xceed:SplitButton}">
+                    <Grid x:Name="MainGrid" SnapsToDevicePixels="True">
+                        <xceed:ButtonChrome x:Name="ControlChrome" Background="{TemplateBinding Background}" RenderEnabled="{TemplateBinding IsEnabled}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Button x:Name="PART_ActionButton" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="0" Padding="{TemplateBinding Padding}" Style="{x:Null}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}"/>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                    <Grid>
+                                        <xceed:ButtonChrome x:Name="ActionButtonChrome" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" Foreground="{TemplateBinding Foreground}" RenderMouseOver="{Binding IsMouseOver, ElementName=PART_ActionButton}" RenderPressed="{Binding IsPressed, ElementName=PART_ActionButton}" RenderEnabled="{TemplateBinding IsEnabled}">
+                                            <xceed:ButtonChrome.BorderThickness>
+                                                <Binding ConverterParameter="2" Path="BorderThickness" RelativeSource="{RelativeSource TemplatedParent}">
+                                                    <Binding.Converter>
+                                                        <xceed:ThicknessSideRemovalConverter/>
+                                                    </Binding.Converter>
+                                                </Binding>
+                                            </xceed:ButtonChrome.BorderThickness>
+                                            <ContentPresenter x:Name="ActionButtonContent" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                        </xceed:ButtonChrome>
+                                    </Grid>
+                                </Button>
+                                <ToggleButton x:Name="PART_ToggleButton" Grid.Column="1" IsTabStop="False" IsChecked="{Binding IsOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+                                    <ToggleButton.IsHitTestVisible>
+                                        <Binding Path="IsOpen" RelativeSource="{RelativeSource TemplatedParent}">
+                                            <Binding.Converter>
+                                                <xceed:InverseBoolConverter/>
+                                            </Binding.Converter>
+                                        </Binding>
+                                    </ToggleButton.IsHitTestVisible>
+                                    <ToggleButton.Template>
+                                        <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                            <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}"/>
+                                        </ControlTemplate>
+                                    </ToggleButton.Template>
+                                    <Grid>
+                                        <xceed:ButtonChrome x:Name="ToggleButtonChrome" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="1,0" RenderMouseOver="{Binding IsMouseOver, ElementName=PART_ToggleButton}" RenderPressed="{Binding IsPressed, ElementName=PART_ToggleButton}" RenderChecked="{TemplateBinding IsOpen}" RenderEnabled="{TemplateBinding IsEnabled}">
+                                            <Grid x:Name="arrowGlyph" IsHitTestVisible="False" Margin="4,3">
+                                                <Path x:Name="Arrow" Data="M0,0L3,0 4.5,1.5 6,0 9,0 4.5,4.5z" Fill="{DynamicResource NormalText}" Height="5" Margin="0,1,0,0" Width="9"/>
+                                            </Grid>
+                                        </xceed:ButtonChrome>
+                                    </Grid>
+                                </ToggleButton>
+                            </Grid>
+                        </xceed:ButtonChrome>
+                        <Popup x:Name="PART_Popup" AllowsTransparency="True" Focusable="False" HorizontalOffset="1" IsOpen="{Binding IsChecked, ElementName=PART_ToggleButton}" Placement="{TemplateBinding DropDownPosition}" StaysOpen="False" VerticalOffset="1">
+                            <Border BorderBrush="#FFABADB3" BorderThickness="1" Background="{TemplateBinding DropDownContentBackground}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                <ScrollViewer x:Name="DropDownScrollViewer" VerticalScrollBarVisibility="Auto">
+                                    <ContentPresenter x:Name="PART_ContentPresenter" Content="{TemplateBinding DropDownContent}"/>
+                                </ScrollViewer>
+                            </Border>
+                        </Popup>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Fill" TargetName="Arrow" Value="#FFAFAFAF"/>
+                            <Setter Property="Foreground" TargetName="ActionButtonChrome" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <Style TargetType="{x:Type xceed:ButtonSpinner}">
         <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
