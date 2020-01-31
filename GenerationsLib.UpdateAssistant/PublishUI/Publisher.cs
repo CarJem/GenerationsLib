@@ -38,7 +38,7 @@ namespace GenerationsLib.UpdateAssistant.PublishUI
                     JObject optimizedData = new JObject();
                     optimizedData.Add("Metadata", rawData);
 
-                    string filePath = Path.Combine(DataModel.TempFolder, string.Format("{0}_Update.json", ItemBeingPublished.Details.ID));
+                    string filePath = Path.Combine(DataModel.TempFolder, string.Format("{0}_Updates.json", ItemBeingPublished.Details.ID));
                     File.WriteAllText(filePath, optimizedData.ToString());
 
                 }
