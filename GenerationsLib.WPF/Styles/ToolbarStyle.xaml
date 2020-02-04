@@ -52,10 +52,10 @@
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
                     <Border x:Name="Bd" SnapsToDevicePixels="true" CornerRadius="0,3,3,0" Background="{TemplateBinding Background}">
                         <Canvas Width="6" VerticalAlignment="Center" SnapsToDevicePixels="true" Margin="-12,2,2,2" Height="7" HorizontalAlignment="Center">
-                            <Path Data="M 1 1.5 L 6 1.5" Stroke="White"/>
-                            <Path Data="M 0 0.5 L 5 0.5" Stroke="{TemplateBinding Foreground}"/>
-                            <Path Data="M 0.5 4 L 6.5 4 L 3.5 7 Z" Fill="White"/>
-                            <Path Data="M -0.5 3 L 5.5 3 L 2.5 6 Z" Fill="{TemplateBinding Foreground}"/>
+                            <Path Data="M 1 1.5 L 6 1.5" Stroke="{DynamicResource NormalText}"/>
+                            <Path Data="M 0 0.5 L 5 0.5" Stroke="{DynamicResource NormalText}" Opacity="0.5"/>
+                            <Path Data="M 0.5 4 L 6.5 4 L 3.5 7 Z" Fill="{DynamicResource NormalText}"/>
+                            <Path Data="M -0.5 3 L 5.5 3 L 2.5 6 Z" Fill="{DynamicResource NormalText}" Opacity="0.5"/>
                         </Canvas>
                     </Border>
                     <ControlTemplate.Triggers>
