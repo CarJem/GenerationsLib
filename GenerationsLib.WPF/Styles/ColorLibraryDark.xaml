@@ -7,6 +7,7 @@
     <SolidColorBrush x:Key="TextBoxBackground" Color="#404040"/>
     <SolidColorBrush x:Key="MenuBar" Color="#282828"/>
     <SolidColorBrush x:Key="ToolbarBackground" Color="#282828"/>
+    <SolidColorBrush x:Key="ToolbarOverflowBackground" Color="#282828"/>
     <SolidColorBrush x:Key="StatusBarBackground" Color="#FF343434"/>
     <SolidColorBrush x:Key="NormalText" Color="White"/>
     <SolidColorBrush x:Key="HintedText" Color="#A2A2A2"/>
