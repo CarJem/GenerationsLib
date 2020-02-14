@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Security.AccessControl;
 
 namespace GenerationsLib.Core
 {
@@ -132,6 +133,72 @@ namespace GenerationsLib.Core
             foreach (FileInfo file in source.GetFiles())
             {
                 file.CopyTo(Path.Combine(target.FullName, file.Name));
+            }
+        }
+        public static bool CanRead(string path)
+        {
+            try
+            {
+                var readAllow = false;
+                var readDeny = false;
+                var accessControlList = Directory.GetAccessControl(path);
+                if (accessControlList == null)
+                    return false;
+
+                //get the access rules that pertain to a valid SID/NTAccount.
+                var accessRules = accessControlList.GetAccessRules(true, true, typeof(System.Security.Principal.SecurityIdentifier));
+                if (accessRules == null)
+                    return false;
+
+                //we want to go over these rules to ensure a valid SID has access
+                foreach (FileSystemAccessRule rule in accessRules)
+                {
+                    if ((FileSystemRights.Read & rule.FileSystemRights) != FileSystemRights.Read) continue;
+
+                    if (rule.AccessControlType == AccessControlType.Allow)
+                        readAllow = true;
+                    else if (rule.AccessControlType == AccessControlType.Deny)
+                        readDeny = true;
+                }
+
+                return readAllow && !readDeny;
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return false;
+            }
+        }
+        public static bool CanWrite(string path)
+        {
+            try
+            {
+                var readAllow = false;
+                var readDeny = false;
+                var accessControlList = Directory.GetAccessControl(path);
+                if (accessControlList == null)
+                    return false;
+
+                //get the access rules that pertain to a valid SID/NTAccount.
+                var accessRules = accessControlList.GetAccessRules(true, true, typeof(System.Security.Principal.SecurityIdentifier));
+                if (accessRules == null)
+                    return false;
+
+                //we want to go over these rules to ensure a valid SID has access
+                foreach (FileSystemAccessRule rule in accessRules)
+                {
+                    if ((FileSystemRights.Write & rule.FileSystemRights) != FileSystemRights.Write) continue;
+
+                    if (rule.AccessControlType == AccessControlType.Allow)
+                        readAllow = true;
+                    else if (rule.AccessControlType == AccessControlType.Deny)
+                        readDeny = true;
+                }
+
+                return readAllow && !readDeny;
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return false;
             }
         }
     }
