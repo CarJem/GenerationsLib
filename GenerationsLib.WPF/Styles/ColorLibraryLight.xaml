@@ -7,7 +7,10 @@
     <SolidColorBrush x:Key="MenuBar" Color="#F1F1F1"/>
     <SolidColorBrush x:Key="ToolbarBackground" Color="#F1F1F1"/>
     <SolidColorBrush x:Key="ToolbarOverflowBackground" Color="#B5B5B5"/>
-    <SolidColorBrush x:Key="StatusBarBackground" Color="#FF343434"/>
+    <LinearGradientBrush x:Key="StatusBarBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#EAEAEA" Offset="0.0" />
+        <GradientStop Color="LightGray" Offset="0.9" />
+    </LinearGradientBrush>
     <SolidColorBrush x:Key="NormalText" Color="Black"/>
     <SolidColorBrush x:Key="HintedText" Color="#363636"/>
     <SolidColorBrush x:Key="DisabledText" Color="Gray"/>
@@ -59,8 +62,8 @@
     <SolidColorBrush x:Key="RSDK_OptionMark_Pressed_Glyph" Color="#FF212121"/>
     <SolidColorBrush x:Key="RSDK_OptionMark_Static_Glyph" Color="#FF212121"/>
 
-    <SolidColorBrush x:Key="RSDK_RadioButton_Static_Background" Color="#404040"/>
-    <SolidColorBrush x:Key="RSDK_RadioButton_Static_Border" Color="#FF5D5D5D"/>
+    <SolidColorBrush x:Key="RSDK_RadioButton_Static_Background" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="RSDK_RadioButton_Static_Border" Color="#FF707070"/>
 
     <SolidColorBrush x:Key="RSDK_RadioButton_MouseOver_Background" Color="#FFF3F9FF"/>
     <SolidColorBrush x:Key="RSDK_RadioButton_MouseOver_Border" Color="#FF5593FF"/>
