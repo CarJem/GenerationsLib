@@ -29,6 +29,7 @@ namespace GenerationsLib.UpdateAssistant
         {
             CefSharp.WinForms.CefSettings settings = new CefSharp.WinForms.CefSettings();
             settings.CachePath = DataModel.CacheFolder;
+            settings.PersistUserPreferences = true;
             // Initialize cef with the provided settings
             CefSharp.Cef.Initialize(settings);
         }
