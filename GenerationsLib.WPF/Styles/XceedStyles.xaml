@@ -1249,7 +1249,7 @@
                                                             </Setter.Value>
                                                         </Setter>
                                                         <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding (0)}" Value="false">
+                                                            <DataTrigger Binding="{Binding Source=(0)}" Value="false">
                                                                 <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                                                             </DataTrigger>
                                                             <MultiTrigger>
