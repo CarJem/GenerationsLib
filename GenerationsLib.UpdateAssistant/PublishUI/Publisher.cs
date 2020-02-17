@@ -17,6 +17,16 @@ namespace GenerationsLib.UpdateAssistant.PublishUI
         public Publisher(string value)
         {
             InitializeComponent();
+            try
+            {
+                if (Directory.Exists(DataModel.TempFolder)) GenerationsLib.Core.FileHelpers.DeleteReadOnlyDirectory(DataModel.TempFolder);
+                Directory.CreateDirectory(DataModel.TempFolder);
+            }
+            catch
+            {
+                MessageBox.Show("Please Manually Clean the Temp Folder!");
+            }
+
             DataModel.GetUpdateAssistants();
             if (DataModel.Assistants.Exists(x => x.Details.ID == value))
             {
@@ -38,6 +48,7 @@ namespace GenerationsLib.UpdateAssistant.PublishUI
                     JObject optimizedData = new JObject();
                     optimizedData.Add("Metadata", rawData);
 
+                    if (!Directory.Exists(DataModel.TempFolder)) Directory.CreateDirectory(DataModel.TempFolder);
                     string filePath = Path.Combine(DataModel.TempFolder, string.Format("{0}_Updates.json", ItemBeingPublished.Details.ID));
                     File.WriteAllText(filePath, optimizedData.ToString());
 
@@ -51,6 +62,7 @@ namespace GenerationsLib.UpdateAssistant.PublishUI
 
         private string GenerateTemporaryBatchScript(string scriptData)
         {
+            if (!Directory.Exists(DataModel.TempFolder)) Directory.CreateDirectory(DataModel.TempFolder);
             string filePath = Path.Combine(DataModel.TempFolder, "temp_script.bat");
             File.WriteAllText(filePath, scriptData);
             return filePath;
@@ -58,27 +70,58 @@ namespace GenerationsLib.UpdateAssistant.PublishUI
 
         #endregion
 
+        private bool ChangesDialog()
+        {
+            var result = MessageBox.Show("Would You Like to Make Edits to the Config Before Publishing", "Make Edits?", MessageBoxButtons.YesNoCancel);
+            if (result == DialogResult.Yes)
+            {
+                string id = ItemBeingPublished.Details.ID;
+                DeploymentDialog editor = new DeploymentDialog();
+                editor.ShowConfigDialog(ItemBeingPublished);
+                editor.ShowDialog();
+                DataModel.GetUpdateAssistants();
+                ItemBeingPublished = DataModel.Assistants.FirstOrDefault(x => x.Details.ID == id);
+                return ChangesDialog();
+            }
+            else if (result == DialogResult.Cancel)
+            {
+                return false;
+            }
+            else return true;
+        }
 
         private void PublishingChain()
         {
-            MessageBox.Show("Click OK when the rest of the Post-Build Operations have Completed to Proceed!");
-            var versionSelector = new PublishUI.PublisherVersionSelectionDialog();
-            if (versionSelector.ShowSelectionDialog(ItemBeingPublished) == DialogResult.OK)
+            if (ChangesDialog() == true)
             {
-                GenerateUpdateConfig(versionSelector.SelectedVersion);
-                string scriptFile = GenerateTemporaryBatchScript(ItemBeingPublished.Details.PublishScriptCode);
-                RunScript(scriptFile);
+                var versionSelector = new PublishUI.PublisherVersionSelectionDialog();
+                if (versionSelector.ShowSelectionDialog(ItemBeingPublished) == DialogResult.OK)
+                {
+                    GenerateUpdateConfig(versionSelector.SelectedVersion);
+                    string scriptFile = GenerateTemporaryBatchScript(ItemBeingPublished.Details.PublishScriptCode);
+                    RunScript(scriptFile);
+                    DeploymentDialog deploymentDialog = new DeploymentDialog();
+                    deploymentDialog.ShowConfigDialog(ItemBeingPublished);
+                    deploymentDialog.ShowDialog();
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    Environment.Exit(0);
+                }
             }
-            DeploymentDialog deploymentDialog = new DeploymentDialog();
-            deploymentDialog.ShowConfigDialog(ItemBeingPublished);
-            deploymentDialog.ShowDialog();
-            Environment.Exit(0);
+            else Environment.Exit(0);
+
+
         }
 
         private void RunScript(string filePath)
         {
-            var processInfo = new ProcessStartInfo(filePath);
+            string command = string.Format("/k cmd.exe /c \"{0}\"", filePath);
+            Console.WriteLine(command);
+            var processInfo = new ProcessStartInfo("cmd.exe");
             processInfo.CreateNoWindow = false;
+            processInfo.Arguments = command;
             processInfo.UseShellExecute = false;
             processInfo.RedirectStandardError = false;
             processInfo.RedirectStandardOutput = false;
