@@ -26,17 +26,31 @@ namespace GenerationsLib.UpdateAssistant.PublishUI
             return this.ShowDialog();
         }
 
+        private void UpdateVersionDetails()
+        {
+            if (SelectedVersion != null)
+            {
+                richTextBox1.Text = SelectedVersion.Details;
+            }
+            else
+            {
+                richTextBox1.Clear();
+            }
+        }
+
         private void versionListBox_SelectedValueChanged(object sender, EventArgs e)
         {
             if (versionListBox.SelectedItem != null)
             {
                 SelectedVersion = (versionListBox.SelectedItem as UpdateAssistant.Structure.Metadata);
                 selectButton.Enabled = true;
+                UpdateVersionDetails();
             }
             else
             {
                 SelectedVersion = null;
                 selectButton.Enabled = false;
+                UpdateVersionDetails();
             }
         }
     }

@@ -19,7 +19,15 @@ namespace GenerationsLib.UpdateAssistant
     {
         public static string EXEPath { get => System.Reflection.Assembly.GetEntryAssembly().Location; }
         public static string AssistantsFolder { get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GenerationsLib Update Assistant", "assistants"); } }
-        public static string CacheFolder { get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GenerationsLib Update Assistant", "cache"); } }
+        public static string CacheFolder { 
+            get 
+            {
+                string appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                string path = appData + "//" + "GenerationsLib Update Assistant" + "//" + "cache";
+                if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+                return path;
+            }
+        }
         public static string TempFolder { get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GenerationsLib Update Assistant", "temp"); } }
 
         public static List<UpdateAssistant> Assistants { get; set; }
