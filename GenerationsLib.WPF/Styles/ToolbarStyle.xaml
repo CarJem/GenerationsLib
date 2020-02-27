@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:GenerationsLib.WPF.Styles" xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
+                    xmlns:local="clr-namespace:GenerationsLib.WPF.Styles" xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero">
 
     <SolidColorBrush x:Key="ToolBarHorizontalBackground" Color="{Binding Color, Source={StaticResource ToolbarBackground}}"/>
     <SolidColorBrush x:Key="ToolBarToggleButtonVerticalBackground" Color="{Binding Color, Source={StaticResource ToolbarOverflowBackground}}"/>
