@@ -844,10 +844,8 @@ namespace GenerationsLib.UpdateAssistant
 
         private void InitWebBrowser()
         {
-            // Create a browser component
             ChromiumWebBrowser = new ChromiumWebBrowser("http://google.com");
             ChromiumWebBrowser.BrowserSettings.ApplicationCache = CefSharp.CefState.Enabled;
-            // Add it to the form and fill it to the form window.
             chromeHostPanel.Controls.Add(ChromiumWebBrowser);
             ChromiumWebBrowser.Dock = DockStyle.Fill;
             ChromiumWebBrowser.AddressChanged += ChromiumWebBrowser_AddressChanged;

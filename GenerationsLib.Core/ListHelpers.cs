@@ -41,5 +41,87 @@ namespace GenerationsLib.Core
             // put element from position 1 to destination
             list[newIndex] = tmp;
         }
+        public static TValue GetSafe<TItem, TValue>(this IList<TItem> list, int index, Func<TItem, TValue> selector, TValue defaultValue)
+        {
+            // other checks omitted
+            if (index < 0 || index >= list.Count)
+            {
+                return defaultValue;
+            }
+            return selector(list[index]);
+        }
+        #region TryGetElement
+        public static T TryGetElement<T>(this T[] array, int index, T defaultElement)
+        {
+            if (index >= 0 && index < array.Length)
+            {
+                return array[index];
+            }
+            return defaultElement;
+        }
+        public static T TryGetElementNullable<T>(this T[] array, int index)
+        {
+            if (index >= 0 && index < array.Length)
+            {
+                return array[index];
+            }
+            return default(T);
+        }
+        public static TItem TryGetElement<TItem>(this IList<TItem> list, int index, TItem defaultElement)
+        {
+            if (index >= 0 && index < list.Count)
+            {
+                return list[index];
+            }
+            return defaultElement;
+        }
+
+        public static TItem TryGetElementNullable<TItem>(this IList<TItem> list, int index)
+        {
+            if (index >= 0 && index < list.Count)
+            {
+                return list[index];
+            }
+            return default(TItem);
+        }
+        #endregion
+
+        #region TrySetElement
+        public static void TrySetElement<T>(this T[] array, int index, T value)
+        {
+            if (index >= 0 && index < array.Length)
+            {
+                array[index] = value;
+            }
+        }
+        public static void TrySetElement<TItem>(this IList<TItem> list, int index, TItem value)
+        {
+            if (index >= 0 && index < list.Count)
+            {
+                list[index] = value;
+            }
+        }
+        #endregion
+
+        #region OutOfRangeCheck
+
+        public static bool IsInRange<T>(this T[] array, int index)
+        {
+            if (index >= 0 && index < array.Length)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool IsInRange<TItem>(this IList<TItem> list, int index)
+        {
+            if (index >= 0 && index < list.Count)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        #endregion
     }
 }

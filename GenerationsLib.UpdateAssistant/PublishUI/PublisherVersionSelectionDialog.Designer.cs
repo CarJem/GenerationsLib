@@ -31,13 +31,13 @@
             this.versionListBox = new System.Windows.Forms.ListBox();
             this.selectButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // versionListBox
             // 
-            this.versionListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.versionListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.versionListBox.FormattingEnabled = true;
             this.versionListBox.Location = new System.Drawing.Point(12, 12);
             this.versionListBox.Name = "versionListBox";
@@ -47,7 +47,7 @@
             // 
             // selectButton
             // 
-            this.selectButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.selectButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.selectButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.selectButton.Enabled = false;
             this.selectButton.Location = new System.Drawing.Point(221, 329);
@@ -59,7 +59,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Location = new System.Drawing.Point(140, 329);
             this.cancelButton.Name = "cancelButton";
@@ -68,11 +68,24 @@
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.Location = new System.Drawing.Point(302, 12);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.Size = new System.Drawing.Size(381, 340);
+            this.richTextBox1.TabIndex = 3;
+            this.richTextBox1.Text = "";
+            // 
             // PublisherVersionSelectionDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(308, 364);
+            this.ClientSize = new System.Drawing.Size(695, 364);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.selectButton);
             this.Controls.Add(this.versionListBox);
@@ -88,5 +101,6 @@
         private System.Windows.Forms.ListBox versionListBox;
         private System.Windows.Forms.Button selectButton;
         private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }

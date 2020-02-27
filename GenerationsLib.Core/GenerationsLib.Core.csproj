@@ -91,6 +91,7 @@
     <Compile Include="ListHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflector.cs" />
+    <Compile Include="SymbolicLinks.cs" />
     <Compile Include="WebHelpers.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
