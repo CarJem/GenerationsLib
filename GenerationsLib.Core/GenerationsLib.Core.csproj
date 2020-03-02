@@ -85,6 +85,7 @@
   <ItemGroup>
     <Compile Include="CollectionHelpers.cs" />
     <Compile Include="DefaultIcons.cs" />
+    <Compile Include="EventList.cs" />
     <Compile Include="FileHelpers.cs" />
     <Compile Include="FolderSelectDialog.cs" />
     <Compile Include="KnownFolders.cs" />
