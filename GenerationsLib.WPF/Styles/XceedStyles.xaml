@@ -14,8 +14,8 @@
         <Setter Property="IsTabStop" Value="False"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-        <Setter Property="Background" Value="{StaticResource ButtonBackground}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource ButtonBorder}"/>
+        <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Template">
@@ -31,16 +31,16 @@
                                 <Condition Property="RenderEnabled" Value="False"/>
                                 <Condition Property="RenderChecked" Value="False"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="BorderBrush" TargetName="OuterBorder" Value="{StaticResource RSDK_ButtonDisabled_Border}"/>
-                            <Setter Property="Background" TargetName="OuterBorder" Value="{DynamicResource RSDK_ButtonDisabled_Background}"/>
+                            <Setter Property="BorderBrush" TargetName="OuterBorder" Value="{StaticResource Button.Disabled.Border}"/>
+                            <Setter Property="Background" TargetName="OuterBorder" Value="{StaticResource Button.Disabled.Background}"/>
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="RenderEnabled" Value="True"/>
                                 <Condition Property="RenderPressed" Value="True"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="BorderBrush" TargetName="OuterBorder" Value="{StaticResource RSDK_ButtonPressed_Border}"/>
-                            <Setter Property="Background" TargetName="OuterBorder" Value="{DynamicResource RSDK_ButtonPressed_Background}"/>
+                            <Setter Property="BorderBrush" TargetName="OuterBorder" Value="{StaticResource Button.Pressed.Border}"/>
+                            <Setter Property="Background" TargetName="OuterBorder" Value="{StaticResource Button.Pressed.Background}"/>
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -49,8 +49,8 @@
                                 <Condition Property="RenderMouseOver" Value="True"/>
                                 <Condition Property="RenderPressed" Value="False"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="BorderBrush" TargetName="OuterBorder" Value="{StaticResource RSDK_ButtonMouseOver_Border}"/>
-                            <Setter Property="Background" TargetName="OuterBorder" Value="{DynamicResource RSDK_ButtonMouseOver_Background}"/>
+                            <Setter Property="BorderBrush" TargetName="OuterBorder" Value="{StaticResource Button.MouseOver.Border}"/>
+                            <Setter Property="Background" TargetName="OuterBorder" Value="{StaticResource Button.MouseOver.Background}"/>
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -59,8 +59,8 @@
                                 <Condition Property="RenderMouseOver" Value="False"/>
                                 <Condition Property="RenderPressed" Value="False"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="BorderBrush" TargetName="OuterBorder" Value="{StaticResource RSDK_ButtonPressed_Border}"/>
-                            <Setter Property="Background" TargetName="OuterBorder" Value="{DynamicResource RSDK_ButtonPressed_Background}"/>
+                            <Setter Property="BorderBrush" TargetName="OuterBorder" Value="{StaticResource Button.Pressed.Border}"/>
+                            <Setter Property="Background" TargetName="OuterBorder" Value="{StaticResource Button.Pressed.Background}"/>
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -69,8 +69,8 @@
                                 <Condition Property="RenderPressed" Value="False"/>
                                 <Condition Property="RenderMouseOver" Value="False"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="BorderBrush" TargetName="OuterBorder" Value="{StaticResource RSDK_ButtonPressed_Border}"/>
-                            <Setter Property="Background" TargetName="OuterBorder" Value="{DynamicResource RSDK_ButtonPressed_Background}"/>
+                            <Setter Property="BorderBrush" TargetName="OuterBorder" Value="{StaticResource Button.Pressed.Border}"/>
+                            <Setter Property="Background" TargetName="OuterBorder" Value="{StaticResource Button.Pressed.Background}"/>
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -85,13 +85,14 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
     <Style TargetType="{x:Type xceed:SplitButton}">
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="IsTabStop" Value="False"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
-        <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
+        <Setter Property="Foreground" Value="{StaticResource NormalText}"/>
         <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
         <Setter Property="DropDownContentBackground">
             <Setter.Value>
@@ -259,6 +260,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
     <Style TargetType="{x:Type xceed:ButtonSpinner}">
         <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
