@@ -4,9 +4,9 @@
 
     <Style x:Key="DefaultContextMenuStyle" TargetType="{x:Type ContextMenu}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-        <Setter Property="Background" Value="{StaticResource ContextMenuBackground}"/>
-        <Setter Property="BorderBrush" Value="Gray"/>
-        <Setter Property="Foreground" Value="{StaticResource NormalText}"/>
+        <Setter Property="Background" Value="{DynamicResource ContextMenuBackground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ContextMenuBorder}"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -17,8 +17,8 @@
                                 <Canvas HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
                                     <Rectangle x:Name="OpaqueRect" Fill="{Binding Background, ElementName=ContextMenuBorder}" Height="{Binding ActualHeight, ElementName=ContextMenuBorder}" Width="{Binding ActualWidth, ElementName=ContextMenuBorder}"/>
                                 </Canvas>
-                                <Rectangle Fill="{StaticResource ContextMenuBackground}" HorizontalAlignment="Left" Margin="1,2" RadiusY="2" RadiusX="2" Width="28"/>
-                                <Rectangle Fill="{StaticResource ContextMenuBackground}" HorizontalAlignment="Left" Margin="29,2,0,2" Width="1"/>
+                                <Rectangle Fill="{DynamicResource ContextMenuBackground}" HorizontalAlignment="Left" Margin="1,2" RadiusY="2" RadiusX="2" Width="28"/>
+                                <Rectangle Fill="{DynamicResource ContextMenuBackground}" HorizontalAlignment="Left" Margin="29,2,0,2" Width="1"/>
                                 <Rectangle Fill="Gray" HorizontalAlignment="Left" Margin="30,2,0,2" Width="1"/>
                                 <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Cycle" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                             </Grid>
@@ -33,6 +33,11 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type ToolTip}">
+        <Setter Property="Background" Value="{DynamicResource ContextMenuBackground}"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource NormalText}"></Setter>
     </Style>
 
 

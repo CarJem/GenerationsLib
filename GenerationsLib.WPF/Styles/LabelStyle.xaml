@@ -4,6 +4,9 @@
     <Style TargetType="{x:Type Label}">
         <Setter Property="Foreground" Value="{DynamicResource NormalText}" />
     </Style>
-
+    
+    <Style x:Key="MainTextboxStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="{DynamicResource NormalText}" />
+    </Style>
 
 </ResourceDictionary>

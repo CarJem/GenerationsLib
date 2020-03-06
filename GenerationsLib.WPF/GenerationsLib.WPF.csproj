@@ -116,8 +116,8 @@
     <Compile Include="Dialog\MessageBox.cs" />
     <Compile Include="Dialog\TextPrompt2.xaml.cs" />
     <Compile Include="Dialog\WindowHelper.cs" />
-    <Compile Include="Template Themes\AppXAMLExample.cs" />
-    <Compile Include="Template Themes\SkinResourceDictonary.cs" />
+    <Compile Include="Themes\Skin.cs" />
+    <Compile Include="Themes\SkinResourceDictonary.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Dialog\CustomMessageBoxWindow.xaml">
@@ -216,11 +216,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Styles\ColorLibraryDark.xaml">
+    <Page Include="Themes\BetaTheme.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Styles\ColorLibraryLight.xaml">
+    <Page Include="Themes\CarJemTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DarkTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\LightTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ShardTheme.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
