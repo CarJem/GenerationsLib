@@ -24,7 +24,17 @@ namespace GenerationsLib.WPF.Themes
         private Uri _BetaSource;
         private Uri _ShardSource;
         private Uri _CarJemSource;
+        private Uri _GammaSource;
 
+        public Uri GammaSource
+        {
+            get { return _GammaSource; }
+            set
+            {
+                _GammaSource = value;
+                UpdateSource();
+            }
+        }
         public Uri DarkSource
         {
             get { return _DarkSource; }
@@ -93,6 +103,8 @@ namespace GenerationsLib.WPF.Themes
                     return ShardSource;
                 case Skin.CarJem:
                     return CarJemSource;
+                case Skin.Gamma:
+                    return GammaSource;
                 default:
                     return DarkSource;
             }

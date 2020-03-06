@@ -420,10 +420,11 @@
         <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
     </Style>
 
-    <Style x:Key="ColorPicker1" TargetType="{x:Type xceed:ColorPicker}">
+    <Style TargetType="{x:Type xceed:ColorPicker}">
         <Setter Property="Background" Value="White"/>
+        <Setter Property="ShowTabHeaders" Value="False"></Setter>
         <Setter Property="BorderBrush" Value="{DynamicResource {ComponentResourceKey ResourceId=ControlNormalBorderKey, TypeInTargetAssembly={x:Type wpfTool:ResourceKeys}}}"/>
-        <Setter Property="BorderThickness" Value="1,1,0,1"/>
+        <Setter Property="BorderThickness" Value="1,1,1,1"/>
         <Setter Property="ButtonStyle">
             <Setter.Value>
                 <Style TargetType="{x:Type ToggleButton}">
@@ -448,7 +449,7 @@
                                                 </Binding>
                                             </xceed:ButtonChrome.Visibility>
                                             <Grid x:Name="arrowGlyph" Grid.Column="1" IsHitTestVisible="False" Margin="5">
-                                                <Path x:Name="Arrow" Data="M0,0L3,0 4.5,1.5 6,0 9,0 4.5,4.5z" Fill="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" Height="5" Margin="0,1,0,0" Width="9"/>
+                                                <Path x:Name="Arrow" Data="M0,0L3,0 4.5,1.5 6,0 9,0 4.5,4.5z" Fill="{DynamicResource NormalText}" Height="5" Margin="0,1,0,0" Width="9"/>
                                             </Grid>
                                         </xceed:ButtonChrome>
                                     </Grid>
@@ -583,7 +584,7 @@
                                                 </Style>
                                             </ContentControl.Style>
                                         </ContentControl>
-                                        <TextBlock Text="{Binding SelectedColorText, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Center"/>
+                                        <TextBlock Foreground="{DynamicResource NormalText}" Text="{Binding SelectedColorText, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Center"/>
                                     </StackPanel>
                                 </Border>
                             </Grid>
@@ -600,453 +601,12 @@
                             </Popup.Resources>
                             <Border BorderBrush="{DynamicResource ContextMenuBorder}" BorderThickness="1" Padding="3" Background="{DynamicResource NormalBackground}">
                                 <TabControl x:Name="ColorPickerTabControl" SelectedIndex="1" Background="{DynamicResource NormalBackground}">
-                                    <xceed:ColorPickerTabItem x:Name="StandardTabItem" Header="{Binding StandardButtonHeader, RelativeSource={RelativeSource TemplatedParent}}">
-                                        <xceed:ColorPickerTabItem.Template>
-                                            <ControlTemplate TargetType="{x:Type xceed:ColorPickerTabItem}">
-                                                <Grid x:Name="templateRoot" SnapsToDevicePixels="True" Background="{DynamicResource NormalBackground}">
-                                                    <Border x:Name="mainBorder" BorderBrush="{DynamicResource ContextMenuBorder}" BorderThickness="1,1,1,0" Background="{DynamicResource NormalBackground}" Margin="0">
-                                                        <Border x:Name="innerBorder" BorderBrush="{DynamicResource ContextMenuBorder}" BorderThickness="1,1,1,0" Background="{DynamicResource NormalBackground}" Margin="-1" Opacity="0"/>
-                                                    </Border>
-                                                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" ContentStringFormat="{TemplateBinding HeaderStringFormat}" ContentSource="Header" Focusable="False" HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type ItemsControl}}}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type ItemsControl}}}"/>
-                                                </Grid>
-                                                <ControlTemplate.Triggers>
-                                                    <MultiDataTrigger>
-                                                        <MultiDataTrigger.Conditions>
-                                                            <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="true"/>
-                                                        </MultiDataTrigger.Conditions>
-                                                        <Setter Property="Panel.ZIndex" Value="1"/>
-                                                        <Setter Property="Margin" Value="-2,-2,-2,0"/>
-                                                        <Setter Property="Opacity" TargetName="innerBorder" Value="1"/>
-                                                    </MultiDataTrigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </xceed:ColorPickerTabItem.Template>
-                                        <Grid x:Name="_colorPaletteHost" Margin="4">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                            </Grid.RowDefinitions>
-                                            <Grid Grid.Row="1">
-                                                <Grid.Visibility>
-                                                    <TemplateBinding Property="ShowAvailableColors">
-                                                        <TemplateBinding.Converter>
-                                                            <BooleanToVisibilityConverter/>
-                                                        </TemplateBinding.Converter>
-                                                    </TemplateBinding>
-                                                </Grid.Visibility>
-                                                <Grid>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition/>
-                                                    </Grid.RowDefinitions>
-                                                    <TextBlock Background="AliceBlue" Margin="0,0,0,1" Padding="2" Text="{TemplateBinding AvailableColorsHeader}"/>
-                                                    <ListBox x:Name="PART_AvailableColors" Grid.Row="1">
-                                                        <ListBox.Style>
-                                                            <Style TargetType="{x:Type ListBox}">
-                                                                <Setter Property="Background" Value="Transparent"/>
-                                                                <Setter Property="BorderThickness" Value="0"/>
-                                                                <Setter Property="MaxHeight" Value="500"/>
-                                                                <Setter Property="Width">
-                                                                    <Setter.Value>
-                                                                        <Binding ConverterParameter="-18" Path="MaxDropDownWidth" RelativeSource="{RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type xceed:ColorPicker}}">
-                                                                            <Binding.Converter>
-                                                                                <xceed:AdditionConverter/>
-                                                                            </Binding.Converter>
-                                                                        </Binding>
-                                                                    </Setter.Value>
-                                                                </Setter>
-                                                                <Setter Property="ItemsPanel">
-                                                                    <Setter.Value>
-                                                                        <ItemsPanelTemplate>
-                                                                            <WrapPanel IsItemsHost="True">
-                                                                                <WrapPanel.Width>
-                                                                                    <Binding ConverterParameter="-4" Path="ActualWidth" RelativeSource="{RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type ListBox}}">
-                                                                                        <Binding.Converter>
-                                                                                            <xceed:AdditionConverter/>
-                                                                                        </Binding.Converter>
-                                                                                    </Binding>
-                                                                                </WrapPanel.Width>
-                                                                            </WrapPanel>
-                                                                        </ItemsPanelTemplate>
-                                                                    </Setter.Value>
-                                                                </Setter>
-                                                                <Setter Property="ItemContainerStyle">
-                                                                    <Setter.Value>
-                                                                        <Style TargetType="{x:Type ListBoxItem}">
-                                                                            <Setter Property="ToolTip" Value="{Binding Name}"/>
-                                                                            <Setter Property="Template">
-                                                                                <Setter.Value>
-                                                                                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                                                                        <Grid x:Name="mainGrid" ToolTip="{Binding Name}">
-                                                                                            <Grid.Resources>
-                                                                                                <Style x:Key="{x:Type ToolTip}" TargetType="{x:Type ToolTip}">
-                                                                                                    <Style.Triggers>
-                                                                                                        <Trigger Property="Content" Value="">
-                                                                                                            <Setter Property="Visibility" Value="Collapsed"/>
-                                                                                                        </Trigger>
-                                                                                                    </Style.Triggers>
-                                                                                                </Style>
-                                                                                            </Grid.Resources>
-                                                                                            <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                                                            <Border x:Name="_outerBorder" BorderBrush="Transparent" BorderThickness="1" Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                                                                                <Border x:Name="_innerBorder" BorderBrush="Transparent" BorderThickness="1" Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                                                                                            </Border>
-                                                                                        </Grid>
-                                                                                        <ControlTemplate.Triggers>
-                                                                                            <Trigger Property="IsMouseOver" Value="True">
-                                                                                                <Setter Property="BorderBrush" TargetName="_outerBorder" Value="{DynamicResource {ComponentResourceKey ResourceId=ControlSelectedBorderKey, TypeInTargetAssembly={x:Type wpfTool:ResourceKeys}}}"/>
-                                                                                                <Setter Property="BorderBrush" TargetName="_innerBorder" Value="{DynamicResource {ComponentResourceKey ResourceId=ButtonMouseOverBackgroundKey, TypeInTargetAssembly={x:Type wpfTool:ResourceKeys}}}"/>
-                                                                                            </Trigger>
-                                                                                            <Trigger Property="IsSelected" Value="True">
-                                                                                                <Setter Property="BorderBrush" TargetName="_outerBorder" Value="{DynamicResource {ComponentResourceKey ResourceId=ControlSelectedBorderKey, TypeInTargetAssembly={x:Type wpfTool:ResourceKeys}}}"/>
-                                                                                                <Setter Property="BorderBrush" TargetName="_innerBorder" Value="{DynamicResource {ComponentResourceKey ResourceId=ButtonMouseOverBackgroundKey, TypeInTargetAssembly={x:Type wpfTool:ResourceKeys}}}"/>
-                                                                                            </Trigger>
-                                                                                            <DataTrigger Binding="{Binding DisplayColorTooltip, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type xceed:ColorPicker}}}" Value="False">
-                                                                                                <Setter Property="ToolTip" TargetName="mainGrid" Value=""/>
-                                                                                            </DataTrigger>
-                                                                                        </ControlTemplate.Triggers>
-                                                                                    </ControlTemplate>
-                                                                                </Setter.Value>
-                                                                            </Setter>
-                                                                        </Style>
-                                                                    </Setter.Value>
-                                                                </Setter>
-                                                                <Setter Property="ItemTemplate">
-                                                                    <Setter.Value>
-                                                                        <DataTemplate>
-                                                                            <Grid>
-                                                                                <Border BorderBrush="{DynamicResource {ComponentResourceKey ResourceId=ControlNormalBorderKey, TypeInTargetAssembly={x:Type wpfTool:ResourceKeys}}}" BorderThickness="1" Margin="2">
-                                                                                    <Border.Background>
-                                                                                        <DrawingBrush TileMode="Tile" Viewport="0,0,10,10" ViewportUnits="Absolute">
-                                                                                            <DrawingBrush.Drawing>
-                                                                                                <DrawingGroup>
-                                                                                                    <GeometryDrawing Brush="White">
-                                                                                                        <GeometryDrawing.Geometry>
-                                                                                                            <RectangleGeometry Rect="0,0,100,100"/>
-                                                                                                        </GeometryDrawing.Geometry>
-                                                                                                    </GeometryDrawing>
-                                                                                                    <GeometryDrawing Brush="LightGray">
-                                                                                                        <GeometryDrawing.Geometry>
-                                                                                                            <GeometryGroup>
-                                                                                                                <RectangleGeometry Rect="0,0,50,50"/>
-                                                                                                                <RectangleGeometry Rect="50,50,50,50"/>
-                                                                                                            </GeometryGroup>
-                                                                                                        </GeometryDrawing.Geometry>
-                                                                                                    </GeometryDrawing>
-                                                                                                </DrawingGroup>
-                                                                                            </DrawingBrush.Drawing>
-                                                                                        </DrawingBrush>
-                                                                                    </Border.Background>
-                                                                                    <Rectangle Height="14" Width="14">
-                                                                                        <Rectangle.Style>
-                                                                                            <Style TargetType="{x:Type Rectangle}">
-                                                                                                <Setter Property="Fill">
-                                                                                                    <Setter.Value>
-                                                                                                        <Binding Path="Color">
-                                                                                                            <Binding.Converter>
-                                                                                                                <xceed:ColorToSolidColorBrushConverter/>
-                                                                                                            </Binding.Converter>
-                                                                                                        </Binding>
-                                                                                                    </Setter.Value>
-                                                                                                </Setter>
-                                                                                            </Style>
-                                                                                        </Rectangle.Style>
-                                                                                    </Rectangle>
-                                                                                </Border>
-                                                                            </Grid>
-                                                                        </DataTemplate>
-                                                                    </Setter.Value>
-                                                                </Setter>
-                                                                <Setter Property="SelectionMode" Value="Single"/>
-                                                            </Style>
-                                                        </ListBox.Style>
-                                                    </ListBox>
-                                                </Grid>
-                                            </Grid>
-                                            <Grid Grid.Row="2">
-                                                <Grid.Visibility>
-                                                    <TemplateBinding Property="ShowStandardColors">
-                                                        <TemplateBinding.Converter>
-                                                            <BooleanToVisibilityConverter/>
-                                                        </TemplateBinding.Converter>
-                                                    </TemplateBinding>
-                                                </Grid.Visibility>
-                                                <Grid>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="Auto"/>
-                                                    </Grid.RowDefinitions>
-                                                    <TextBlock Background="AliceBlue" Margin="0,1" Padding="2" Text="{TemplateBinding StandardColorsHeader}"/>
-                                                    <ListBox x:Name="PART_StandardColors" Grid.Row="1">
-                                                        <ListBox.Style>
-                                                            <Style TargetType="{x:Type ListBox}">
-                                                                <Setter Property="Background" Value="Transparent"/>
-                                                                <Setter Property="BorderThickness" Value="0"/>
-                                                                <Setter Property="MaxHeight" Value="500"/>
-                                                                <Setter Property="Width">
-                                                                    <Setter.Value>
-                                                                        <Binding ConverterParameter="-18" Path="MaxDropDownWidth" RelativeSource="{RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type xceed:ColorPicker}}">
-                                                                            <Binding.Converter>
-                                                                                <xceed:AdditionConverter/>
-                                                                            </Binding.Converter>
-                                                                        </Binding>
-                                                                    </Setter.Value>
-                                                                </Setter>
-                                                                <Setter Property="ItemsPanel">
-                                                                    <Setter.Value>
-                                                                        <ItemsPanelTemplate>
-                                                                            <WrapPanel IsItemsHost="True">
-                                                                                <WrapPanel.Width>
-                                                                                    <Binding ConverterParameter="-4" Path="ActualWidth" RelativeSource="{RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type ListBox}}">
-                                                                                        <Binding.Converter>
-                                                                                            <xceed:AdditionConverter/>
-                                                                                        </Binding.Converter>
-                                                                                    </Binding>
-                                                                                </WrapPanel.Width>
-                                                                            </WrapPanel>
-                                                                        </ItemsPanelTemplate>
-                                                                    </Setter.Value>
-                                                                </Setter>
-                                                                <Setter Property="ItemContainerStyle">
-                                                                    <Setter.Value>
-                                                                        <Style TargetType="{x:Type ListBoxItem}">
-                                                                            <Setter Property="ToolTip" Value="{Binding Name}"/>
-                                                                            <Setter Property="Template">
-                                                                                <Setter.Value>
-                                                                                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                                                                        <Grid x:Name="mainGrid" ToolTip="{Binding Name}">
-                                                                                            <Grid.Resources>
-                                                                                                <Style x:Key="{x:Type ToolTip}" TargetType="{x:Type ToolTip}">
-                                                                                                    <Style.Triggers>
-                                                                                                        <Trigger Property="Content" Value="">
-                                                                                                            <Setter Property="Visibility" Value="Collapsed"/>
-                                                                                                        </Trigger>
-                                                                                                    </Style.Triggers>
-                                                                                                </Style>
-                                                                                            </Grid.Resources>
-                                                                                            <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                                                            <Border x:Name="_outerBorder" BorderBrush="Transparent" BorderThickness="1" Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                                                                                <Border x:Name="_innerBorder" BorderBrush="Transparent" BorderThickness="1" Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                                                                                            </Border>
-                                                                                        </Grid>
-                                                                                        <ControlTemplate.Triggers>
-                                                                                            <Trigger Property="IsMouseOver" Value="True">
-                                                                                                <Setter Property="BorderBrush" TargetName="_outerBorder" Value="{DynamicResource {ComponentResourceKey ResourceId=ControlSelectedBorderKey, TypeInTargetAssembly={x:Type wpfTool:ResourceKeys}}}"/>
-                                                                                                <Setter Property="BorderBrush" TargetName="_innerBorder" Value="{DynamicResource {ComponentResourceKey ResourceId=ButtonMouseOverBackgroundKey, TypeInTargetAssembly={x:Type wpfTool:ResourceKeys}}}"/>
-                                                                                            </Trigger>
-                                                                                            <Trigger Property="IsSelected" Value="True">
-                                                                                                <Setter Property="BorderBrush" TargetName="_outerBorder" Value="{DynamicResource {ComponentResourceKey ResourceId=ControlSelectedBorderKey, TypeInTargetAssembly={x:Type wpfTool:ResourceKeys}}}"/>
-                                                                                                <Setter Property="BorderBrush" TargetName="_innerBorder" Value="{DynamicResource {ComponentResourceKey ResourceId=ButtonMouseOverBackgroundKey, TypeInTargetAssembly={x:Type wpfTool:ResourceKeys}}}"/>
-                                                                                            </Trigger>
-                                                                                            <DataTrigger Binding="{Binding DisplayColorTooltip, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type xceed:ColorPicker}}}" Value="False">
-                                                                                                <Setter Property="ToolTip" TargetName="mainGrid" Value=""/>
-                                                                                            </DataTrigger>
-                                                                                        </ControlTemplate.Triggers>
-                                                                                    </ControlTemplate>
-                                                                                </Setter.Value>
-                                                                            </Setter>
-                                                                        </Style>
-                                                                    </Setter.Value>
-                                                                </Setter>
-                                                                <Setter Property="ItemTemplate">
-                                                                    <Setter.Value>
-                                                                        <DataTemplate>
-                                                                            <Grid>
-                                                                                <Border BorderBrush="{DynamicResource {ComponentResourceKey ResourceId=ControlNormalBorderKey, TypeInTargetAssembly={x:Type wpfTool:ResourceKeys}}}" BorderThickness="1" Margin="2">
-                                                                                    <Border.Background>
-                                                                                        <DrawingBrush TileMode="Tile" Viewport="0,0,10,10" ViewportUnits="Absolute">
-                                                                                            <DrawingBrush.Drawing>
-                                                                                                <DrawingGroup>
-                                                                                                    <GeometryDrawing Brush="White">
-                                                                                                        <GeometryDrawing.Geometry>
-                                                                                                            <RectangleGeometry Rect="0,0,100,100"/>
-                                                                                                        </GeometryDrawing.Geometry>
-                                                                                                    </GeometryDrawing>
-                                                                                                    <GeometryDrawing Brush="LightGray">
-                                                                                                        <GeometryDrawing.Geometry>
-                                                                                                            <GeometryGroup>
-                                                                                                                <RectangleGeometry Rect="0,0,50,50"/>
-                                                                                                                <RectangleGeometry Rect="50,50,50,50"/>
-                                                                                                            </GeometryGroup>
-                                                                                                        </GeometryDrawing.Geometry>
-                                                                                                    </GeometryDrawing>
-                                                                                                </DrawingGroup>
-                                                                                            </DrawingBrush.Drawing>
-                                                                                        </DrawingBrush>
-                                                                                    </Border.Background>
-                                                                                    <Rectangle Height="14" Width="14">
-                                                                                        <Rectangle.Style>
-                                                                                            <Style TargetType="{x:Type Rectangle}">
-                                                                                                <Setter Property="Fill">
-                                                                                                    <Setter.Value>
-                                                                                                        <Binding Path="Color">
-                                                                                                            <Binding.Converter>
-                                                                                                                <xceed:ColorToSolidColorBrushConverter/>
-                                                                                                            </Binding.Converter>
-                                                                                                        </Binding>
-                                                                                                    </Setter.Value>
-                                                                                                </Setter>
-                                                                                            </Style>
-                                                                                        </Rectangle.Style>
-                                                                                    </Rectangle>
-                                                                                </Border>
-                                                                            </Grid>
-                                                                        </DataTemplate>
-                                                                    </Setter.Value>
-                                                                </Setter>
-                                                                <Setter Property="SelectionMode" Value="Single"/>
-                                                            </Style>
-                                                        </ListBox.Style>
-                                                    </ListBox>
-                                                </Grid>
-                                            </Grid>
-                                            <Grid Margin="0,1" Grid.Row="3">
-                                                <Grid.Visibility>
-                                                    <TemplateBinding Property="ShowRecentColors">
-                                                        <TemplateBinding.Converter>
-                                                            <BooleanToVisibilityConverter/>
-                                                        </TemplateBinding.Converter>
-                                                    </TemplateBinding>
-                                                </Grid.Visibility>
-                                                <Grid>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="22"/>
-                                                    </Grid.RowDefinitions>
-                                                    <TextBlock Background="AliceBlue" Margin="0,1" Padding="2" Text="{TemplateBinding RecentColorsHeader}"/>
-                                                    <ListBox x:Name="PART_RecentColors" Grid.Row="1">
-                                                        <ListBox.Style>
-                                                            <Style TargetType="{x:Type ListBox}">
-                                                                <Setter Property="Background" Value="Transparent"/>
-                                                                <Setter Property="BorderThickness" Value="0"/>
-                                                                <Setter Property="MaxHeight" Value="500"/>
-                                                                <Setter Property="Width">
-                                                                    <Setter.Value>
-                                                                        <Binding ConverterParameter="-18" Path="MaxDropDownWidth" RelativeSource="{RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type xceed:ColorPicker}}">
-                                                                            <Binding.Converter>
-                                                                                <xceed:AdditionConverter/>
-                                                                            </Binding.Converter>
-                                                                        </Binding>
-                                                                    </Setter.Value>
-                                                                </Setter>
-                                                                <Setter Property="ItemsPanel">
-                                                                    <Setter.Value>
-                                                                        <ItemsPanelTemplate>
-                                                                            <WrapPanel IsItemsHost="True">
-                                                                                <WrapPanel.Width>
-                                                                                    <Binding ConverterParameter="-4" Path="ActualWidth" RelativeSource="{RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type ListBox}}">
-                                                                                        <Binding.Converter>
-                                                                                            <xceed:AdditionConverter/>
-                                                                                        </Binding.Converter>
-                                                                                    </Binding>
-                                                                                </WrapPanel.Width>
-                                                                            </WrapPanel>
-                                                                        </ItemsPanelTemplate>
-                                                                    </Setter.Value>
-                                                                </Setter>
-                                                                <Setter Property="ItemContainerStyle">
-                                                                    <Setter.Value>
-                                                                        <Style TargetType="{x:Type ListBoxItem}">
-                                                                            <Setter Property="ToolTip" Value="{Binding Name}"/>
-                                                                            <Setter Property="Template">
-                                                                                <Setter.Value>
-                                                                                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                                                                        <Grid x:Name="mainGrid" ToolTip="{Binding Name}">
-                                                                                            <Grid.Resources>
-                                                                                                <Style x:Key="{x:Type ToolTip}" TargetType="{x:Type ToolTip}">
-                                                                                                    <Style.Triggers>
-                                                                                                        <Trigger Property="Content" Value="">
-                                                                                                            <Setter Property="Visibility" Value="Collapsed"/>
-                                                                                                        </Trigger>
-                                                                                                    </Style.Triggers>
-                                                                                                </Style>
-                                                                                            </Grid.Resources>
-                                                                                            <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                                                            <Border x:Name="_outerBorder" BorderBrush="Transparent" BorderThickness="1" Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                                                                                <Border x:Name="_innerBorder" BorderBrush="Transparent" BorderThickness="1" Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                                                                                            </Border>
-                                                                                        </Grid>
-                                                                                        <ControlTemplate.Triggers>
-                                                                                            <Trigger Property="IsMouseOver" Value="True">
-                                                                                                <Setter Property="BorderBrush" TargetName="_outerBorder" Value="{DynamicResource {ComponentResourceKey ResourceId=ControlSelectedBorderKey, TypeInTargetAssembly={x:Type wpfTool:ResourceKeys}}}"/>
-                                                                                                <Setter Property="BorderBrush" TargetName="_innerBorder" Value="{DynamicResource {ComponentResourceKey ResourceId=ButtonMouseOverBackgroundKey, TypeInTargetAssembly={x:Type wpfTool:ResourceKeys}}}"/>
-                                                                                            </Trigger>
-                                                                                            <Trigger Property="IsSelected" Value="True">
-                                                                                                <Setter Property="BorderBrush" TargetName="_outerBorder" Value="{DynamicResource {ComponentResourceKey ResourceId=ControlSelectedBorderKey, TypeInTargetAssembly={x:Type wpfTool:ResourceKeys}}}"/>
-                                                                                                <Setter Property="BorderBrush" TargetName="_innerBorder" Value="{DynamicResource {ComponentResourceKey ResourceId=ButtonMouseOverBackgroundKey, TypeInTargetAssembly={x:Type wpfTool:ResourceKeys}}}"/>
-                                                                                            </Trigger>
-                                                                                            <DataTrigger Binding="{Binding DisplayColorTooltip, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type xceed:ColorPicker}}}" Value="False">
-                                                                                                <Setter Property="ToolTip" TargetName="mainGrid" Value=""/>
-                                                                                            </DataTrigger>
-                                                                                        </ControlTemplate.Triggers>
-                                                                                    </ControlTemplate>
-                                                                                </Setter.Value>
-                                                                            </Setter>
-                                                                        </Style>
-                                                                    </Setter.Value>
-                                                                </Setter>
-                                                                <Setter Property="ItemTemplate">
-                                                                    <Setter.Value>
-                                                                        <DataTemplate>
-                                                                            <Grid>
-                                                                                <Border BorderBrush="{DynamicResource {ComponentResourceKey ResourceId=ControlNormalBorderKey, TypeInTargetAssembly={x:Type wpfTool:ResourceKeys}}}" BorderThickness="1" Margin="2">
-                                                                                    <Border.Background>
-                                                                                        <DrawingBrush TileMode="Tile" Viewport="0,0,10,10" ViewportUnits="Absolute">
-                                                                                            <DrawingBrush.Drawing>
-                                                                                                <DrawingGroup>
-                                                                                                    <GeometryDrawing Brush="White">
-                                                                                                        <GeometryDrawing.Geometry>
-                                                                                                            <RectangleGeometry Rect="0,0,100,100"/>
-                                                                                                        </GeometryDrawing.Geometry>
-                                                                                                    </GeometryDrawing>
-                                                                                                    <GeometryDrawing Brush="LightGray">
-                                                                                                        <GeometryDrawing.Geometry>
-                                                                                                            <GeometryGroup>
-                                                                                                                <RectangleGeometry Rect="0,0,50,50"/>
-                                                                                                                <RectangleGeometry Rect="50,50,50,50"/>
-                                                                                                            </GeometryGroup>
-                                                                                                        </GeometryDrawing.Geometry>
-                                                                                                    </GeometryDrawing>
-                                                                                                </DrawingGroup>
-                                                                                            </DrawingBrush.Drawing>
-                                                                                        </DrawingBrush>
-                                                                                    </Border.Background>
-                                                                                    <Rectangle Height="14" Width="14">
-                                                                                        <Rectangle.Style>
-                                                                                            <Style TargetType="{x:Type Rectangle}">
-                                                                                                <Setter Property="Fill">
-                                                                                                    <Setter.Value>
-                                                                                                        <Binding Path="Color">
-                                                                                                            <Binding.Converter>
-                                                                                                                <xceed:ColorToSolidColorBrushConverter/>
-                                                                                                            </Binding.Converter>
-                                                                                                        </Binding>
-                                                                                                    </Setter.Value>
-                                                                                                </Setter>
-                                                                                            </Style>
-                                                                                        </Rectangle.Style>
-                                                                                    </Rectangle>
-                                                                                </Border>
-                                                                            </Grid>
-                                                                        </DataTemplate>
-                                                                    </Setter.Value>
-                                                                </Setter>
-                                                                <Setter Property="SelectionMode" Value="Single"/>
-                                                            </Style>
-                                                        </ListBox.Style>
-                                                    </ListBox>
-                                                </Grid>
-                                            </Grid>
-                                        </Grid>
-                                    </xceed:ColorPickerTabItem>
                                     <xceed:ColorPickerTabItem x:Name="AdvancedTabItem" Header="{Binding AdvancedButtonHeader, RelativeSource={RelativeSource TemplatedParent}}">
                                         <xceed:ColorPickerTabItem.Template>
                                             <ControlTemplate TargetType="{x:Type xceed:ColorPickerTabItem}">
                                                 <Grid x:Name="templateRoot" SnapsToDevicePixels="True">
-                                                    <Border x:Name="mainBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1,1,1,0" Background="#FFF0F0F0" Margin="0">
-                                                        <Border x:Name="innerBorder" BorderBrush="#FFACACAC" BorderThickness="1,1,1,0" Background="#FFF0F0F0" Margin="-1" Opacity="0"/>
+                                                    <Border x:Name="mainBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1,1,1,0" Background="{DynamicResource NormalBackground}" Margin="0">
+                                                        <Border x:Name="innerBorder" BorderBrush="#FFACACAC" BorderThickness="1,1,1,0" Background="{DynamicResource NormalBackground}" Margin="-1" Opacity="0"/>
                                                     </Border>
                                                     <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" ContentStringFormat="{TemplateBinding HeaderStringFormat}" ContentSource="Header" Focusable="False" HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type ItemsControl}}}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type ItemsControl}}}"/>
                                                 </Grid>
@@ -1085,7 +645,6 @@
                             <Setter Property="Visibility" TargetName="ColorAndName" Value="Visible"/>
                         </Trigger>
                         <Trigger Property="ShowTabHeaders" Value="False">
-                            <Setter Property="Visibility" TargetName="StandardTabItem" Value="Collapsed"/>
                             <Setter Property="Visibility" TargetName="AdvancedTabItem" Value="Collapsed"/>
                         </Trigger>
                         <Trigger Property="ShowDropDownButton" Value="False">
@@ -1238,7 +797,7 @@
                                                                     </Border>
                                                                     <ControlTemplate.Triggers>
                                                                         <Trigger Property="IsEnabled" Value="False">
-                                                                            <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                                                                            <Setter Property="Opacity" TargetName="border" Value="0.7"/>
                                                                         </Trigger>
                                                                         <Trigger Property="IsMouseOver" Value="True">
                                                                             <Setter Property="BorderBrush" TargetName="border" Value="#FF7EB4EA"/>
@@ -1251,7 +810,7 @@
                                                             </Setter.Value>
                                                         </Setter>
                                                         <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding Source=(0)}" Value="false">
+                                                            <DataTrigger Binding="{Binding (0)}" Value="false">
                                                                 <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                                                             </DataTrigger>
                                                             <MultiTrigger>
@@ -1293,16 +852,16 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"><Run Text="R"/></TextBlock>
+                        <TextBlock Foreground="{DynamicResource NormalText}" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"><Run Text="R"/></TextBlock>
                         <Slider x:Name="PART_RSlider" Grid.Column="1" LargeChange="10" Maximum="255" Margin="4,6" Grid.Row="0" SmallChange="1" TickFrequency="1" Value="{Binding R, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Center"/>
                         <xceed:ByteUpDown Background="Transparent" Grid.Column="2" Grid.Row="0" Text="" Value="{Binding Value, ElementName=PART_RSlider}" VerticalAlignment="Center"/>
-                        <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"><Run Text="G"/></TextBlock>
+                        <TextBlock Foreground="{DynamicResource NormalText}" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"><Run Text="G"/></TextBlock>
                         <Slider x:Name="PART_GSlider" Grid.Column="1" LargeChange="10" Maximum="255" Margin="4,6" Grid.Row="1" SmallChange="1" TickFrequency="1" Value="{Binding G, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Center"/>
                         <xceed:ByteUpDown Background="Transparent" Grid.Column="2" Grid.Row="1" Text="" Value="{Binding Value, ElementName=PART_GSlider}" VerticalAlignment="Center"/>
-                        <TextBlock Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"><Run Text="B"/></TextBlock>
+                        <TextBlock Foreground="{DynamicResource NormalText}" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"><Run Text="B"/></TextBlock>
                         <Slider x:Name="PART_BSlider" Grid.Column="1" LargeChange="10" Maximum="255" Margin="4,6" Grid.Row="2" SmallChange="1" TickFrequency="1" Value="{Binding B, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Center"/>
                         <xceed:ByteUpDown Background="Transparent" Grid.Column="3" Grid.Row="2" Text="" Value="{Binding Value, ElementName=PART_BSlider}" VerticalAlignment="Center"/>
-                        <TextBlock Grid.Column="0" Grid.Row="3" VerticalAlignment="Center">
+                        <TextBlock Foreground="{DynamicResource NormalText}" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center">
                             <TextBlock.Visibility>
                                 <Binding Path="UsingAlphaChannel" RelativeSource="{RelativeSource TemplatedParent}">
                                     <Binding.Converter>
@@ -1344,8 +903,4 @@
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
-
-
-
-
 </ResourceDictionary>
