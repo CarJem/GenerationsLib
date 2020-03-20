@@ -97,6 +97,7 @@
   <ItemGroup>
     <Compile Include="ColorHelper.cs" />
     <Compile Include="Controls\EndlessStackPanel.cs" />
+    <Compile Include="Controls\EventToCommand.cs" />
     <Compile Include="Controls\NonTopmostPopup.cs" />
     <Compile Include="Controls\RecentsListMenuItem.cs" />
     <Compile Include="Controls\TimeoutPopupDecorator.cs" />
