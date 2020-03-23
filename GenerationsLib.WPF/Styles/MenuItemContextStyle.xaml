@@ -44,8 +44,8 @@
                             <Setter Property="Visibility" TargetName="Icon" Value="Collapsed"/>
                         </Trigger>
                         <Trigger Property="IsHighlighted" Value="True">
-                            <Setter Property="Background" TargetName="templateRoot" Value="{StaticResource MenuItem.Context.Selected.Background}"/>
-                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{StaticResource MenuItem.Context.Selected.Border}"/>
+                            <Setter Property="Background" TargetName="templateRoot" Value="{DynamicResource MenuItem.Context.Selected.Background}"/>
+                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{DynamicResource MenuItem.Context.Selected.Border}"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="TextElement.Foreground" TargetName="templateRoot" Value="#FF707070"/>
@@ -81,7 +81,7 @@
                                     <Path x:Name="GlyphPanel" Data="F1M10,1.2L4.7,9.1 4.5,9.1 0,5.2 1.3,3.5 4.3,6.1 8.3,0 10,1.2z" Fill="{TemplateBinding Foreground}" FlowDirection="LeftToRight" Margin="3" Visibility="Collapsed" VerticalAlignment="Center"/>
                                     <ContentPresenter x:Name="ContentPresenter" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" Grid.Column="1" ContentStringFormat="{TemplateBinding HeaderStringFormat}" ContentSource="Header" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                                     <Popup x:Name="PART_Popup" AllowsTransparency="True" Focusable="False" IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" Placement="Bottom">
-                                        <Border x:Name="SubMenuBorder" BorderBrush="#FF999999" BorderThickness="1" Background="{StaticResource ContextMenuBackground}" Padding="2">
+                                        <Border x:Name="SubMenuBorder" BorderBrush="{DynamicResource ContextMenuBorder}" BorderThickness="1" Background="{StaticResource ContextMenuBackground}" Padding="2">
                                             <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
                                                 <Grid x:Name="Grid1" RenderOptions.ClearTypeHint="Enabled">
                                                     <Canvas x:Name="Canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">

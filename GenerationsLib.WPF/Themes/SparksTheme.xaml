@@ -8,15 +8,15 @@
     <SolidColorBrush x:Key="SelectedColor4" Color="#68FAFF00"/>
     <SolidColorBrush x:Key="SelectedColor5" Color="#657023"/>
 
-    <SolidColorBrush x:Key="PressedBackground1" Color="#FF005F04"/>
+    <SolidColorBrush x:Key="PressedBackground1" Color="#FF717171"/>
 
-    <SolidColorBrush x:Key="DisabledBackground1" Color="#FF003405"/>
+    <SolidColorBrush x:Key="DisabledBackground1" Color="#FF3E3E3E"/>
 
     <SolidColorBrush x:Key="HintedText" Color="#777777"/>
     <Color x:Key="DisabledControlLightColor">#FFE8EDF9</Color>
 
-    <SolidColorBrush x:Key="DisabledText" Color="#515151"/>
-    <SolidColorBrush x:Key="DisabledElement" Color="#414141"/>
+    <SolidColorBrush x:Key="DisabledText" Color="#676767"/>
+    <SolidColorBrush x:Key="DisabledElement" Color="#5E5E5E"/>
 
     <SolidColorBrush x:Key="NormalText" Color="White"/>
     <SolidColorBrush x:Key="NormalElementColor" Color="White"/>
@@ -26,31 +26,31 @@
     <SolidColorBrush x:Key="TransparentElement" Color="Transparent"/>
 
     <SolidColorBrush x:Key="HyperLinkColor" Color="#F3F731"/>
-    <SolidColorBrush x:Key="HyperLinkColorMouseOver" Color="#00FFDE"/>
+    <SolidColorBrush x:Key="HyperLinkColorMouseOver" Color="#00CEFF"/>
 
     <SolidColorBrush x:Key="InactiveListItemColor" Color="#FF646464"/>
 
 
-    <SolidColorBrush x:Key="NormalBackground" Color="#00822F"/>
+    <SolidColorBrush x:Key="NormalBackground" Color="#00A33B"/>
     <SolidColorBrush x:Key="NormalBackground2" Color="#197700"/>
-    <SolidColorBrush x:Key="TextBoxBackground" Color="#024900"/>
-    <SolidColorBrush x:Key="TextBoxBackground2" Color="#00670B"/>
+    <SolidColorBrush x:Key="TextBoxBackground" Color="#515151"/>
+    <SolidColorBrush x:Key="TextBoxBackground2" Color="#2B2B2B"/>
     <SolidColorBrush x:Key="ToolbarBackground" Color="#009549"/>
-    <SolidColorBrush x:Key="ToolbarOverflowBackground" Color="#282828"/>
+    <SolidColorBrush x:Key="ToolbarOverflowBackground" Color="#009549"/>
     <SolidColorBrush x:Key="StatusBarBackground" Color="#FF038500"/>
-    <SolidColorBrush x:Key="MenuBar" Color="#004CFF"/>
-    <SolidColorBrush x:Key="ContextMenuBackground" Color="#002BFF"/>
-    <SolidColorBrush x:Key="ContextMenuBackground2" Color="#354A4A4A"/>
-    <SolidColorBrush x:Key="ButtonBackground" Color="#FF00CB15"/>
+    <SolidColorBrush x:Key="MenuBar" Color="#0058CE"/>
+    <SolidColorBrush x:Key="ContextMenuBackground" Color="#0058CE"/>
+    <SolidColorBrush x:Key="ContextMenuBackground2" Color="#35252525"/>
+    <SolidColorBrush x:Key="ButtonBackground" Color="#FF515151"/>
     <SolidColorBrush x:Key="StartScreenBackground" Color="#8B343434"/>
 
-    <SolidColorBrush x:Key="ButtonBorder" Color="#FFE9FF00"/>
+    <SolidColorBrush x:Key="ButtonBorder" Color="#FFD9FF00"/>
     <SolidColorBrush x:Key="ContextMenuBorder" Color="#05FF00"/>
-    <SolidColorBrush x:Key="ComboBoxBorder" Color="#FF00FF0B"/>
+    <SolidColorBrush x:Key="ComboBoxBorder" Color="#FFFAFF00"/>
     <SolidColorBrush x:Key="DisabledBorder" Color="#FF005118"/>
 
-    <SolidColorBrush x:Key="EnabledTab" Color="#36FF00"/>
-    <SolidColorBrush x:Key="DisabledTab" Color="#FF10BE00"/>
+    <SolidColorBrush x:Key="EnabledTab" Color="#FF646464"/>
+    <SolidColorBrush x:Key="DisabledTab" Color="#FF565656"/>
 
     <SolidColorBrush x:Key="ComboBoxItemItemsviewHoverBackground" Color="#54CBDA26"/>
     <SolidColorBrush x:Key="ComboBoxItemItemsviewHoverBorder" Color="#FFCBDA26"/>
