@@ -13,6 +13,7 @@ namespace GenerationsLib.WPF.Themes
         Beta,
         Shard,
         CarJem,
-        Gamma
+        Gamma,
+        Sparks
     }
 }

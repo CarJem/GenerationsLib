@@ -15,7 +15,7 @@ namespace GenerationsLib.WPF.Themes
 
         private static Skin GetDefaultTheme()
         {
-            return Skin.Beta;
+            return Skin.Dark;
         }
 
         #region Themes
@@ -25,6 +25,18 @@ namespace GenerationsLib.WPF.Themes
         private Uri _ShardSource;
         private Uri _CarJemSource;
         private Uri _GammaSource;
+        private Uri _SparksSource;
+
+
+        public Uri SparksSource
+        {
+            get { return _SparksSource; }
+            set
+            {
+                _SparksSource = value;
+                UpdateSource();
+            }
+        }
 
         public Uri GammaSource
         {
@@ -105,6 +117,8 @@ namespace GenerationsLib.WPF.Themes
                     return CarJemSource;
                 case Skin.Gamma:
                     return GammaSource;
+                case Skin.Sparks:
+                    return SparksSource;
                 default:
                     return DarkSource;
             }
