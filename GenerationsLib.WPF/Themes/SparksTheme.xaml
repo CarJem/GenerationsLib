@@ -15,8 +15,8 @@
     <SolidColorBrush x:Key="HintedText" Color="#777777"/>
     <Color x:Key="DisabledControlLightColor">#FFE8EDF9</Color>
 
-    <SolidColorBrush x:Key="DisabledText" Color="#676767"/>
-    <SolidColorBrush x:Key="DisabledElement" Color="#5E5E5E"/>
+    <SolidColorBrush x:Key="DisabledText" Color="#A2A2A2"/>
+    <SolidColorBrush x:Key="DisabledElement" Color="#8F8F8F"/>
 
     <SolidColorBrush x:Key="NormalText" Color="White"/>
     <SolidColorBrush x:Key="NormalElementColor" Color="White"/>
