@@ -100,6 +100,9 @@
     <Compile Include="Controls\EventToCommand.cs" />
     <Compile Include="Controls\NonTopmostPopup.cs" />
     <Compile Include="Controls\RecentsListMenuItem.cs" />
+    <Compile Include="Controls\ThemeComboBox.xaml.cs">
+      <DependentUpon>ThemeComboBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\TimeoutPopupDecorator.cs" />
     <Compile Include="Controls\UIElementAdorner.cs" />
     <Compile Include="DesignExtensions.cs" />
@@ -121,6 +124,10 @@
     <Compile Include="Themes\SkinResourceDictonary.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\ThemeComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dialog\CustomMessageBoxWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
