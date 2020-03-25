@@ -22,7 +22,24 @@ namespace GenerationsLib.WPF.Controls
     /// </summary>
     public partial class ThemeComboBox : UserControl
     {
-		public EventHandler<Skin> ThemeChanged;
+		public event EventHandler<Skin> ThemeChanged;
+
+		public Skin SelectedSkin
+		{
+			get
+			{
+				UpdateVisual();
+				return GetSkinFromSelectedIndex();
+			}
+			set
+			{
+				SetSkinFromSelectedIndex(value);
+				UpdateVisual();
+			}
+		}
+
+		private Brush NormalBorderBrush { get; set; }
+
         public ThemeComboBox()
         {
             InitializeComponent();
@@ -30,14 +47,44 @@ namespace GenerationsLib.WPF.Controls
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-			if (SkinResourceDictionary.CurrentTheme != ApplySkinFromSelectedIndex())
+			if (SkinResourceDictionary.CurrentTheme != GetSkinFromSelectedIndex())
 			{
-				if (this.ThemeChanged != null) this.ThemeChanged.Invoke(this, ApplySkinFromSelectedIndex());
+				if (this.ThemeChanged != null) this.ThemeChanged.Invoke(this, GetSkinFromSelectedIndex());
 			}
 		}
 
-      
-		private Skin ApplySkinFromSelectedIndex()
+		private void SetSkinFromSelectedIndex(Skin newSkin)
+		{
+			switch (newSkin)
+			{
+				case Skin.Light:
+					UserThemeComboBox.SelectedIndex = 0;
+					break;
+				case Skin.Dark:
+					UserThemeComboBox.SelectedIndex = 1;
+					break;
+				case Skin.Beta:
+					UserThemeComboBox.SelectedIndex = 2;
+					break;
+				case Skin.Shard:
+					UserThemeComboBox.SelectedIndex = 3;
+					break;
+				case Skin.CarJem:
+					UserThemeComboBox.SelectedIndex = 4;
+					break;
+				case Skin.Gamma:
+					UserThemeComboBox.SelectedIndex = 5;
+					break;
+				case Skin.Sparks:
+					UserThemeComboBox.SelectedIndex = 6;
+					break;
+				default:
+					UserThemeComboBox.SelectedIndex = 0;
+					break;
+			}
+		}
+
+		private Skin GetSkinFromSelectedIndex()
 		{
 			switch (UserThemeComboBox.SelectedIndex)
 			{
@@ -58,6 +105,17 @@ namespace GenerationsLib.WPF.Controls
 				default:
 					return Skin.Light;
 			}
+		}
+
+		public void UpdateVisual()
+		{
+			if (SkinResourceDictionary.CurrentTheme != GetSkinFromSelectedIndex()) UserThemeComboBox.BorderBrush = Brushes.Red;
+			else UserThemeComboBox.ClearValue(ComboBox.BorderBrushProperty);
+		}
+
+		private void UserThemeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			UpdateVisual();
 		}
 	}
 }
