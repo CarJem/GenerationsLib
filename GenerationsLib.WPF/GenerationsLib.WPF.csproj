@@ -98,6 +98,7 @@
     <Compile Include="ColorHelper.cs" />
     <Compile Include="Controls\EndlessStackPanel.cs" />
     <Compile Include="Controls\EventToCommand.cs" />
+    <Compile Include="Controls\MouseDownHelper.cs" />
     <Compile Include="Controls\NonTopmostPopup.cs" />
     <Compile Include="Controls\RecentsListMenuItem.cs" />
     <Compile Include="Controls\ThemeComboBox.xaml.cs">
@@ -122,6 +123,7 @@
     <Compile Include="Dialog\WindowHelper.cs" />
     <Compile Include="Themes\Skin.cs" />
     <Compile Include="Themes\SkinResourceDictonary.cs" />
+    <Compile Include="WPFThreadingExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\ThemeComboBox.xaml">
