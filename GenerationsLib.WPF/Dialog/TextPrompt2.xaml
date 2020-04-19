@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
          xmlns:maniac="clr-namespace:GenerationsLib.WPF"
         mc:Ignorable="d"
-        Title="Title" Height="150" Width="500" Background="{DynamicResource NormalBackground}" ShowInTaskbar="False" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" WindowStyle="SingleBorderWindow">
-    <Grid>
+        Title="Title" Height="Auto" Width="500" Background="{DynamicResource NormalBackground}" ShowInTaskbar="False" WindowStartupLocation="CenterOwner" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStyle="SingleBorderWindow">
+    <Grid Margin="5" Height="Auto">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
         </Grid.RowDefinitions>
-        <Label x:Name="textLabel" Content="Label" VerticalAlignment="Bottom"></Label>
-        <TextBox x:Name="textBox1" Grid.Row="1" Margin="5"></TextBox>
-        <Button HorizontalAlignment="Right" Margin="5,0" Grid.Row="2" Width="60" Height="20" Content="OK" Click="btnOk_Click"></Button>
+        <TextBlock x:Name="textLabel" Text="Label" Margin="0,5" VerticalAlignment="Bottom"></TextBlock>
+        <TextBox x:Name="textBox1" Grid.Row="1" ></TextBox>
+        <Button HorizontalAlignment="Right" Grid.Row="2" Width="60" Height="20" Content="OK" Click="btnOk_Click"></Button>
     </Grid>
     <Window.Resources>
         <Style TargetType="{x:Type Label}">

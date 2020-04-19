@@ -26,7 +26,7 @@ namespace GenerationsLib.WPF
 			InitializeComponent();
 			this.SourceInitialized += WindowHelper.RemoveIcon;
 			this.Loaded += new RoutedEventHandler(PromptDialog_Loaded);
-			textLabel.Content = label;
+			textLabel.Text = label;
 			Title = title;
 			textBox1.Text = defaultValue;
 		}
