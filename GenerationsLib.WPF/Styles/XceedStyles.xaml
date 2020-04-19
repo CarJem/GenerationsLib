@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:xceed="http://schemas.xceed.com/wpf/xaml/toolkit"
                     xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit.Themes;assembly=Xceed.Wpf.Toolkit"
+                    xmlns:xctk="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
                     xmlns:local="clr-namespace:GenerationsLib.WPF.Styles">
     <ContextMenu x:Key="StandardContextMenu">
         <MenuItem Header="Cut" Command="ApplicationCommands.Cut"/>
@@ -352,72 +353,122 @@
     </Style>
 
 
+    <ControlTemplate x:Key="NUDTemplate" TargetType="{x:Type Control}">
+        <xctk:ButtonSpinner x:Name="PART_Spinner" AllowSpin="{Binding AllowSpin, RelativeSource={RelativeSource TemplatedParent}}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" ButtonSpinnerLocation="{Binding ButtonSpinnerLocation, RelativeSource={RelativeSource TemplatedParent}}" Background="{TemplateBinding Background}" HorizontalContentAlignment="Stretch" IsTabStop="False" ShowButtonSpinner="{Binding ShowButtonSpinner, RelativeSource={RelativeSource TemplatedParent}}" VerticalContentAlignment="Stretch">
+            <xctk:WatermarkTextBox x:Name="PART_TextBox" AutoMoveFocus="{Binding AutoMoveFocus, RelativeSource={RelativeSource TemplatedParent}}" AutoSelectBehavior="{Binding AutoSelectBehavior, RelativeSource={RelativeSource TemplatedParent}}" AcceptsReturn="False" BorderThickness="0" Background="Transparent" ContextMenu="{TemplateBinding ContextMenu}" Foreground="{TemplateBinding Foreground}" FontWeight="{TemplateBinding FontWeight}" FontStyle="{TemplateBinding FontStyle}" FontStretch="{TemplateBinding FontStretch}" FontSize="{TemplateBinding FontSize}" FontFamily="{TemplateBinding FontFamily}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsTabStop="True" IsUndoEnabled="True" MinWidth="20" MaxLength="{Binding MaxLength, RelativeSource={RelativeSource TemplatedParent}}" Padding="{TemplateBinding Padding}" TextAlignment="{Binding TextAlignment, RelativeSource={RelativeSource TemplatedParent}}" TextWrapping="NoWrap" TabIndex="{TemplateBinding TabIndex}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" WatermarkTemplate="{Binding WatermarkTemplate, RelativeSource={RelativeSource TemplatedParent}}" Watermark="{Binding Watermark, RelativeSource={RelativeSource TemplatedParent}}"/>
+        </xctk:ButtonSpinner>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" Value="{DynamicResource {ComponentResourceKey ResourceId=ControlMouseOverBorderKey, TypeInTargetAssembly={x:Type wpfTool:ResourceKeys}}}"/>
+            </Trigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding IsReadOnly, RelativeSource={RelativeSource Self}}" Value="False"/>
+                    <Condition Binding="{Binding AllowTextInput, RelativeSource={RelativeSource Self}}" Value="False"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="IsReadOnly" TargetName="PART_TextBox" Value="True"/>
+            </MultiDataTrigger>
+            <DataTrigger Binding="{Binding IsReadOnly, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="IsReadOnly" TargetName="PART_TextBox" Value="True"/>
+            </DataTrigger>
+            <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                <Setter Property="BorderBrush" Value="{DynamicResource {ComponentResourceKey ResourceId=ControlSelectedBorderKey, TypeInTargetAssembly={x:Type wpfTool:ResourceKeys}}}"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="FocusManager.FocusedElement" TargetName="PART_TextBox" Value="{Binding ElementName=PART_TextBox}"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+
     <Style TargetType="{x:Type xceed:PropertyGridEditorTextBox}">
         <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="Template" Value="{DynamicResource NUDTemplate}"></Setter>
     </Style>
 
     <Style TargetType="{x:Type xceed:PropertyGridEditorIntegerUpDown}">
         <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="Template" Value="{DynamicResource NUDTemplate}"></Setter>
     </Style>
 
     <Style TargetType="{x:Type xceed:IntegerUpDown}">
         <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="Template" Value="{DynamicResource NUDTemplate}"></Setter>
     </Style>
 
     <Style TargetType="{x:Type xceed:ByteUpDown}">
         <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="Template" Value="{DynamicResource NUDTemplate}"></Setter>
     </Style>
     <Style TargetType="{x:Type xceed:PropertyGridEditorByteUpDown}">
         <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="Template" Value="{DynamicResource NUDTemplate}"></Setter>
     </Style>
 
     <Style TargetType="{x:Type xceed:DoubleUpDown}">
         <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="Template" Value="{DynamicResource NUDTemplate}"></Setter>
     </Style>
     <Style TargetType="{x:Type xceed:PropertyGridEditorDoubleUpDown}">
         <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="Template" Value="{DynamicResource NUDTemplate}"></Setter>
     </Style>
 
     <Style TargetType="{x:Type xceed:DateTimeUpDown}">
         <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="Template" Value="{DynamicResource NUDTemplate}"></Setter>
     </Style>
     <Style TargetType="{x:Type xceed:PropertyGridEditorDateTimeUpDown}">
         <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="Template" Value="{DynamicResource NUDTemplate}"></Setter>
     </Style>
 
     <Style TargetType="{x:Type xceed:PropertyGridEditorShortUpDown}">
         <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="Template" Value="{DynamicResource NUDTemplate}"></Setter>
     </Style>
     <Style TargetType="{x:Type xceed:ShortUpDown}">
         <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="Template" Value="{DynamicResource NUDTemplate}"></Setter>
     </Style>
 
     <Style TargetType="{x:Type xceed:PropertyGridEditorDecimalUpDown}">
         <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="Template" Value="{DynamicResource NUDTemplate}"></Setter>
     </Style>
     <Style TargetType="{x:Type xceed:DecimalUpDown}">
         <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="Template" Value="{DynamicResource NUDTemplate}"></Setter>
     </Style>
 
     <Style TargetType="{x:Type xceed:PropertyGridEditorSingleUpDown}">
         <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="Template" Value="{DynamicResource NUDTemplate}"></Setter>
     </Style>
     <Style TargetType="{x:Type xceed:SingleUpDown}">
         <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="Template" Value="{DynamicResource NUDTemplate}"></Setter>
     </Style>
 
     <Style TargetType="{x:Type xceed:PropertyGridEditorTimeSpanUpDown}">
         <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="Template" Value="{DynamicResource NUDTemplate}"></Setter>
     </Style>
     <Style TargetType="{x:Type xceed:TimeSpanUpDown}">
         <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="Template" Value="{DynamicResource NUDTemplate}"></Setter>
     </Style>
 
     <Style TargetType="{x:Type xceed:LongUpDown}">
         <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="Template" Value="{DynamicResource NUDTemplate}"></Setter>
     </Style>
     <Style TargetType="{x:Type xceed:PropertyGridEditorLongUpDown}">
         <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="Template" Value="{DynamicResource NUDTemplate}"></Setter>
     </Style>
 
     <Style TargetType="{x:Type xceed:ColorPicker}">
@@ -810,7 +861,7 @@
                                                             </Setter.Value>
                                                         </Setter>
                                                         <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding (0)}" Value="false">
+                                                            <DataTrigger Binding="{Binding .}" Value="false">
                                                                 <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                                                             </DataTrigger>
                                                             <MultiTrigger>
@@ -878,7 +929,7 @@
                                 </Binding>
                             </Slider.Visibility>
                         </Slider>
-                        <xceed:ByteUpDown Background="Transparent" Grid.Column="3" Grid.Row="3" Text="" Value="{Binding Value, ElementName=PART_OpacitySlider}" VerticalAlignment="Center">
+                        <xceed:ByteUpDown Background="Transparent" Grid.Column="3" Grid.Row="3" Text="" Value="{Binding Value, ElementName=PART_OpacitySlider}" VerticalAlignment="Center" Template="{DynamicResource ControlControlTemplate1}">
                             <xceed:ByteUpDown.Visibility>
                                 <Binding Path="UsingAlphaChannel" RelativeSource="{RelativeSource TemplatedParent}">
                                     <Binding.Converter>

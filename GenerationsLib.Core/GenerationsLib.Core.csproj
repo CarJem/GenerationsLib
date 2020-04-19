@@ -88,6 +88,7 @@
     <Compile Include="EventList.cs" />
     <Compile Include="FileHelpers.cs" />
     <Compile Include="FolderSelectDialog.cs" />
+    <Compile Include="HSLColor.cs" />
     <Compile Include="KnownFolders.cs" />
     <Compile Include="ListHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
