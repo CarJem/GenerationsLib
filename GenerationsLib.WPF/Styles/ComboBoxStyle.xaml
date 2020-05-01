@@ -99,7 +99,7 @@
                                                 <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="false"/>
                                                 <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type ComboBox}}}" Value="false"/>
                                             </MultiDataTrigger.Conditions>
-                                            <Setter Property="Background" TargetName="templateRoot" Value="{DynamicResource Button.Disabled.Bbackground}"/>
+                                            <Setter Property="Background" TargetName="templateRoot" Value="{DynamicResource Button.Disabled.Background}"/>
                                             <Setter Property="BorderBrush" TargetName="templateRoot" Value="{DynamicResource Button.Disabled.Border}"/>
                                         </MultiDataTrigger>
                                         <MultiDataTrigger>

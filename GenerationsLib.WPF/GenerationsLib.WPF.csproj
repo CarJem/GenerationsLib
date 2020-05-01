@@ -92,12 +92,14 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColorHelper.cs" />
     <Compile Include="Controls\EndlessStackPanel.cs" />
     <Compile Include="Controls\EventToCommand.cs" />
+    <Compile Include="Controls\ImprovedDropdownBox.cs" />
     <Compile Include="Controls\MouseDownHelper.cs" />
     <Compile Include="Controls\NonTopmostPopup.cs" />
     <Compile Include="Controls\RecentsListMenuItem.cs" />
@@ -110,6 +112,7 @@
     <Compile Include="Controls\VirtualizingWrapPanel.cs" />
     <Compile Include="Converters\ColorToSolidColorBrushValueConverter.cs" />
     <Compile Include="DesignExtensions.cs" />
+    <Compile Include="Dialog\IntergerPrompt.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="Media\Imaging\Bgra32Pixel.cs" />
     <Compile Include="Media\Imaging\ChainedBitmap.cs" />
@@ -134,6 +137,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialog\CustomMessageBoxWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialog\IntergerPrompt.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
