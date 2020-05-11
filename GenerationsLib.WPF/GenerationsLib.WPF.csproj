@@ -109,6 +109,7 @@
     <Compile Include="Controls\TimeoutPopupDecorator.cs" />
     <Compile Include="Controls\UIElementAdorner.cs" />
     <Compile Include="Controls\UniformGridPanel.cs" />
+    <Compile Include="Controls\VirtualizingTilePanel.cs" />
     <Compile Include="Controls\VirtualizingWrapPanel.cs" />
     <Compile Include="Converters\ColorToSolidColorBrushValueConverter.cs" />
     <Compile Include="DesignExtensions.cs" />
