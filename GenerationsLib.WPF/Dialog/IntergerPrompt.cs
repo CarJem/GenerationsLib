@@ -17,18 +17,18 @@ namespace GenerationsLib.WPF
 	/// <summary>
 	/// Interaction logic for TextPrompt2.xaml
 	/// </summary>
-	public partial class TextPrompt2 : Window
+	public partial class IntergerPrompt : Window
 	{
 
 
-		public TextPrompt2(string label, string title, string defaultValue = "")
+		public IntergerPrompt(string label, string title, int defaultValue = 0)
 		{
 			InitializeComponent();
 			this.SourceInitialized += WindowHelper.RemoveIcon;
 			this.Loaded += new RoutedEventHandler(PromptDialog_Loaded);
 			textLabel.Text = label;
 			Title = title;
-			textBox1.Text = defaultValue;
+			textBox1.Value = defaultValue;
 		}
 
 		void PromptDialog_Loaded(object sender, RoutedEventArgs e)
@@ -36,20 +36,20 @@ namespace GenerationsLib.WPF
 
 		}
 
-		public static string ShowDialog(string title, string label, string defaultValue = "")
+		public static int ShowDialog(string title, string label, int defaultValue = 0)
 		{
-			TextPrompt2 inst = new TextPrompt2(label, title, defaultValue);
+			IntergerPrompt inst = new IntergerPrompt(label, title, defaultValue);
 			inst.ShowDialog();
 			if (inst.DialogResult == true)
-				return inst.ResponseText;
+				return inst.ResponseVal;
 			return defaultValue;
 		}
 
-		public string ResponseText
+		public int ResponseVal
 		{
 			get
 			{
-				return textBox1.Text;
+				return textBox1.Value ?? 0;
 			}
 		}
 

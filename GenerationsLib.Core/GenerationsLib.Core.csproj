@@ -83,11 +83,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BitmapExtensions.cs" />
     <Compile Include="CollectionHelpers.cs" />
     <Compile Include="DefaultIcons.cs" />
     <Compile Include="EventList.cs" />
     <Compile Include="FileHelpers.cs" />
     <Compile Include="FolderSelectDialog.cs" />
+    <Compile Include="HSLColor.cs" />
     <Compile Include="KnownFolders.cs" />
     <Compile Include="ListHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

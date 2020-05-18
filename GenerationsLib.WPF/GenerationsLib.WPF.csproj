@@ -92,12 +92,15 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColorHelper.cs" />
     <Compile Include="Controls\EndlessStackPanel.cs" />
     <Compile Include="Controls\EventToCommand.cs" />
+    <Compile Include="Controls\ImprovedDropdownBox.cs" />
+    <Compile Include="Controls\MouseDownHelper.cs" />
     <Compile Include="Controls\NonTopmostPopup.cs" />
     <Compile Include="Controls\RecentsListMenuItem.cs" />
     <Compile Include="Controls\ThemeComboBox.xaml.cs">
@@ -105,7 +108,12 @@
     </Compile>
     <Compile Include="Controls\TimeoutPopupDecorator.cs" />
     <Compile Include="Controls\UIElementAdorner.cs" />
+    <Compile Include="Controls\UniformGridPanel.cs" />
+    <Compile Include="Controls\VirtualizingTilePanel.cs" />
+    <Compile Include="Controls\VirtualizingWrapPanel.cs" />
+    <Compile Include="Converters\ColorToSolidColorBrushValueConverter.cs" />
     <Compile Include="DesignExtensions.cs" />
+    <Compile Include="Dialog\IntergerPrompt.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="Media\Imaging\Bgra32Pixel.cs" />
     <Compile Include="Media\Imaging\ChainedBitmap.cs" />
@@ -122,6 +130,7 @@
     <Compile Include="Dialog\WindowHelper.cs" />
     <Compile Include="Themes\Skin.cs" />
     <Compile Include="Themes\SkinResourceDictonary.cs" />
+    <Compile Include="WPFThreadingExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\ThemeComboBox.xaml">
@@ -129,6 +138,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialog\CustomMessageBoxWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialog\IntergerPrompt.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -276,10 +289,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Extended.Wpf.Toolkit">
-      <Version>3.8.0</Version>
+      <Version>3.8.1</Version>
     </PackageReference>
     <PackageReference Include="WpfAnimatedGif">
-      <Version>1.4.18</Version>
+      <Version>2.0.0</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
