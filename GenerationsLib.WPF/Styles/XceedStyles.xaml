@@ -3,7 +3,7 @@
                     xmlns:xceed="http://schemas.xceed.com/wpf/xaml/toolkit"
                     xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit.Themes;assembly=Xceed.Wpf.Toolkit"
                     xmlns:local="clr-namespace:GenerationsLib.WPF.Styles">
-    <ContextMenu x:Key="StandardContextMenu">
+    <ContextMenu x:Key="StandardContextMenu" Style="{DynamicResource DefaultContextMenuStyle}">
         <MenuItem Header="Cut" Command="ApplicationCommands.Cut"/>
         <MenuItem Header="Copy" Command="ApplicationCommands.Copy"/>
         <MenuItem Header="Paste" Command="ApplicationCommands.Paste"/>
@@ -13,10 +13,9 @@
         <Setter Property="CornerRadius" Value="0"/>
         <Setter Property="IsTabStop" Value="False"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
-        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-        <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="Background" Value="{DynamicResource Button.Static.Background}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Button.Static.Border}"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -31,16 +30,16 @@
                                 <Condition Property="RenderEnabled" Value="False"/>
                                 <Condition Property="RenderChecked" Value="False"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="BorderBrush" TargetName="OuterBorder" Value="{StaticResource Button.Disabled.Border}"/>
-                            <Setter Property="Background" TargetName="OuterBorder" Value="{StaticResource Button.Disabled.Background}"/>
+                            <Setter Property="BorderBrush" TargetName="OuterBorder" Value="{DynamicResource Button.Disabled.Border}"/>
+                            <Setter Property="Background" TargetName="OuterBorder" Value="{DynamicResource Button.Disabled.Background}"/>
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="RenderEnabled" Value="True"/>
                                 <Condition Property="RenderPressed" Value="True"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="BorderBrush" TargetName="OuterBorder" Value="{StaticResource Button.Pressed.Border}"/>
-                            <Setter Property="Background" TargetName="OuterBorder" Value="{StaticResource Button.Pressed.Background}"/>
+                            <Setter Property="BorderBrush" TargetName="OuterBorder" Value="{DynamicResource Button.Pressed.Border}"/>
+                            <Setter Property="Background" TargetName="OuterBorder" Value="{DynamicResource Button.Pressed.Background}"/>
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -49,8 +48,8 @@
                                 <Condition Property="RenderMouseOver" Value="True"/>
                                 <Condition Property="RenderPressed" Value="False"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="BorderBrush" TargetName="OuterBorder" Value="{StaticResource Button.MouseOver.Border}"/>
-                            <Setter Property="Background" TargetName="OuterBorder" Value="{StaticResource Button.MouseOver.Background}"/>
+                            <Setter Property="BorderBrush" TargetName="OuterBorder" Value="{DynamicResource Button.MouseOver.Border}"/>
+                            <Setter Property="Background" TargetName="OuterBorder" Value="{DynamicResource Button.MouseOver.Background}"/>
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -59,8 +58,8 @@
                                 <Condition Property="RenderMouseOver" Value="False"/>
                                 <Condition Property="RenderPressed" Value="False"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="BorderBrush" TargetName="OuterBorder" Value="{StaticResource Button.Pressed.Border}"/>
-                            <Setter Property="Background" TargetName="OuterBorder" Value="{StaticResource Button.Pressed.Background}"/>
+                            <Setter Property="BorderBrush" TargetName="OuterBorder" Value="{DynamicResource Button.Pressed.Border}"/>
+                            <Setter Property="Background" TargetName="OuterBorder" Value="{DynamicResource Button.Pressed.Background}"/>
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -69,8 +68,8 @@
                                 <Condition Property="RenderPressed" Value="False"/>
                                 <Condition Property="RenderMouseOver" Value="False"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="BorderBrush" TargetName="OuterBorder" Value="{StaticResource Button.Pressed.Border}"/>
-                            <Setter Property="Background" TargetName="OuterBorder" Value="{StaticResource Button.Pressed.Background}"/>
+                            <Setter Property="BorderBrush" TargetName="OuterBorder" Value="{DynamicResource Button.Pressed.Border}"/>
+                            <Setter Property="Background" TargetName="OuterBorder" Value="{DynamicResource Button.Pressed.Background}"/>
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -91,9 +90,9 @@
         <Setter Property="IsTabStop" Value="False"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
-        <Setter Property="Foreground" Value="{StaticResource NormalText}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+        <Setter Property="Background" Value="{DynamicResource Button.Static.Background}"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Button.Static.Border}"/>
         <Setter Property="DropDownContentBackground">
             <Setter.Value>
                 <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
@@ -173,14 +172,15 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
     <Style x:Key="ToolbarSplitButton" TargetType="{x:Type xceed:SplitButton}">
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="IsTabStop" Value="False"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+        <Setter Property="Background" Value="{DynamicResource Button.Static.Background}"/>
         <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Button.Static.Border}"/>
         <Setter Property="DropDownContentBackground">
             <Setter.Value>
                 <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
@@ -262,12 +262,12 @@
     </Style>
     
     <Style TargetType="{x:Type xceed:ButtonSpinner}">
-        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource {ComponentResourceKey ResourceId=ControlNormalBorderKey, TypeInTargetAssembly={x:Type wpfTool:ResourceKeys}}}"/>
+        <Setter Property="Background" Value="{DynamicResource TextBoxBackground}"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ButtonBorder}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Focusable" Value="False"/>
-        <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="ContextMenu" Value="{DynamicResource StandardContextMenu}"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="IsTabStop" Value="True"/>
         <Setter Property="Padding" Value="1"/>
@@ -353,71 +353,128 @@
 
 
     <Style TargetType="{x:Type xceed:PropertyGridEditorTextBox}">
-        <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="ContextMenu" Value="{DynamicResource StandardContextMenu}"/>
+        <Setter Property="Background" Value="{DynamicResource Button.Static.Background}"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Button.Static.Border}"/>
     </Style>
 
     <Style TargetType="{x:Type xceed:PropertyGridEditorIntegerUpDown}">
-        <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="ContextMenu" Value="{DynamicResource StandardContextMenu}"/>
+        <Setter Property="Background" Value="{DynamicResource Button.Static.Background}"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Button.Static.Border}"/>
     </Style>
 
     <Style TargetType="{x:Type xceed:IntegerUpDown}">
-        <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="ContextMenu" Value="{DynamicResource StandardContextMenu}"/>
+        <Setter Property="Background" Value="{DynamicResource Button.Static.Background}"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Button.Static.Border}"/>
     </Style>
 
     <Style TargetType="{x:Type xceed:ByteUpDown}">
-        <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="ContextMenu" Value="{DynamicResource StandardContextMenu}"/>
+        <Setter Property="Background" Value="{DynamicResource Button.Static.Background}"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Button.Static.Border}"/>
     </Style>
     <Style TargetType="{x:Type xceed:PropertyGridEditorByteUpDown}">
-        <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="ContextMenu" Value="{DynamicResource StandardContextMenu}"/>
+        <Setter Property="Background" Value="{DynamicResource Button.Static.Background}"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Button.Static.Border}"/>
     </Style>
 
     <Style TargetType="{x:Type xceed:DoubleUpDown}">
-        <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="ContextMenu" Value="{DynamicResource StandardContextMenu}"/>
+        <Setter Property="Background" Value="{DynamicResource Button.Static.Background}"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Button.Static.Border}"/>
     </Style>
     <Style TargetType="{x:Type xceed:PropertyGridEditorDoubleUpDown}">
-        <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="ContextMenu" Value="{DynamicResource StandardContextMenu}"/>
+        <Setter Property="Background" Value="{DynamicResource Button.Static.Background}"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Button.Static.Border}"/>
     </Style>
 
     <Style TargetType="{x:Type xceed:DateTimeUpDown}">
-        <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="ContextMenu" Value="{DynamicResource StandardContextMenu}"/>
+        <Setter Property="Background" Value="{DynamicResource Button.Static.Background}"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Button.Static.Border}"/>
     </Style>
     <Style TargetType="{x:Type xceed:PropertyGridEditorDateTimeUpDown}">
-        <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="ContextMenu" Value="{DynamicResource StandardContextMenu}"/>
+        <Setter Property="Background" Value="{DynamicResource Button.Static.Background}"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Button.Static.Border}"/>
     </Style>
 
     <Style TargetType="{x:Type xceed:PropertyGridEditorShortUpDown}">
-        <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="ContextMenu" Value="{DynamicResource StandardContextMenu}"/>
+        <Setter Property="Background" Value="{DynamicResource Button.Static.Background}"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Button.Static.Border}"/>
     </Style>
     <Style TargetType="{x:Type xceed:ShortUpDown}">
-        <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="ContextMenu" Value="{DynamicResource StandardContextMenu}"/>
+        <Setter Property="Background" Value="{DynamicResource Button.Static.Background}"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Button.Static.Border}"/>
     </Style>
 
     <Style TargetType="{x:Type xceed:PropertyGridEditorDecimalUpDown}">
-        <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="Background" Value="{DynamicResource Button.Static.Background}"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Button.Static.Border}"/>
+        <Setter Property="ContextMenu" Value="{DynamicResource StandardContextMenu}"/>
     </Style>
     <Style TargetType="{x:Type xceed:DecimalUpDown}">
-        <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="ContextMenu" Value="{DynamicResource StandardContextMenu}"/>
+        <Setter Property="Background" Value="{DynamicResource Button.Static.Background}"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Button.Static.Border}"/>
     </Style>
 
     <Style TargetType="{x:Type xceed:PropertyGridEditorSingleUpDown}">
-        <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="ContextMenu" Value="{DynamicResource StandardContextMenu}"/>
+        <Setter Property="Background" Value="{DynamicResource Button.Static.Background}"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Button.Static.Border}"/>
     </Style>
     <Style TargetType="{x:Type xceed:SingleUpDown}">
-        <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="ContextMenu" Value="{DynamicResource StandardContextMenu}"/>
+        <Setter Property="Background" Value="{DynamicResource Button.Static.Background}"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Button.Static.Border}"/>
     </Style>
 
     <Style TargetType="{x:Type xceed:PropertyGridEditorTimeSpanUpDown}">
-        <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="ContextMenu" Value="{DynamicResource StandardContextMenu}"/>
+        <Setter Property="Background" Value="{DynamicResource Button.Static.Background}"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Button.Static.Border}"/>
     </Style>
     <Style TargetType="{x:Type xceed:TimeSpanUpDown}">
-        <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="ContextMenu" Value="{DynamicResource StandardContextMenu}"/>
+        <Setter Property="Background" Value="{DynamicResource Button.Static.Background}"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Button.Static.Border}"/>
     </Style>
 
     <Style TargetType="{x:Type xceed:LongUpDown}">
-        <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="ContextMenu" Value="{DynamicResource StandardContextMenu}"/>
+        <Setter Property="Background" Value="{DynamicResource Button.Static.Background}"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Button.Static.Border}"/>
     </Style>
     <Style TargetType="{x:Type xceed:PropertyGridEditorLongUpDown}">
-        <Setter Property="ContextMenu" Value="{StaticResource StandardContextMenu}"/>
+        <Setter Property="ContextMenu" Value="{DynamicResource StandardContextMenu}"/>
+        <Setter Property="Background" Value="{DynamicResource Button.Static.Background}"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Button.Static.Border}"/>
     </Style>
 
     <Style TargetType="{x:Type xceed:ColorPicker}">

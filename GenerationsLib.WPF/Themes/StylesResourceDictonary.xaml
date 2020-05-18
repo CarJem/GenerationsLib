@@ -1,0 +1,28 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:GenerationsLib.WPF.Themes">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/GenerationsLib.WPF;Component/Styles/IconLibrary.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/GenerationsLib.WPF;Component/Styles/ButtonStyle.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/GenerationsLib.WPF;Component/Styles/ItemContainerStyle.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/GenerationsLib.WPF;Component/Styles/FlatButtonStyle.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/GenerationsLib.WPF;Component/Styles/ExpanderStyle.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/GenerationsLib.WPF;Component/Styles/TextBoxStyle.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/GenerationsLib.WPF;Component/Styles/TabItemStyle.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/GenerationsLib.WPF;Component/Styles/ComboBoxStyle.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/GenerationsLib.WPF;Component/Styles/ScrollBarStyle.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/GenerationsLib.WPF;Component/Styles/ScrollViewerStyle.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/GenerationsLib.WPF;Component/Styles/ListViewStyle.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/GenerationsLib.WPF;Component/Styles/RepeatButtonStyle.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/GenerationsLib.WPF;Component/Styles/ToolbarStyle.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/GenerationsLib.WPF;Component/Styles/SliderStyle.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/GenerationsLib.WPF;Component/Styles/MenuItemContextStyle.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/GenerationsLib.WPF;Component/Styles/GroupBoxStyle.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/GenerationsLib.WPF;Component/Styles/SliderStyle.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/GenerationsLib.WPF;Component/Styles/XceedStyles.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/GenerationsLib.WPF;Component/Styles/LabelStyle.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/GenerationsLib.WPF;Component/Styles/CheckboxStyle.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/GenerationsLib.WPF;Component/Styles/HyperlinkStyle.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/GenerationsLib.WPF;Component/Styles/ProgressBarStyle.xaml"></ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
