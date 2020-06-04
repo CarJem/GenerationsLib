@@ -96,6 +96,7 @@ namespace GenerationsLib.WPF.Controls
             // (position.Offset == 0), it's just position.Index, otherwise we have to add one to
             // insert after the corresponding child
             int childIndex = (startPos.Offset == 0) ? startPos.Index : startPos.Index + 1;
+            if (childIndex == -1) return availableSize;
 
             this.IsItemsHost = true;
             ItemsControl itemsControl = ListBox.GetItemsOwner(this);
