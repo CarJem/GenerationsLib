@@ -30,14 +30,14 @@
 
     <SolidColorBrush x:Key="InactiveListItemColor" Color="#FF6D0000"/>
 
-    <SolidColorBrush x:Key="NormalBackground" Color="#A00000"/>
-    <SolidColorBrush x:Key="NormalBackground2" Color="#850000"/>
-    <SolidColorBrush x:Key="TextBoxBackground" Color="Red"/>
-    <SolidColorBrush x:Key="TextBoxBackground2" Color="#BB2E2E"/>
-    <SolidColorBrush x:Key="ToolbarBackground" Color="#A30000"/>
-    <SolidColorBrush x:Key="ToolbarOverflowBackground" Color="#A30000"/>
-    <SolidColorBrush x:Key="StatusBarBackground" Color="#BB2E2E"/>
-    <SolidColorBrush x:Key="MenuBar" Color="#BB2E2E"/>
+    <SolidColorBrush x:Key="NormalBackground" Color="#750000"/>
+    <SolidColorBrush x:Key="NormalBackground2" Color="#5F0000"/>
+    <SolidColorBrush x:Key="TextBoxBackground" Color="#BE0000"/>
+    <SolidColorBrush x:Key="TextBoxBackground2" Color="#952626"/>
+    <SolidColorBrush x:Key="ToolbarBackground" Color="#640000"/>
+    <SolidColorBrush x:Key="ToolbarOverflowBackground" Color="#720000"/>
+    <SolidColorBrush x:Key="StatusBarBackground" Color="#881D1D"/>
+    <SolidColorBrush x:Key="MenuBar" Color="#902929"/>
     <SolidColorBrush x:Key="ContextMenuBackground" Color="#880000"/>
     <SolidColorBrush x:Key="ContextMenuBackground2" Color="#354B4B4B"/>
     <SolidColorBrush x:Key="ButtonBackground" Color="#FFA50000"/>
