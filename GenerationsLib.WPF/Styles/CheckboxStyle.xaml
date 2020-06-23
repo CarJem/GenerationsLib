@@ -139,9 +139,9 @@
         </Setter>
     </Style>
     <Style TargetType="{x:Type RadioButton}">
-        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-        <Setter Property="Background" Value="{StaticResource RadioButton.Static.Background}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource RadioButton.Static.Border}"/>
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusVisual}"/>
+        <Setter Property="Background" Value="{DynamicResource RadioButton.Static.Background}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource RadioButton.Static.Border}"/>
         <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Template">

@@ -3,7 +3,7 @@
                     xmlns:local="clr-namespace:GenerationsLib.WPF.Styles">
 
     <Style x:Key="DefaultContextMenuStyle" TargetType="{x:Type ContextMenu}">
-        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusVisual}"/>
         <Setter Property="Background" Value="{DynamicResource ContextMenuBackground}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource ContextMenuBorder}"/>
         <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
@@ -36,7 +36,7 @@
     </Style>
 
     <Style TargetType="{x:Type ContextMenu}">
-        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusVisual}"/>
         <Setter Property="Background" Value="{DynamicResource ContextMenuBackground}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource ContextMenuBorder}"/>
         <Setter Property="Foreground" Value="{DynamicResource NormalText}"/>
