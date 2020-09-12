@@ -17,18 +17,20 @@ namespace GenerationsLib.WPF
 	/// <summary>
 	/// Interaction logic for TextPrompt2.xaml
 	/// </summary>
-	public partial class TextPrompt2 : Window
+	public partial class TextPromptDual : Window
 	{
 
 
-		private TextPrompt2(string label, string title, string defaultValue = "")
+		private TextPromptDual(string label, string label2, string title, string defaultValue = "", string defaultValue2 = "")
 		{
 			InitializeComponent();
 			this.SourceInitialized += WindowHelper.RemoveIcon;
 			this.Loaded += new RoutedEventHandler(PromptDialog_Loaded);
 			textLabel.Text = label;
+			textLabel2.Text = label2;
 			Title = title;
 			textBox1.Text = defaultValue;
+			textBox2.Text = defaultValue2;
 		}
 
 		void PromptDialog_Loaded(object sender, RoutedEventArgs e)
@@ -36,20 +38,28 @@ namespace GenerationsLib.WPF
 
 		}
 
-		public static string ShowDialog(string title, string label, string defaultValue = "")
+		public static Tuple<string, string> ShowDialog(string title, string label, string label2, string defaultValue = "", string defaultValue2 = "")
 		{
-			TextPrompt2 inst = new TextPrompt2(label, title, defaultValue);
+			TextPromptDual inst = new TextPromptDual(label, label2, title, defaultValue, defaultValue2);
 			inst.ShowDialog();
 			if (inst.DialogResult == true)
-				return inst.ResponseText;
-			return defaultValue;
+				return new Tuple<string, string>(inst.ResponseTextA, inst.ResponseTextB);
+			return new Tuple<string, string>(defaultValue, defaultValue2);
 		}
 
-		public string ResponseText
+		public string ResponseTextA
 		{
 			get
 			{
 				return textBox1.Text;
+			}
+		}
+
+		public string ResponseTextB
+		{
+			get
+			{
+				return textBox2.Text;
 			}
 		}
 
