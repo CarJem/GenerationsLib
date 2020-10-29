@@ -115,6 +115,7 @@
     <Compile Include="DesignExtensions.cs" />
     <Compile Include="Dialog\IntergerPrompt.cs" />
     <Compile Include="Dialog\TextPromptDual.cs" />
+    <Compile Include="EventBindingExtension.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="Media\Imaging\Bgra32Pixel.cs" />
     <Compile Include="Media\Imaging\ChainedBitmap.cs" />
