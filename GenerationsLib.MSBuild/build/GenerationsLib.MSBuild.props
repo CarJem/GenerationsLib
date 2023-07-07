@@ -1,0 +1,12 @@
+<!-- 
+  This file is automatically imported by NuGet into a user's project
+  when it targets a single framework, or in classic (pre 2017) csproj projects.
+-->
+<Project TreatAsLocalProperty="TaskFolder;TaskAssembly">
+  <PropertyGroup>
+    <TaskFolder>net472</TaskFolder>
+    <TaskAssembly>$(MSBuildThisFileDirectory)..\tasks\$(TaskFolder)\GenerationsLib.MSBuild.dll</TaskAssembly>
+  </PropertyGroup>
+
+  <UsingTask TaskName="GenerationsLib.MSBuild.MoveDirectory" AssemblyFile="$(TaskAssembly)" />
+</Project>
