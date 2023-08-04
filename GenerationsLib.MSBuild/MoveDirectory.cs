@@ -40,8 +40,7 @@ namespace GenerationsLib.MSBuild
                 var Destination = Path.Combine(DestinationFolder.ToString(), new DirectoryInfo(Source).Name);
                 try
                 {
-
-                    MoveDirectoryFunc(Source, Destination);
+                    Directory.Move(Source, Destination);
                 }
                 catch (Exception ex2)
                 {
